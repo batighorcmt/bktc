@@ -3,3 +3,4 @@ deployment:
   tasks:
     - export DEPLOYPATH=/home/bktcedu/public_html/
     - /bin/cp * $DEPLOYPATH
+    
