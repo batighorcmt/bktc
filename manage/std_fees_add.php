@@ -108,7 +108,7 @@
             
                 <div class="form-group">
                     <label>Payment Date</label>
-                       <input name="payment_date" value="<?php echo date('Y-m-d'); ?>" class="form-control" style="width: 100%;">
+                       <input name="payment_date" value="<?php echo date('d-m-Y'); ?>" class="form-control" style="width: 100%;">
                   </div><!-- /.form-group -->
 
                   <div class="form-group">
