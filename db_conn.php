@@ -1,9 +1,9 @@
 <?php  
 
 $sname = "localhost";
-$uname = "root";
-$password = "";
-$db_name = "batighor_manage";
+$uname = "bktcedu_user";
+$password = "@Bktc112233";
+$db_name = "bktcedu_web";
 
 $conn = mysqli_connect($sname, $uname, $password, $db_name);
 
