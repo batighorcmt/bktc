@@ -146,7 +146,7 @@ body {margin: 0.2in 0.2in 0.2in 0.2in}
                     <div class="table-responsive">
                         <table class="table table-sm table table-bordered table-striped">
                         <?php
-    $sql1 = "SELECT * from admited_student as ads, application as app, trainee_payment as tp WHERE ads.app_id=app.app_id and ads.trainee_id='$_GET[trainee_id]'";
+    $sql1 = "SELECT * from admited_student as ads, application as app WHERE ads.app_id=app.app_id and ads.trainee_id='$_GET[trainee_id]'";
 	$result1 = $conn->query($sql1);
 	while($rows = $result1->fetch_assoc())
 	{ 
@@ -196,10 +196,9 @@ body {margin: 0.2in 0.2in 0.2in 0.2in}
                                 <th>Shift</th>
                                 <td><?php echo $shift; ?></td>
                                 </tr>
-                                <?php    } ?>
                         </table>
                     </div>
-                    
+                    <?php    } ?>
                     <h4><b><center>Payment History</center></b></h4>
                  <div class="table-responsive">
                         <table class="table table-sm table table-bordered table-striped">
