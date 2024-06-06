@@ -34,8 +34,13 @@
           <div class="col-lg-3 col-6">
             <!-- small box -->
             <div class="small-box bg-info">
+            <?php 
+            $std    = "SELECT * FROM admited_student as ads, application as app where ads.app_id=app.app_id and ads.status='Active'";
+            $stdresult = $conn->query($std);
+            $stdcount  = mysqli_num_rows($stdresult);
+            ?>
               <div class="inner">
-                <h3>150</h3>
+                <h3> <?php echo $stdcount;?> </h3>
 
                 <p>Runing Students</p>
               </div>
@@ -49,8 +54,13 @@
           <div class="col-lg-3 col-6">
             <!-- small box -->
             <div class="small-box bg-success">
+            <?php 
+            $hr    = "SELECT * FROM hr";
+            $hrresult = $conn->query($hr);
+            $hrcount  = mysqli_num_rows($hrresult);
+            ?>
               <div class="inner">
-                <h3>03</h3>
+                <h3> <?php echo $hrcount;?>  </h3>
 
                 <p>Employees</p>
               </div>
@@ -64,10 +74,15 @@
           <div class="col-lg-3 col-6">
             <!-- small box -->
             <div class="small-box bg-warning">
+            <?php 
+            $app    = "SELECT * FROM application where app_status='Applied'";
+            $appresult = $conn->query($app);
+            $appcount  = mysqli_num_rows($appresult);
+            ?>
               <div class="inner">
-                <h3>100</h3>
+                <h3> <?php echo $appcount;?> </h3>
 
-                <p>Course Completed</p>
+                <p>Applied Students</p>
               </div>
               <div class="icon">
                 <i class="ion ion-person-add"></i>
@@ -79,10 +94,15 @@
           <div class="col-lg-3 col-6">
             <!-- small box -->
             <div class="small-box bg-danger">
+            <?php 
+            $s    = "SELECT * FROM admited_student where status='Completed'";
+            $sresult = $conn->query($s);
+            $scount  = mysqli_num_rows($sresult);
+            ?>
               <div class="inner">
-                <h3>20</h3>
+                <h3><?php echo $scount;?></h3>
 
-                <p>Drop Out</p>
+                <p>Course Completed</p>
               </div>
               <div class="icon">
                 <i class="ion ion-pie-graph"></i>

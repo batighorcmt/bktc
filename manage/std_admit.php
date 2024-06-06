@@ -1,6 +1,22 @@
 <?php
 include 'db_conn.php';
 $app_id = isset($_GET['app_id']) ? intval($_GET['app_id']) : null;
+
+$std = "select * from admited_student order by trainee_id desc limit 1";
+$results = mysqli_query($conn,$std);
+$row = mysqli_fetch_array($results);
+$last_id = $row['trainee_id'];
+if ($last_id == "")
+{
+    $trainee_id = "0000001";
+}
+else
+{
+    $trainee_id = substr($last_id,0, 7);
+    $trainee_id = intval($trainee_id);
+    $trainee_id = ($trainee_id + 1);
+}
+
 ?>
 
 
@@ -12,7 +28,7 @@ $app_id = isset($_GET['app_id']) ? intval($_GET['app_id']) : null;
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     
- <title>Print Application Copy | BKTC</title> 
+ <title>Admit Student | BKTC</title> 
     
     <link href="site_images/icon.ico" rel="icon">
     
@@ -75,7 +91,7 @@ $app_id = isset($_GET['app_id']) ? intval($_GET['app_id']) : null;
 <?php
     }
 ?>
-    <div align="center" style="font-size:12pt;"><strong><h4>Online Application Copy</h4></strong></div>
+    <div align="center" style="font-size:12pt;"><strong><h4> Admit Student</h4></strong></div>
     <hr>
   </div>
     </div>
@@ -94,7 +110,7 @@ $app_id = isset($_GET['app_id']) ? intval($_GET['app_id']) : null;
       </tr>
       <tr>
       <th scope="col">Application ID</th>
-      <th scope="col"><?=$row['app_id']; ?></th>
+      <th scope="col"><?=$row['app_id']; ?> - <?php echo $trainee_id; ?></th>
       <th scope="col" colspan="2" rowspan="4">
       <img class="prtpic" src="../img/appliedstd/<?=$row['pic_file']; ?>" alt="<?=$row['studname']; ?>'s photo" width="120px" height="150px">
       </th>
@@ -246,7 +262,11 @@ $app_id = isset($_GET['app_id']) ? intval($_GET['app_id']) : null;
         </select>
         </th> 
         <th style="width:25%;" >Contract Amount</th> 
-        <th> <input name="contract" class="form-control" placeholder="Enter Contract Fees Amount" required > </th> 
+        <th> <input name="contract" class="form-control" placeholder="Enter Contract Fees Amount"  > </th>
+        <input type="text" name="trainee_id" class="form-control" VALUE="<?php echo $trainee_id; ?>"  >
+        <input type="text" name="app_id" class="form-control" VALUE="<?php echo $app_id; ?>"  >
+        <input type="text" name="username" class="form-control" VALUE="<?php echo $trainee_id; ?>"  >
+        <input type="text" name="password" class="form-control" VALUE="<?php echo $trainee_id; ?><?php echo $app_id; ?>"  >
       </tr>
       <tr align="center">
         <th colspan="4">
