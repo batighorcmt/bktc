@@ -76,7 +76,7 @@
                               <tbody>
                                  <?php
                                 $i=1;
-                                $sqlt = "SELECT * from admited_student as ads, application as app, trainee_payment as tp WHERE ads.app_id=app.app_id and ads.trainee_id=tp.trainee_id and ads.trainee_id='$_GET[trainee_id]'";
+                                $sqlt = "SELECT * from admited_student as ads, application as app, trainee_payment as tp WHERE ads.app_id=app.app_id and ads.trainee_id=tp.trainee_id";
                                 $resultt = $conn->query($sqlt);
                                 while($row = $resultt->fetch_array())
                                 { 
