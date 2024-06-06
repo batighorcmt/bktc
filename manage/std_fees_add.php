@@ -52,7 +52,7 @@
                 <div class="col-md-12">
                 <div class="form-group">
                 <label>Trainee Name</label>
-                    <select name="trainee_id" class="form-control select2-single" data-placeholder="Select a Trainee" style="width: 100%;" required>
+                    <select name="trainee_id" class="form-control select2" data-placeholder="Select a Trainee" style="width: 100%;" required>
                       <<?php
                                 $i=1;
                                 $sql = "SELECT * FROM admited_student as ads, application as app where ads.app_id=app.app_id and ads.status='Admited'";
