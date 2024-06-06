@@ -139,7 +139,7 @@ body {margin: 0.2in 0.2in 0.2in 0.2in}
     <hr>
   </div>
     </div>
-    <hr>
+
 
     <?php
     $sql1 = "SELECT * from admited_student as ads, application as app, trainee_payment as tp WHERE ads.app_id=app.app_id and ads.trainee_id=tp.trainee_id and ads.trainee_id='$_GET[trainee_id]'";
@@ -149,7 +149,7 @@ body {margin: 0.2in 0.2in 0.2in 0.2in}
         $trainee_id = $rows['trainee_id'];
         $studname = $rows['studname'];
         $fathername = $rows['fathername'];
-        $mothername = $rows['mmothername'];
+        $mothername = $rows['mothername'];
         $pic_file = $rows['pic_file'];
         $course = $rows['course'];
         $ssession = $rows['ssession'];
