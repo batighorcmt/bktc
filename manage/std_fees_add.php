@@ -5,25 +5,7 @@
 
     include("header.php");
     include("sidebar.php");
-
-    $std = "select * from std_list order by trainee_id desc limit 1";
-    $results = mysqli_query($conn,$std);
-    $row = mysqli_fetch_array($results);
-    $last_id = $row['trainee_id'];
-    $std_name = $row['s_name'];
-    $year = date('Y');
-    if ($last_id == "")
-    {
-        $trainee_id = "0000001";
-    }
-    else
-    {
-        $trainee_id = substr($last_id,0, 7);
-        $trainee_id = intval($trainee_id);
-        $trainee_id = ($trainee_id + 1);
-    }
-    
-    
+   
     ?>
 
 
@@ -59,28 +41,6 @@
        ?>
             </div>
             </div>
-
-
-            <script>
-		$(document).ready(function(){
-			$('#mobile').on('blur', function(){
-				var user_name = $(this).val().trim();
-				if(user_name != ''){
-					$.ajax({
-						url: 'username_checker.php',
-						type: 'post',
-						data: {user_name: user_name},
-						success: function(response){
-							$('#uname_result').html(response);
-						}
-					});
-				} else {
-					$("#uname_result").html("");
-				}
-			});
-		});
-	</script>
-
         <div class="row">
             <div class="col-lg-12 col-12">
                 <div class="card">
@@ -95,12 +55,12 @@
                     <select name="trainee_id" class="form-control select2-single" data-placeholder="Select a Trainee" style="width: 100%;" required>
                       <<?php
                                 $i=1;
-                                $sql = "SELECT * from std_list";
+                                $sql = "SELECT * FROM admited_student as ads, application as app where ads.app_id=app.app_id and ads.status='Admited'";
                                 $result = $conn->query($sql);
                                 while($row = $result->fetch_array())
                                 { 
                                 ?>
-                                  	<option value="<?=$row['trainee_id'];?>"> <?=$row['trainee_id'];?> - <?=$row['s_name'];?></option>
+                                  	<option value="<?=$row['trainee_id'];?>"> <?=$row['trainee_id'];?> - <?=$row['studname'];?></option>
 
                              <?php $i++; } ?>
                     </select>

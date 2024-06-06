@@ -77,7 +77,7 @@
                               <tbody>
                                  <?php
                                 $i=1;
-                                $sqlt = "SELECT * from application WHERE app_status='Applied' order by app_id asc";
+                                $sqlt = "SELECT * from application WHERE app_status='Applied' order by app_id desc";
                                 $resultt = $conn->query($sqlt);
                                 while($row = $resultt->fetch_array())
                                 { 

@@ -35,7 +35,7 @@
             <!-- small box -->
             <div class="small-box bg-info">
             <?php 
-            $std    = "SELECT * FROM admited_student as ads, application as app where ads.app_id=app.app_id and ads.status='Active'";
+            $std    = "SELECT * FROM admited_student as ads, application as app where ads.app_id=app.app_id and ads.status='Admited'";
             $stdresult = $conn->query($std);
             $stdcount  = mysqli_num_rows($stdresult);
             ?>
