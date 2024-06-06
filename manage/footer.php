@@ -73,7 +73,8 @@ $(function () {
     $('.select2bs4').select2({
       theme: 'bootstrap4'
     })
-    
+  } )
+
   $(function () {
     $("#example1").DataTable({
       "responsive": false, "lengthChange": false, "autoWidth": false,

@@ -4,9 +4,11 @@
    if (isset($_SESSION['username']) && isset($_SESSION['id'])) {   
 
     include("header.php");
-    include("sidebar.php");
-   
-    ?>
+?>
+<!-- Select2 -->
+<link rel="stylesheet" href="plugins/select2/css/select2.min.css">
+<link rel="stylesheet" href="plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
+<?php    include("sidebar.php");    ?>
 
 
 <!-- Content Wrapper. Contains page content -->
