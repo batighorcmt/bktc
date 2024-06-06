@@ -204,6 +204,7 @@ $app_id = isset($_GET['app_id']) ? intval($_GET['app_id']) : null;
         <td><?=$row['rtransection']; ?></td> 
       </tr>
       </table>
+      <form role="form" method="post" action="std_admit_save.php" enctype="multipart/form-data">
         <table class="table table-sm table table-bordered table-striped">
        <tr>
       <th colspan="4" align="center">Admission Information</th>
@@ -253,6 +254,7 @@ $app_id = isset($_GET['app_id']) ? intval($_GET['app_id']) : null;
         </th>
       </tr>
     </table>
+  </form>
 </div>
 <?php
     }
