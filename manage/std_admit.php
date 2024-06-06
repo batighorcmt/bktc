@@ -263,10 +263,10 @@ else
         </th> 
         <th style="width:25%;" >Contract Amount</th> 
         <th> <input name="contract" class="form-control" placeholder="Enter Contract Fees Amount"  > </th>
-        <input type="text" name="trainee_id" class="form-control" VALUE="<?php echo $trainee_id; ?>"  >
-        <input type="text" name="app_id" class="form-control" VALUE="<?php echo $app_id; ?>"  >
-        <input type="text" name="username" class="form-control" VALUE="<?php echo $trainee_id; ?>"  >
-        <input type="text" name="password" class="form-control" VALUE="<?php echo $trainee_id; ?><?php echo $app_id; ?>"  >
+        <input type="hidden" name="trainee_id" class="form-control" VALUE="<?php echo $trainee_id; ?>"  >
+        <input type="hidden" name="app_id" class="form-control" VALUE="<?php echo $app_id; ?>"  >
+        <input type="hidden" name="username" class="form-control" VALUE="<?php echo $trainee_id; ?>"  >
+        <input type="hidden" name="password" class="form-control" VALUE="<?php echo $trainee_id; ?><?php echo $app_id; ?>"  >
       </tr>
       <tr align="center">
         <th colspan="4">
