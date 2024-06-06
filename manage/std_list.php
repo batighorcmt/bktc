@@ -110,7 +110,7 @@
                                   	    <div><?=$row['saddress'];?></div>
                                   	</td>
                                   	<td>
-                                  	    <div><img class="img-bordered-sm" height="100" width="80" src="img/student/<?=$row['pic_file'];?>"></div>
+                                  	    <div><img class="img-bordered-sm" height="100" width="80" src="../img/aplliedstd/<?=$row['pic_file'];?>"></div>
                                   	</td>
                                   <td> <div class="btn-group">
                       <button type="button" class="btn btn-default btn-flat dropdown-toggle" data-toggle="dropdown">Action</button>
