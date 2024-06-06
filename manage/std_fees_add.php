@@ -54,19 +54,6 @@
               <div class="row">
                 <div class="col-md-12">
                 <div class="form-group">
-                  <label>Minimal</label>
-                  <select class="form-control select2" style="width: 100%;">
-                    <option selected="selected">Alabama</option>
-                    <option>Alaska</option>
-                    <option>California</option>
-                    <option>Delaware</option>
-                    <option>Tennessee</option>
-                    <option>Texas</option>
-                    <option>Washington</option>
-                  </select>
-                </div>
-                
-                <div class="form-group">
                 <label>Trainee Name</label>
                     <select name="trainee_id" class="form-control select2" data-placeholder="Select a Trainee" style="width: 100%;" required>
                       <<?php
