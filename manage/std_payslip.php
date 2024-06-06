@@ -147,15 +147,15 @@ body {margin: 0.2in 0.2in 0.2in 0.2in}
 	while($rows = $result1->fetch_assoc())
 	{ 
         $trainee_id = $rows['trainee_id'];
-        $name = $rows['studname'];
-        $fname = $rows['fathername'];
-        $mname = $rows['mmothername'];
-        $img = $rows['pic_file'];
+        $studname = $rows['studname'];
+        $fathername = $rows['fathername'];
+        $mmothername = $rows['mmothername'];
+        $pic_file = $rows['pic_file'];
         $course = $rows['course'];
-        $batch = $rows['ssession'];
+        $ssession = $rows['ssession'];
         $shift = $rows['shift'];
-        $mobile = $rows['cnumber'];
-        $village = $rows['saddress'];
+        $cnumber = $rows['cnumber'];
+        $saddress = $rows['saddress'];
 ?>
 <h4><b><center>Student Profile</center></b></h4>
                     <div class="table-responsive">
