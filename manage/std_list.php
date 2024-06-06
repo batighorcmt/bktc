@@ -62,7 +62,7 @@
                                    <th> 
                                    		<div>Course Name</div>
                                    </th>
-                                   <th> <div>Batch</div>
+                                   <th> <div>Session</div>
                                    </th>
                                    <th> <div>Shift</div>
                                    </th>
@@ -79,7 +79,7 @@
                               <tbody>
                                  <?php
                                 $i=1;
-                                $sqlt = "SELECT * from std_list order by trainee_id asc";
+                                $sqlt = "SELECT * from application as app, admited_student as ads where app.app_id=ads.app_id and ads.status='admited' order by trainee_id asc";
                                 $resultt = $conn->query($sqlt);
                                 while($row = $resultt->fetch_array())
                                 { 
@@ -87,18 +87,18 @@
                                 <tr>
                                   <td><?=$i;?></td>
                                   <td>
-                                  	<div><strong><a href="trainee_profile.php?trainee_id=<?=$row['trainee_id'];?>"><?=$row['s_name'];?></a></strong></div>
+                                  	<div><strong><a href="trainee_profile.php?trainee_id=<?=$row['trainee_id'];?>"><?=$row['studname'];?></a></strong></div>
                                   	<div><?=$row['trainee_id'];?></div>
                                   </td>
                                   <td>
-                                  	<div><strong><a href="tel:<?=$row['mobile'];?>"><?=$row['mobile'];?></a></strong></div>
-                                  	<div><?=$row['s_email'];?></div>
+                                  	<div><strong><a href="tel:<?=$row['cnumber'];?>"><?=$row['cnumber'];?></a></strong></div>
+                                  	<div><?=$row['studemail'];?></div>
                                   </td>
                                   <td>
-									<div><?=$row['course_name'];?></div>
+									<div><?=$row['course'];?></div>
                                   	</td>
                                   <td><div>
-                                    <?=$row['batch'];?>
+                                    <?=$row['ssession'];?>
                                   </div></td>
                                   <td><div>
                                     <?=$row['shift'];?>
@@ -107,17 +107,17 @@
                                     <?=$row['status'];?>
                                   </div></td>
                                   	<td>
-                                  	    <div><?=$row['present_add'];?></div>
+                                  	    <div><?=$row['saddress'];?></div>
                                   	</td>
                                   	<td>
-                                  	    <div><img class="img-bordered-sm" height="100" width="80" src="img/student/<?=$row['img'];?>"></div>
+                                  	    <div><img class="img-bordered-sm" height="100" width="80" src="img/student/<?=$row['pic_file'];?>"></div>
                                   	</td>
                                   <td> <div class="btn-group">
                       <button type="button" class="btn btn-default btn-flat dropdown-toggle" data-toggle="dropdown">Action</button>
                       <ul class="dropdown-menu" role="menu">
                         <li><a href="trainee_edit.php?trainee_id=<?=$row['trainee_id'];?>">Edit</a></li>
                         <li><a href="#">Profile View </a></li>
-						<li><a href="#">Print Profile</a></li>
+						<li><a href="applicant_profile.php?app_id=<?=$row['app_id'];?>">Print Profile</a></li>
             <li><a target="_blank" href="std_payslip.php?trainee_id=<?=$row['trainee_id'];?>">Payment History</a></li>
                         <li><a href="std_delete.php?trainee_id=<?=$row['trainee_id'];?>">Delete</a></li>
                       </ul>
@@ -139,7 +139,7 @@
                                    <th> 
                                    		<div>Course Name</div>
                                    </th>
-                                   <th> <div>Batch</div>
+                                   <th> <div>Session</div>
                                    </th>
                                    <th> <div>Shift</div>
                                    </th>
