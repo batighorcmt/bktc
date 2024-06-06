@@ -238,6 +238,7 @@ body {margin: 0.2in 0.2in 0.2in 0.2in}
                                 <td> <?php echo $total; ?> </td>
                                 <td></td>
                                 </tr>
+                                <?php    } ?>
                             </tbody>
                         </table>
                     </div>
@@ -254,7 +255,7 @@ body {margin: 0.2in 0.2in 0.2in 0.2in}
 
 </body>
 </html>
-<?php    } ?>
+
 
 <?php } else{
 	header("Location: index.php");
