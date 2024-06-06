@@ -215,7 +215,7 @@ body {margin: 0.2in 0.2in 0.2in 0.2in}
  <?php
     $i=1;
     $total=0;
-    $sql3 = "SELECT * from admited_student as ads, application as app, trainee_payment as tp WHERE ads.app_id=app.app_id and ads.trainee_id=tp.trainee_id and ads.trainee_id='$_GET[trainee_id]'";
+    $sql3 = "SELECT * from admited_student as ads, application as app, trainee_payment as tp WHERE ads.app_id=app.app_id and ads.trainee_id=tp.'$_GET[trainee_id]'";
 	$result3 = $conn->query($sql3);
 	while($roww = $result3->fetch_assoc())
 	{ 
@@ -238,7 +238,6 @@ body {margin: 0.2in 0.2in 0.2in 0.2in}
                                 <td> <?php echo $total; ?> </td>
                                 <td></td>
                                 </tr>
-                                <?php    } ?>
                             </tbody>
                         </table>
                     </div>
@@ -255,7 +254,7 @@ body {margin: 0.2in 0.2in 0.2in 0.2in}
 
 </body>
 </html>
-
+<?php    } ?>
 
 <?php } else{
 	header("Location: index.php");
