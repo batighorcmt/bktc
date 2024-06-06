@@ -197,7 +197,7 @@ body {margin: 0.2in 0.2in 0.2in 0.2in}
                                 </tr>
                         </table>
                     </div>
-                    
+                    <?php    } ?>
                     <h4><b><center>Payment History</center></b></h4>
                  <div class="table-responsive">
                         <table class="table table-sm table table-bordered table-striped">
@@ -254,7 +254,7 @@ body {margin: 0.2in 0.2in 0.2in 0.2in}
 
 </body>
 </html>
-<?php    } ?>
+
 
 <?php } else{
 	header("Location: index.php");
