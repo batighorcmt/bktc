@@ -248,7 +248,7 @@ $app_id = isset($_GET['app_id']) ? intval($_GET['app_id']) : null;
         <th style="width:25%;" >Contract Amount</th> 
         <th> <input name="contract" class="form-control" placeholder="Enter Contract Fees Amount" required > </th> 
       </tr>
-      <tr>
+      <tr align="center">
         <th colspan="4">
             <input id="submit" style="align-items: center;" name="submit" type="submit" value="Admit Student" class="btn btn-success btn-lg">
         </th>
