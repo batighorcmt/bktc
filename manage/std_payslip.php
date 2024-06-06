@@ -119,28 +119,33 @@ body {margin: 0.2in 0.2in 0.2in 0.2in}
         </script>
     </head>
     <body onLoad="awindow_print()">
-<div class="col-sm-12">
+    <div class="container py-5">
+    <div class="row">
+      <div class="col-sm-12">
 <?php 
     $sqlinst = "SELECT * from inst_data limit 1";
-	$resultinst = $conn->query($sqlinst);
-	while($r = $resultinst->fetch_assoc())
-	{ 
+  $resultinst = $conn->query($sqlinst);
+  while($r = $resultinst->fetch_assoc())
+  { 
         $instname = $r['inst_name'];
         $instadd = $r['inst_add'];
         $instaddress = $r['inst_address'];
 ?>
 
-	<h1 align="center" class=""><?php echo $instname; ?></h1>
-    <h6 align="center" class=""><?php echo $instadd; ?>,</h6>
+  <h1 align="center" class=""><?php echo $instname; ?></h1>
+    <h6 align="center" class=""><?php echo $instadd; ?></h6>
     <h6 align="center" class=""><?php echo $instaddress; ?></h6>
 <?php
     }
 ?>
     <div align="center" style="font-size:12pt;"><strong><h4>Payment Slip</h4></strong></div>
     <hr>
+  </div>
+    </div>
+    <hr>
 
     <?php
-    $sql1 = "SELECT * from std_list as st WHERE st.trainee_id='$_GET[trainee_id]'";
+    $sql1 = "SELECT * from admited_student as ads, application as app, trainee_payment as tp WHERE ads.app_id=app.app_id and ads.trainee_id=tp.trainee_id and ads.trainee_id='$_GET[trainee_id]'";
 	$result1 = $conn->query($sql1);
 	while($rows = $result1->fetch_assoc())
 	{ 
