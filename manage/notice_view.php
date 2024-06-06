@@ -5,7 +5,7 @@ include 'db_conn.php';
 if ($notice_id === null) {
     die("notice_id number not provided.");
 }
-    $sqln = "select * from notice WHERE page_id=$notice_id";
+    $sqln = "select * from notice WHERE notice_id=$notice_id";
     $resultn = mysqli_query($conn,$sqln);
     $row = mysqli_fetch_array($resultn);
 
