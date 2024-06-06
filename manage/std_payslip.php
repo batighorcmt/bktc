@@ -149,7 +149,7 @@ body {margin: 0.2in 0.2in 0.2in 0.2in}
         $trainee_id = $rows['trainee_id'];
         $studname = $rows['studname'];
         $fathername = $rows['fathername'];
-        $mmothername = $rows['mmothername'];
+        $mothername = $rows['mmothername'];
         $pic_file = $rows['pic_file'];
         $course = $rows['course'];
         $ssession = $rows['ssession'];
@@ -220,11 +220,12 @@ body {margin: 0.2in 0.2in 0.2in 0.2in}
 	while($roww = $result3->fetch_assoc())
 	{ 
         $total += $roww['payment_amount'];
+        $payment_date = $roww['payment_date'];
 ?>
     
                                 <tr>
                                 <th><?=$i;?></th>
-                                <td><?=$roww['payment_date'];?></td>
+                                <td><?php echo date("d/m/Y",strtotime("$payment_date")); ?></td>
                                 <td><?=$roww['payment_method'];?></td>
                                 <td><?=$roww['payment_txn'];?></td>
                                 <td><?=$roww['payment_amount'];?></td>
