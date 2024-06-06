@@ -45,7 +45,7 @@
         <div class="row">
             <div class="col-lg-12 col-12">
                 <div class="card">
-                <h5 class="card-header">Student List</h5>
+                <h5 class="card-header">Payment List</h5>
                 <div class="card-body">  
                     <table class="table table-bordered table-striped table-responsive" id="example1">
                               <thead>
@@ -63,13 +63,11 @@
                                    </th>
                                    <th> <div>Session</div>
                                    </th>
-                                   <th> <div>Shift</div>
-                                   </th>
+                                  
                                    <th><div>Status</div></th>
                                    <th>
                                     	<div>Payment Amount</div>
                                   </th>
-=
                                     <th> Action </th>
                                  </tr>
                               </thead>
@@ -90,7 +88,6 @@
                                   <td><?=$row['trainee_id'];?></td>
                                   <td>
                                   	<div><strong><a href="tel:<?=$row['cnumber'];?>"><?=$row['cnumber'];?></a></strong></div>
-                                  	<div><?=$row['studemail'];?></div>
                                   </td>
                                   <td>
 									<div><?=$row['course'];?></div>
@@ -98,9 +95,7 @@
                                   <td><div>
                                     <?=$row['ssession'];?>
                                   </div></td>
-                                  <td><div>
-                                    <?=$row['shift'];?>
-                                  </div></td>
+                                  
                                   <td><div>
                                     <?=$row['status'];?>
                                   </div></td>
@@ -134,13 +129,11 @@
                                    </th>
                                    <th> <div>Session</div>
                                    </th>
-                                   <th> <div>Shift</div>
-                                   </th>
+                                  
                                    <th><div>Status</div></th>
                                    <th>
                                     	<div>Payment Amount</div>
                                   </th>
-=
                                     <th> Action </th>
                                  </tr>	
                               </tfoot>
