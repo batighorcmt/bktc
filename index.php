@@ -222,7 +222,7 @@ include 'mainnav.php';
                                 while($row = $resultn->fetch_array())
                                 {
                                 ?>
-                  <li> <p class="calendar-icon1"> <i class="fa fa-dot-circle-o"></i>   <a href="notice_view.php?notice_id=<?=$row['notice_id'];?>"> <?=$row['notice_title'];?></a></p> </li>
+                  <li> <p class="calendar-icon1"> <i class="fa fa-dot-circle-o"></i>   <a href="manage/notice_view.php?notice_id=<?=$row['notice_id'];?>"> <?=$row['notice_title'];?></a></p> </li>
                   <?php $i++; } ?> 
                 </ul>
                    
