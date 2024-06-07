@@ -1,6 +1,15 @@
 <?php
-include 'manage/db_conn.php';
-?>
+include 'db_conn.php';
+ $notice_id = isset($_GET['notice_id']) ? intval($_GET['notice_id']) : null;
+
+if ($notice_id === null) {
+    die("notice_id number not provided.");
+}
+    $sqln = "select * from notice WHERE notice_id=$notice_id";
+    $resultn = mysqli_query($conn,$sqln);
+    $row = mysqli_fetch_array($resultn);
+
+    ?>
 
 
 
@@ -10,31 +19,33 @@ include 'manage/db_conn.php';
     
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="description" content="<?=$row['notice_text'];?>s">
+  <meta name="keywords" content="<?=$row['notice_text'];?>">
     
- <title>Notice Board | Bamundi Karigori Training Center</title>	
+ <title><?=$row['notice_title'];?> | Bamundi Karigori Training Center</title>	
     
-    <link href="site_images/icon.ico" rel="icon">
+    <link href="../site_images/icon.ico" rel="icon">
     
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     
     <!-- Bootstrap core CSS -->
-    <link href="elements/bootstrap.min.css" rel="stylesheet">
+    <link href="../elements/bootstrap.min.css" rel="stylesheet">
     
     <!-- Your custom styles (optional) -->
-    <link rel="stylesheet" href="elements/animate.css">
+    <link rel="stylesheet" href="../elements/animate.css">
     
-    <link rel="stylesheet" href="elements/all-fonts.css">
+    <link rel="stylesheet" href="../elements/all-fonts.css">
     
-    <link href="elements/style.css" rel="stylesheet">
+    <link href="../elements/style.css" rel="stylesheet">
     
-     <link href="elements/owl.carousel.min.css" rel="stylesheet">
+     <link href="../elements/owl.carousel.min.css" rel="stylesheet">
 	 
-	 <link rel="stylesheet" href="elements/carlous.css">
-	   <script src="elements/jquery.min.js.download"></script>
-  <script src="elements/bootstrap.min.js.download"></script>
+	 <link rel="stylesheet" href="../elements/carlous.css">
+	   <script src="../elements/jquery.min.js.download"></script>
+  <script src="../elements/bootstrap.min.js.download"></script>
      
-   <link href="elements/font.css" rel="stylesheet">
+   <link href="../elements/font.css" rel="stylesheet">
    <link href="https://fonts.maateen.me/kalpurush/font.css" rel="stylesheet">
 
    
@@ -110,13 +121,14 @@ include 'manage/db_conn.php';
       <!--Lower-header-->
       		<div class="container">
             	<div class="row">
-                	<div class="col-md-2"> <div class="main-logo"> <img width="100" class="img-fluid" src="site_images/bktc_logo.png"> </div> </div>
+                	<div class="col-md-2"> <div class="main-logo"> <img width="100" class="img-fluid" src="../site_images/bktc_logo.png"> </div> </div>
                     <div class="col-md-10"> 
                     	<div class="main-manu">
                         	
 <?php
-include 'mainnav.php';
+include '../mainnav.php';
 ?>
+
                             
                         </div>
                      </div>
@@ -128,36 +140,13 @@ include 'mainnav.php';
         <div class="row" style="margin-top:10px;">
             <div class="col-md-12"> 
               <div class="card">
-                <h5 class="card-header" style="background-color:#00a953; color:#FFFFFF; margin:10px; border-radius:5px;"><strong>নোটিশ বোর্ড</strong></h5>
+                <h5 class="card-header" style="background-color:#00a953; color:#FFFFFF; margin:10px; border-radius:5px;"><strong><?=$row['notice_title'];?></strong></h5>
                 <div class="card-body">
-                    <table class="table table-bordered table-striped mb-none" id="datatable-editable">
-                        <thead>
-                        <tr align="Center">
-                        <th>ক্রমিক</th>
-                        <th width="10%">তারিখ</th>
-                        <th width="60%">নোটিশ শিরোনাম</th>
-                        <th>ডাউনলোড</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                            <?php
-                                $i=1;
-                                $sqln = "SELECT * from notice order by notice_id desc";
-                                $resultn = $conn->query($sqln);
-                                while($row = $resultn->fetch_array())
-                                {
-                                ?>
-                        <tr>
-                        <th><?=$i;?></th>
-                        <th><?=$row['notice_date'];?></th>
-                        <th><?=$row['notice_title'];?></th>
-                        <th align="Center">
-                          <a href="manage/notice_view.php?notice_id=<?=$row['notice_id'];?>"><img src="site_images/view.png" height=20% width=20%> &nbsp; &nbsp; &nbsp;  
-                          <a href="notice/<?=$row['notice_file'];?>"><img src="site_images/download.png" height=20% width=20%></th>
-                        </tr>  
-                        <?php $i++; } ?>                                                             
-                        </tbody>
-                    </table>
+
+<?=$row['notice_text'];?>
+
+<hr>
+<small></small>
               </div>
             </div>
           </div>
@@ -189,7 +178,7 @@ include 'mainnav.php';
                                     <li> <a href="downloads.php">ডাউনলোড</a></li>
                                     <li> <a href="contacts.php">যোগাযোগ</a></li>
                                 </ul>
-                                <p class="copyright-text"> CTMI-Satkhira © Copyright 2021. All Rights Reserved. </p>
+                                <p class="copyright-text"> BKTC-Meherpur © Copyright 2024. All Rights Reserved. </p>
                             </div>
                         </div>
                     </div>

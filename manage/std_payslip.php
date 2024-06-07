@@ -80,31 +80,28 @@ function convertNum($number){
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Payment Invoice Print</title>
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-  <!-- Bootstrap 3.3.6 -->
-  <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="css/font-awesome.min.css">
-  <!-- Ionicons -->
-  <link rel="stylesheet" href="css/ionicons.min.css">
-
-<link rel="stylesheet" href="plugins/datepicker/datepicker3.css">
-    <!-- DataTables -->
-  <link rel="stylesheet" href="plugins/datatables/dataTables.bootstrap.css">
-<!--Time picker-->
-   <link rel="stylesheet" href="plugins/timepicker/bootstrap-timepicker.min.css">
-
-  <!-- Theme style -->
-  <link rel="stylesheet" href="dist/css/AdminLTE.min.css">
-  <!-- AdminLTE Skins. Choose a skin from the css/skins
-       folder instead of downloading all of them to reduce the load. -->
-  <link rel="stylesheet" href="dist/css/skins/_all-skins.min.css">
-
-  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-  <!--[if lt IE 9]>
-  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-  <![endif]-->
+     <!-- Font Awesome -->
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+    
+    <!-- Bootstrap core CSS -->
+    <link href="../elements/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Your custom styles (optional) -->
+    <link rel="stylesheet" href="../elements/animate.css">
+    
+    <link rel="stylesheet" href="../elements/all-fonts.css">
+    
+    <link href="../elements/style.css" rel="stylesheet">
+    
+     <link href="../elements/owl.carousel.min.css" rel="stylesheet">
+   
+   <link rel="stylesheet" href="../elements/carlous.css">
+     <script src="../elements/jquery.min.js.download"></script>
+  <script src="../elements/bootstrap.min.js.download"></script>
+     
+   <link href="../elements/font.css" rel="stylesheet">
+   <link href="https://fonts.maateen.me/kalpurush/font.css" rel="stylesheet">
   <style type="text/css">
 <!--
 .note {font-size: 10px}
@@ -119,84 +116,89 @@ body {margin: 0.2in 0.2in 0.2in 0.2in}
         </script>
     </head>
     <body onLoad="awindow_print()">
-<div class="col-sm-12">
+    <div class="container py-5">
+    <div class="row">
+      <div class="col-sm-12">
 <?php 
     $sqlinst = "SELECT * from inst_data limit 1";
-	$resultinst = $conn->query($sqlinst);
-	while($r = $resultinst->fetch_assoc())
-	{ 
+  $resultinst = $conn->query($sqlinst);
+  while($r = $resultinst->fetch_assoc())
+  { 
         $instname = $r['inst_name'];
         $instadd = $r['inst_add'];
         $instaddress = $r['inst_address'];
 ?>
 
-	<h1 align="center" class=""><?php echo $instname; ?></h1>
-    <h6 align="center" class=""><?php echo $instadd; ?>,</h6>
+  <h1 align="center" class=""><?php echo $instname; ?></h1>
+    <h6 align="center" class=""><?php echo $instadd; ?></h6>
     <h6 align="center" class=""><?php echo $instaddress; ?></h6>
 <?php
     }
 ?>
     <div align="center" style="font-size:12pt;"><strong><h4>Payment Slip</h4></strong></div>
     <hr>
+  </div>
+    </div>
 
-    <?php
-    $sql1 = "SELECT * from std_list as st WHERE st.trainee_id='$_GET[trainee_id]'";
+
+ 
+<h4><b><center>Student Profile</center></b></h4>
+                    <div class="table-responsive">
+                        <table class="table table-sm table table-bordered table-striped">
+                        <?php
+    $sql1 = "SELECT * from admited_student as ads, application as app WHERE ads.app_id=app.app_id and ads.trainee_id='$_GET[trainee_id]'";
 	$result1 = $conn->query($sql1);
 	while($rows = $result1->fetch_assoc())
 	{ 
         $trainee_id = $rows['trainee_id'];
-        $name = $rows['s_name'];
-        $fname = $rows['f_name'];
-        $mname = $rows['m_name'];
-        $img = $rows['img'];
-        $course = $rows['course_name'];
-        $batch = $rows['batch'];
+        $studname = $rows['studname'];
+        $fathername = $rows['fathername'];
+        $mothername = $rows['mothername'];
+        $pic_file = $rows['pic_file'];
+        $course = $rows['course'];
+        $ssession = $rows['ssession'];
         $shift = $rows['shift'];
-        $mobile = $rows['mobile'];
-        $year = $rows['year'];
-        $village = $rows['village'];
+        $cnumber = $rows['cnumber'];
+        $saddress = $rows['saddress'];
 ?>
-<h4><b><center>Student Profile</center></b></h4>
-                    <div class="table-responsive">
-                        <table class="table table-sm table table-bordered table-striped">
                                 <tr>
                                 <th scope="col">Trainee ID</th>
                                 <th scope="col"><?php echo $trainee_id; ?></th>
                                 <th scope="col" colspan="2" rowspan="4">
-                                <img src="img/student/<?php echo $img; ?>" alt="<?php echo $name; ?>'photo" width="120px" height="150px">
+                                <img src="../img/appliedstd/<?php echo $pic_file; ?>" alt="<?php echo $studname; ?>'s photo" width="120px" height="150px">
                                 </th>
                                 </tr>
                                 <tr>
                                 <th>Tainee Name</th>
-                                <th><?php echo $name; ?></th>
+                                <th><?php echo $studname; ?></th>
                                 </tr>
                                 <tr>
                                 <th>Father Name</th>
-                                <td><?php echo $fname; ?></td>
+                                <td><?php echo $fathername; ?></td>
                                 </tr>
                                 <tr>
                                 <th>Mother Name</th>
-                                <td><?php echo $mname; ?></td>
+                                <td><?php echo $mothername; ?></td>
                                 </tr>
                                 <tr>
                                 <th>Course</th>
                                 <td><?php echo $course; ?></td>
                                 <th>Batch</th>
-                                <td><?php echo $batch; ?> (<?php echo $year; ?>) </td>
+                                <td><?php echo $ssession; ?> </td>
                                 </tr>
                                 <tr>
                                 <th>Address</th>
-                                <td colspan="3"><?php echo $village; ?></td>
+                                <td colspan="3"><?php echo $saddress; ?></td>
                                 </tr>
                                 <tr>
                                 <th>Mobile No</th>
-                                <td><?php echo $mobile; ?></td>
+                                <td><?php echo $cnumber; ?></td>
                                 <th>Shift</th>
                                 <td><?php echo $shift; ?></td>
                                 </tr>
                         </table>
                     </div>
-                    
+                    <?php    } ?>
                     <h4><b><center>Payment History</center></b></h4>
                  <div class="table-responsive">
                         <table class="table table-sm table table-bordered table-striped">
@@ -214,16 +216,17 @@ body {margin: 0.2in 0.2in 0.2in 0.2in}
  <?php
     $i=1;
     $total=0;
-    $sql3 = "SELECT * from trainee_payment as tp, std_list as st where st.trainee_id=tp.trainee_id AND tp.trainee_id='$_GET[trainee_id]'";
+    $sql3 = "SELECT * from admited_student as ads, application as app, trainee_payment as tp WHERE ads.app_id=app.app_id and ads.trainee_id=tp.trainee_id and ads.trainee_id='$_GET[trainee_id]'";
 	$result3 = $conn->query($sql3);
 	while($roww = $result3->fetch_assoc())
 	{ 
         $total += $roww['payment_amount'];
+        $payment_date = $roww['payment_date'];
 ?>
     
                                 <tr>
                                 <th><?=$i;?></th>
-                                <td><?=$roww['payment_date'];?></td>
+                                <td><?php echo date("d/m/Y",strtotime("$payment_date")); ?></td>
                                 <td><?=$roww['payment_method'];?></td>
                                 <td><?=$roww['payment_txn'];?></td>
                                 <td><?=$roww['payment_amount'];?></td>
@@ -252,7 +255,7 @@ body {margin: 0.2in 0.2in 0.2in 0.2in}
 
 </body>
 </html>
-<?php    } ?>
+
 
 <?php } else{
 	header("Location: index.php");

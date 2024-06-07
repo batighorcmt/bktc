@@ -10,14 +10,14 @@ while ($row = mysqli_fetch_array($qry)) {
   {
   $li .='<li data-target="#myCarousel" data-slide-to="'.$i.'" class="active"></li>'; 
   $div .='<div class="item active"> 
-          <img src="slider/'.$row['photo'].'" alt="'.$row['title'].'" width="100%" height="400"›
+          <img src="slider/'.$row['photo'].'" alt="'.$row['title'].'" width="100%" height="400px"›
           </div>';
   }
   else
   {
     $li .='<li data-target="#myCarousel" data-slide-to="'.$i.'"></li>'; 
   $div .='<div class="item"> 
-          <img  src="slider/'.$row['photo'].'" alt="'.$row['title'].'" width="100%" height="400"›
+          <img  src="slider/'.$row['photo'].'" alt="'.$row['title'].'" width="100%" height="400px"›
           </div>';
 }
 $div .='</div>';
@@ -126,7 +126,7 @@ object-fit: contain;
                  </div>
                  
 				<div class="col-md-2"> 
-<p class="blink"><a href="application_copy.php">আবেদন পত্র রিসিভ কপি</a></p>
+<p class="blink"><a href="#">আবেদন পত্র রিসিভ কপি</a></p>
 				</div>
 
             <div class="col-md-1"> 

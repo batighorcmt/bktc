@@ -40,8 +40,8 @@
 <script src="plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
 <!-- Summernote -->
 <script src="plugins/summernote/summernote-bs4.min.js"></script>
-<!-- select2 -->
-<script src="plugins/select2/js/select2.min.js"></script>
+<!-- Select2 -->
+<script src="plugins/select2/js/select2.full.min.js"></script>
 <!-- overlayScrollbars -->
 <script src="plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
 <!-- AdminLTE App -->
@@ -64,6 +64,17 @@
 <script src="plugins/ckeditor/ckeditor.js"></script>
 
 <script>
+
+$(function () {
+    //Initialize Select2 Elements
+    $('.select2').select2()
+
+    //Initialize Select2 Elements
+    $('.select2bs4').select2({
+      theme: 'bootstrap4'
+    })
+  } )
+
   $(function () {
     $("#example1").DataTable({
       "responsive": false, "lengthChange": false, "autoWidth": false,
