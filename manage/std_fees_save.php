@@ -6,7 +6,7 @@ $sql = "INSERT INTO trainee_payment (trainee_id, payment_date, payment_method, p
 $result = $conn->query($sql);
 $last_id = $con->insert_id;
 if($result == True ){
-    echo "<script>window.location.assign('std_fees_add.php?success=Payment Saved.');</script>";
+    echo "<script>window.location.assign('std_payslip.php?trainee_id=$trainee_id');</script>";
 }
 else{
     echo "<script>window.location.assign('std_fees_add.php?error=Something Went wrong!');</script>";
