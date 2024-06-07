@@ -57,6 +57,9 @@
                                     	<div>HR Name</div>
                                     </th>
                                     <th> 
+                                    	<div>HR Designation</div>
+                                    </th>
+                                    <th> 
                                     	<div>Mobile</div>
                                     </th>
                                     <th> 
@@ -83,6 +86,7 @@
                                   <td><?=$i; ?></td>
                                   <td><?=$row['hr_id'];?></td>
                                   <td><?=$row['hr_name'];?></td>
+                                  <td><?=$row['hr_designation'];?></td>
                                   <td><?=$row['hr_mobile'];?></td>
                                   <td><?=$row['hr_email'];?></td>
                                   <td><?=$row['hr_pre_add'];?></td>
@@ -110,6 +114,9 @@
                                     </th>
                                     <th> 
                                     	<div>HR Name</div>
+                                    </th>
+                                    <th> 
+                                    	<div>HR Designation</div>
                                     </th>
                                     <th> 
                                     	<div>Mobile</div>
