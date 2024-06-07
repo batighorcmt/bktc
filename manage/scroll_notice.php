@@ -26,9 +26,9 @@
   <div class="row">
     <div class="col-lg-12 col-12">
 
-    <?php if (isset($_GET['success'])) { ?>
+    <?php if (isset($_GET['update'])) { ?>
       	      <div class="success alert-success" role="alert">
-				  <?=$_GET['success']?>
+				  <?=$_GET['update']?>
 			  </div>
 
 			  <?php } elseif (isset($_GET['error'])) { ?>
@@ -45,52 +45,39 @@
         <div class="row">
             <div class="col-lg-12 col-12">
                 <div class="card">
-                <h5 class="card-header">Page List</h5>
-                <div class="card-body">
-                  <a href="page_add.php"> <div  align="right" style="align-items: right; padding: 10px; margin: 10px;" class="btn btn-success"> Add new Page</div></a>
+                <h5 class="card-header">Scroll Notice List</h5>
+                <div class="card-body">  
+                  <a href="scroll_notice_add.php"> <div  align="right" style="align-items: right; padding: 10px; margin: 10px;" class="btn btn-success"> Add new </div></a>
                     <table class="table table-bordered table-striped table-responsive" id="example1">
                               <thead>
                                  <tr>
                                     <th> SL NO </th>
-                                    <th> Page ID </th>
-                                    <th> Page Title </th>
-                                    <th> Page Meta </th>
-                                    <th> Page Tag </th>
+                                    <th> Title</th>
+                                    <th> Status</th>
                                     <th> Action </th>
                                  </tr>
                               </thead>
                               <tbody>
                                  <?php
                                 $i=1;
-                                $sqlt = "SELECT * from pages order by page_id asc";
-                                $resultt = $conn->query($sqlt);
-                                while($row = $resultt->fetch_array())
-                                { 
+                                $sqls = "SELECT * from scroll_notice order by sn_id desc";
+                                $results = $conn->query($sqls);
+                                while($row = $results->fetch_array())
+                                {
                                 ?>
                                 <tr>
                                   <td><?=$i;?></td>
-                                  <td><?=$row['page_id'];?></td>
-                                  <td><strong><a target="_blank" href="../pages.php?page_id=<?=$row['page_id'];?>"><?=$row['page_title'];?></a></strong> </td>
-                                  <td><?=$row['page_meta'];?> </td>
-                                  <td> <?=$row['page_tag'];?> </td>
+                                  <td><?=$row['sn_title'];?></td>
+                                  <td><?=$row['sn_status'];?></td>
                                   <td> <div class="btn-group">
-                                  <a href="page_edit.php?page_id=<?=$row['page_id'];?>" class="btn btn-primary">Edit</a> 
-                                  <a href="page_delete.php?page_id=<?=$row['page_id'];?>" class="btn btn-danger">Delete</a>
+                                  <a href="scroll_notice_edit.php?sn_id=<?=$row['sn_id'];?>" class="btn btn-primary">Edit</a> 
+                                  <a href="scroll_notice_delete.php?sn_id=<?=$row['sn_id'];?>" class="btn btn-danger">Delete</a> 
                                 </div>
-                                </td>
+                                  </td>
                              </tr>
                              <?php $i++; } ?>
                               </tbody>
-                              <tfoot>
-                              	<tr>
-                                    <th> SL NO </th>
-                                    <th> Page ID </th>
-                                    <th> Page Title </th>
-                                    <th> Page Meta </th>
-                                    <th> Page Tag </th>
-                                    <th> Action </th>
-                                 </tr>
-                              </tfoot>
+                             
                            </table>
                     </div>
                 </div>
