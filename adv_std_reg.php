@@ -1160,7 +1160,7 @@ jsArrayCodeName[1] = "Graphics Design and Multimedia Programming";
               <td colspan="2" align="left">
 
                 <select name="brdateday" tabindex="4" id="brdateday" required>
-                  <option value="">Select Date</option>
+                  <option value="">Date</option>
                   <option value="01">01</option>
                   <option value="02">02</option>
                   <option value="03">03</option>
@@ -1195,7 +1195,7 @@ jsArrayCodeName[1] = "Graphics Design and Multimedia Programming";
                 </select>
 
                 <select name="brdatemonth" tabindex="5" id="brdatemonth" required>
-                  <option value="">Select Month</option>
+                  <option value="">Month</option>
                   <option value="01">January</option>
                   <option value="02">February</option>
                   <option value="03">March</option>
@@ -1388,121 +1388,135 @@ jsArrayCodeName[1] = "Graphics Design and Multimedia Programming";
 
 
             <tr>
-
               <td>&nbsp;</td>
-
-              <td colspan="8" align="left"><span class="style1">------- S.S.C. or Equvalent Exam ---------------------------------------------------------------------------------------------------------------</span><span class="style1">-------------------------</span></td>
-
+              <td colspan="8" align="left"><span class="style1">------- J.S.C. or Equvalent Exam ---------------------------------------------------------------------------------------------------------------</span><span class="style1">-------------------------</span></td>
             </tr>
-
             <tr bordercolor="#eeeeee" bgcolor="#eeeeee">
-
               <td>&nbsp;</td>
-
               <td align="left">Board</td>
-
               <td bgcolor="#eeeeee">&nbsp;</td>
-
               <td colspan="2" align="left" bgcolor="#eeeeee">
-				  
-			  <select name="sscboard" tabindex="16" id="sscboard">
-
+			          <select name="sscboard" tabindex="16" id="sscboard">
                   <option selected value=""> --Select Board -- </option>
-
                   <option value="BTEB">BTEB</option>
-
                   <option value="Dhaka">Dhaka</option>
-
                   <option value="Barisal">Barisal</option>
-
                   <option value="Chittagong">Chittagong</option>
-
                   <option value="Comilla">Comilla</option>
-
                   <option value="Dinajpur">Dinajpur</option>
-
                   <option value="Jessore">Jessore</option>
-
                   <option value="Rajshahi">Rajshahi</option>
-
                   <option value="Sylhet">Sylhet</option>
-
                   <option value="Madrasa">Madrasa</option>
-
                   <option value="Open University">Open University</option>
-				  
-				  <option value="National">National University</option>
-
+				          <option value="National">National University</option>
                   <option value="Others">Others</option>
-
                 </select>
-				
-				</td>
-
+							</td>
               <td align="left" >Year</td>
-
               <td >&nbsp;</td>
-
               <td align="left" ><input required="required" type="text" name="sscyear" size="6" id="sscyear"></td>
-
               <td>&nbsp;</td>
-
             </tr>
 
-
             <tr bordercolor="#eeeeee" bgcolor="#eeeeee">
-
               <td>&nbsp;</td>
-
               <td align="left">Roll</td>
-
               <td >&nbsp;</td>
-
               <td colspan="2" align="left" ><input required="required" type="text" name="sscroll" id="sscroll"></td>
-
               <td align="left" >Result</td>
-
               <td >&nbsp;</td>
-
-              <td align="left" ><select name="sscresult" tabindex="8" id="sscresult">
-
+              <td align="left" >
+                <select name="sscresult" tabindex="8" id="sscresult">
                   <option value="gpa" selected> GPA </option>
-
                   <option value="div">DIV</option>
-
-                </select>
-
+               </select>
                 <input type="text" required="required" name="sscgrade" size="6" id="sscgrade"></td>
-
               <td>&nbsp;</td>
-
             </tr>
             <tr bordercolor="#eeeeee" bgcolor="#eeeeee">
-
               <td>&nbsp;</td>
-
               <td align="left">Registration Number</td>
-
               <td >&nbsp;</td>
-
               <td colspan="2" align="left" ><input required="required" type="text" name="sscregi" id="sscregi"></td>
-
               <td align="left" >&nbsp;</td>
-
               <td >&nbsp;</td>
-
               <td align="left" >&nbsp;</td>
-
               <td>&nbsp;</td>
-
             </tr>
-            
+
+
             <tr>
+              <td>&nbsp;</td>
+              <td colspan="8" align="left"><span class="style1">------- S.S.C. or Equvalent Exam ---------------------------------------------------------------------------------------------------------------</span><span class="style1">-------------------------</span></td>
+            </tr>
+            <tr bordercolor="#eeeeee" bgcolor="#eeeeee">
+              <td>&nbsp;</td>
+              <td align="left">Board</td>
+              <td bgcolor="#eeeeee">&nbsp;</td>
+              <td colspan="2" align="left" bgcolor="#eeeeee">
+			          <select name="sscboard" tabindex="16" id="sscboard">
+                  <option selected value=""> --Select Board -- </option>
+                  <option value="BTEB">BTEB</option>
+                  <option value="Dhaka">Dhaka</option>
+                  <option value="Barisal">Barisal</option>
+                  <option value="Chittagong">Chittagong</option>
+                  <option value="Comilla">Comilla</option>
+                  <option value="Dinajpur">Dinajpur</option>
+                  <option value="Jessore">Jessore</option>
+                  <option value="Rajshahi">Rajshahi</option>
+                  <option value="Sylhet">Sylhet</option>
+                  <option value="Madrasa">Madrasa</option>
+                  <option value="Open University">Open University</option>
+				          <option value="National">National University</option>
+                  <option value="Others">Others</option>
+                </select>
+							</td>
+              <td align="left" >Year</td>
+              <td >&nbsp;</td>
+              <td align="left" ><input required="required" type="text" name="sscyear" size="6" id="sscyear"></td>
+              <td>&nbsp;</td>
+            </tr>
 
+            <tr bordercolor="#eeeeee" bgcolor="#eeeeee">
+              <td>&nbsp;</td>
+              <td align="left">Roll</td>
+              <td >&nbsp;</td>
+              <td colspan="2" align="left" ><input required="required" type="text" name="sscroll" id="sscroll"></td>
+              <td align="left" >Result</td>
+              <td >&nbsp;</td>
+              <td align="left" >
+                <select name="sscresult" tabindex="8" id="sscresult">
+                  <option value="gpa" selected> GPA </option>
+                  <option value="div">DIV</option>
+               </select>
+                <input type="text" required="required" name="sscgrade" size="6" id="sscgrade"></td>
+              <td>&nbsp;</td>
+            </tr>
+            <tr bordercolor="#eeeeee" bgcolor="#eeeeee">
+              <td>&nbsp;</td>
+              <td align="left">Registration Number</td>
+              <td >&nbsp;</td>
+              <td colspan="2" align="left" ><input required="required" type="text" name="sscregi" id="sscregi"></td>
+              <td align="left" >Group</td>
+              <td >&nbsp;</td>
+              <td align="left" >
+              <select name="sscgroup" tabindex="16" id="sscboard">
+                  <option selected value=""> --Select Group -- </option>
+                  <option value="Science">Science</option>
+                  <option value="Humanities">Humanities</option>
+                  <option value="Business Studies">Business Studies</option>
+                  <option value="Others">Others</option>
+                </select>
+              <td>&nbsp;</td>
+            </tr>
+
+
+
+
+            <tr>
               <td height="24">&nbsp;</td>
-
               <td colspan="8" align="left" valign="bottom"><span class="style1">------- Honours or Degree or Fazil or Equvalent Exam ---------------------------------------------------------------------------------</span><span class="style1">-------------------------</span></td>
-
             </tr>
 
             <tr bordercolor="#eeeeee" bgcolor="#eeeeee">
