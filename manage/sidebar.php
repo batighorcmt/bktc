@@ -207,6 +207,12 @@
                 </a>
               </li>
               <li class="nav-item">
+                <a href="scroll_notice.php" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Scroll Notice</p>
+                </a>
+              </li>
+              <li class="nav-item">
                 <a href="notice_list.php" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Notice Board</p>

@@ -1555,13 +1555,13 @@ jsArrayCodeName[1] = "Graphics Design and Multimedia Programming";
 
               <td bgcolor="#eeeeee">&nbsp;</td>
 
-              <td colspan="2" align="left" bgcolor="#eeeeee"><input required="required" type="text" name="jscboard" id="jscboard"></td>
+              <td colspan="2" align="left" bgcolor="#eeeeee"><input type="text" name="jscboard" id="jscboard"></td>
 
               <td align="left" >Year</td>
 
               <td >&nbsp;</td>
 
-              <td align="left" ><input type="text" required="required" name="jscyear" size="6" id="jscyear"></td>
+              <td align="left" ><input type="text" name="jscyear" size="6" id="jscyear"></td>
 
               <td>&nbsp;</td>
 
@@ -1575,7 +1575,7 @@ jsArrayCodeName[1] = "Graphics Design and Multimedia Programming";
 
               <td >&nbsp;</td>
 
-              <td colspan="2" align="left" ><input required="required" type="text" name="jscroll" id="jscroll"></td>
+              <td colspan="2" align="left" ><input type="text" name="jscroll" id="jscroll"></td>
 
               <td align="left" >Result</td>
 
@@ -1589,7 +1589,7 @@ jsArrayCodeName[1] = "Graphics Design and Multimedia Programming";
 
                 </select>
 
-                <input required="required" type="text" name="jscgrade" size="6" id="jscgrade"></td>
+                <input type="text" name="jscgrade" size="6" id="jscgrade"></td>
 
               <td>&nbsp;</td>
 
