@@ -98,755 +98,19 @@ $agg = $_POST['agree'];
 <script>
     function previewFile(input){
         var file = $("input[type=file]").get(0).files[0];
- 
         if(file){
             var reader = new FileReader();
- 
             reader.onload = function(){
                 $("#previewImg").attr("src", reader.result);
             }
- 
             reader.readAsDataURL(file);
         }
     }
 </script>
 
 </head><body topmargin="3">
-
 <script type="text/javascript" src="elements/ajaxupload.js"></script>
-
 <script language="JavaScript">
-
-  <!--
-
-
-
-  function isDate(dateStr) {
-
-
-
-    var datePat = /^(\d{1,2})(\/|-)(\d{1,2})(\/|-)(\d{4})$/;
-
-    var matchArray = dateStr.match(datePat);
-
-
-
-    if (matchArray == null) {
-
-      alert("Please enter date as either mm/dd/yyyy or mm-dd-yyyy.");
-
-      return false;
-
-    }
-
-
-
-    month = matchArray[1];
-
-    day = matchArray[3];
-
-    year = matchArray[5];
-
-
-
-    if (month < 1 || month > 12) {
-
-      alert("Month must be between 1 and 12.");
-
-      return false;
-
-    }
-
-
-
-    if (day < 1 || day > 31) {
-
-      alert("Day must be between 1 and 31.");
-
-      return false;
-
-    }
-
-
-
-    if ((month==4 || month==6 || month==9 || month==11) && day==31) {
-
-      alert("Month "+month+" doesn't have 31 days!")
-
-      return false;
-
-    }
-
-
-
-    if (month == 2) {
-
-      var isleap = (year % 4 == 0 && (year % 100 != 0 || year % 400 == 0));
-
-      if (day > 29 || (day==29 && !isleap)) {
-
-        alert("February " + year + " doesn't have " + day + " days!");
-
-        return false;
-
-      }
-
-    }
-
-    return true;
-
-  }
-
-
-
-
-
-  function nextfocus()
-
-  {
-
-    if(document.entry.studname.keypress==13)
-
-    {
-
-      document.entry.studfaname.focus();
-
-    }
-
-  }
-
-
-
-  function vrfyuppercase()
-
-  {
-
-
-
-    if (document.entry.stdname.value.length > 1)
-
-    {
-
-      //alert("Please enter a Student Name.");
-
-      document.entry.studname.focus();
-
-      document.entry.studname.value=document.entry.studname.value.toUpperCase(document.entry.studname.value);
-
-    }
-
-    if (document.entry.stdfaname.value.length > 1)
-
-    {
-
-      //alert("Please enter a Father Name.");
-
-      document.entry.fathername.focus();
-
-      document.entry.fathername.value=document.entry.fathername.value.toUpperCase(document.entry.fathername.value);
-
-    }
-
-    if (document.entry.mothername.value.length > 1)
-
-    {
-
-      //alert("Please enter a Mother Name.");
-
-      document.entry.mothername.focus();
-
-      document.entry.mothername.value=document.entry.stdmoname.value.toUpperCase(0,document.entry.mothername.value);
-
-    }
-
-
-
-    //document.entry.stdname.focus();
-
-
-
-  }
-
-  function veryfynum()
-
-  {
-
-//alert("Please enter a Student Name.");
-
-    /*
-
-     var object1 = window.document.getElementById(div);
-
-     if (isNaN(object1.value)||(object1.value.length > 6))
-
-     {
-
-     alert("Please enter a Valid Number.");
-
-     //alert(substr(document.entry.classroll.value,0,3);
-
-     object1.focus();
-
-     object1.value=object1.value.substr(0,object1.value.length-1);
-
-     return false;
-
-     }*/
-
-
-
-    if (isNaN(document.entry.classroll.value)||(document.entry.classroll.value.length > 6))
-
-    {
-
-      alert("Please enter a Valid Class Roll.");
-
-      //alert(substr(document.entry.classroll.value,0,3);
-
-      document.entry.classroll.focus();
-
-      document.entry.classroll.value=document.entry.classroll.value.substr(0,document.entry.classroll.value.length-1);
-
-      return false;
-
-    }
-
-    if (isNaN(document.entry.sscroll.value)||(document.entry.sscroll.value.length > 6))
-
-    {
-
-      alert("Please enter a Valid SSC Roll.");
-
-      //alert(substr(document.entry.classroll.value,0,3);
-
-      document.entry.sscroll.focus();
-
-      document.entry.sscroll.value=document.entry.sscroll.value.substr(0,document.entry.sscroll.value.length-1);
-
-      return false;
-
-    }
-
-    if (isNaN(document.entry.sscgrade.value)||(document.entry.sscgrade.value.length > 5)||(document.entry.sscgrade.value > 5))
-
-    {
-
-      alert("Please enter a Valid S.S.C. GPA.");
-
-      //alert(substr(document.entry.classroll.value,0,3);
-
-      document.entry.sscgrade.focus();
-
-      document.entry.sscgrade.value=document.entry.sscgrade.value.substr(0,document.entry.sscgrade.value.length-1);
-
-      return false;
-
-    }
-
-
-
-    if (isNaN(document.entry.jscroll.value)||(document.entry.jscroll.value.length > 6))
-
-    {
-
-      alert("Please enter a Valid SSC Roll.");
-
-      //alert(substr(document.entry.classroll.value,0,3);
-
-      document.entry.jscroll.focus();
-
-      document.entry.jscroll.value=document.entry.jscroll.value.substr(0,document.entry.jscroll.value.length-1);
-
-      return false;
-
-    }
-
-    if (isNaN(document.entry.jscgrade.value)||(document.entry.jscgrade.value.length > 5)||(document.entry.jscgrade.value > 5))
-
-    {
-
-      alert("Please enter a Valid J.S.C. GPA.");
-
-      //alert(substr(document.entry.classroll.value,0,3);
-
-      document.entry.jscgrade.focus();
-
-      document.entry.jscgrade.value=document.entry.jscgrade.value.substr(0,document.entry.jscgrade.value.length-1);
-
-      return false;
-
-    }
-
-
-
-  }
-
-  function vrfy()
-
-  {
-
-    if (document.entry.slno.value == "" )
-
-    {
-
-      alert("Please enter a Sl No.");
-
-      document.entry.slno.focus();
-
-      return false;
-
-    }
-
-
-
-
-
-    if (document.entry.studname.value == "" )
-
-    {
-
-      alert("Please enter a Student Name.");
-
-      document.entry.studname.focus();
-
-      return false;
-
-    }
-
-    if (document.entry.fathername.value == "" )
-
-    {
-
-      alert("Please enter a Father Name.");
-
-      document.entry.fathername.focus();
-
-      return false;
-
-    }
-
-    if (document.entry.mothername.value == "" )
-
-    {
-
-      alert("Please enter a Mother Name.");
-
-      document.entry.mothername.focus();
-
-      return false;
-
-    }
-
-    if (document.entry.classroll.value == "" )
-
-    {
-
-      alert("Please enter a Class Roll.");
-
-      document.entry.classroll.focus();
-
-      return false;
-
-    }
-
-
-
-    if (document.entry.orgfilename.value == "" )
-
-    {
-
-      alert("Please enter a Picture.");
-
-      document.entry.filename.focus();
-
-      return false;
-
-    }
-
-
-    if ((document.entry.brdateyear.value == "" )||(document.entry.brdateyear.value.length < 4))
-
-    {
-
-      alert("Please enter a DOB. (dd/mm/yyyy) ");
-
-      document.entry.brdateyear.focus();
-
-      return false;
-
-    }
-
-
-
-    if (document.entry.selecttrade.value == "" )
-
-    {
-
-      alert("Please select a Trade/Technology.");
-
-      document.entry.selecttrade.focus();
-
-      return false;
-
-    }
-
-
-
-
-
-    if (document.entry.jscboard.value == "" && document.entry.sscboard.value == "")
-
-    {
-
-      alert("Please Select a JSC Board or SSC Board ");
-
-      if(document.entry.jscboard.value !="" || document.entry.jscroll.value != "" || document.entry.jscgrade.value !="" || document.entry.jscyear.value != "")
-
-        document.entry.jscboard.focus();
-
-      else document.entry.sscboard.focus();
-
-      return false;
-
-    }
-
-
-
-    if (document.entry.jscroll.value == "" && document.entry.sscroll.value == "" )
-
-    {
-
-      alert("Please enter a JSC Roll or SSC Roll.");
-
-      if(document.entry.jscboard.value !="" || document.entry.jscroll.value != "" || document.entry.jscgrade.value !="" || document.entry.jscyear.value != "")
-
-        document.entry.jscroll.focus();
-
-      else document.entry.sscroll.focus();
-
-      return false;
-
-    }
-
-
-
-    if ((document.entry.jscgrade.value == "" && document.entry.sscgrade.value == "" ))
-
-    {
-
-      alert("Please enter a JSC GPA or SSC GPA");
-
-      if(document.entry.jscboard.value !="" || document.entry.jscroll.value != "" || document.entry.jscgrade.value !="" || document.entry.jscyear.value != "")
-
-        document.entry.jscgrade.focus();
-
-      else document.entry.sscgrade.focus();
-
-      return false;
-
-    }
-
-
-
-    if ((document.entry.jscyear.value == "" && document.entry.sscyear.value == "" ))
-
-    {
-
-      alert("Please enter a JSC year or SSC year");
-
-      if(document.entry.jscboard.value !="" || document.entry.jscroll.value != "" || document.entry.jscgrade.value !="" || document.entry.jscyear.value != "")
-
-        document.entry.jscyear.focus();
-
-      else document.entry.sscyear.focus();
-
-      return false;
-
-    }
-
-    //if ((document.entry.sscgrade.value == "" )&&(document.entry.sscdivision.value == "" ))
-
-    //if ((document.entry.sscgrade.value == "" ))
-
-    //{
-
-    //alert("Please enter a SSC GPA.");
-
-    //document.entry.sscgrade.focus();
-
-    //return false;
-
-    //}
-
-
-
-
-
-
-
-    var p1=document.entry.brdateday.value + "";
-
-    var p2=document.entry.brdatemonth.value + "";
-
-    var p3=document.entry.brdateyear.value + "";
-
-
-
-    if ((p3 == "" ))
-
-    {
-
-      p3="0000";
-
-    }
-
-
-
-    //var datestringdob = p1 + "/" + p2 + "/" + p3;
-
-    var datestringdob = p2 + "/" + p1 + "/" + p3;
-
-    //var datestringadd = document.entry.brdateday.value+'/'+document.entry.brdatemonth.value+'/'+document.entry.brdateyear.value;
-
-    //alert(datestringdob);
-
-    if (isDate(datestringdob)==false)
-
-    //if (isDate(datestringdob,toString(dd/mm/yyyy)))
-
-    {
-
-      alert("Date of Birth is not valid. ");
-
-      document.entry.brdateyear.focus();
-
-      return false;
-
-    }
-
-
-
-    // if (document.entry.sscboard.value == "" )
-
-    //{
-
-    // alert("Please Select a SSC Board.");
-
-    //document.entry.sscboard.focus();
-
-    //return false;
-
-    //}
-
-
-
-
-
-    //if (alert(isDate(this.form.string1.value,this.form.format1.value))dd/mm/yyyy
-
-
-
-
-
-  }//end function
-
-  //--></script>
-
-
-
-<script language="javascript" type="text/javascript">
-
-  <!--
-
-  // Get the HTTP Object
-
-  /*
-
-   function getHTTPObject(){
-
-   if (window.ActiveXObject) return new ActiveXObject("Microsoft.XMLHTTP");
-
-   else if (window.XMLHttpRequest) return new XMLHttpRequest();
-
-   else {
-
-   alert("Your browser does not support AJAX.");
-
-   return null;
-
-   }
-
-   }
-
-   */
-
-
-
-  function getHTTPObject() {
-
-    var xmlhttp;
-
-
-
-    if(window.XMLHttpRequest){
-
-      xmlhttp = new XMLHttpRequest();
-
-    }
-
-    else if (window.ActiveXObject){
-
-      xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-
-      if (!xmlhttp){
-
-        xmlhttp=new ActiveXObject("Msxml2.XMLHTTP");
-
-      }
-
-
-
-    }
-
-    return xmlhttp;
-
-
-
-
-
-  }
-
-
-
-  // Change the value of the outputText field
-
-  function setOutput(){
-    if(httpObject.readyState == 4){
-      var results=httpObject.responseText;
-//      console.log(results);
-      if(!results.includes("Data has successfully entered. Must click Refresh before Preview")) {
-        alert(results);
-      }
-      if(results.includes('Data has successfully entered. Must click Refresh before Preview'))
-      {
-        alert('Data has successfully entered. Must click Refresh before Preview');
-        location.reload(true);
-      }
-//              document.getElementById('outputText').innerHTML = results;
-
-    }
-
-
-
-  }
-
-
-
-  // Implement business logic    myoffid
-
-  function doWork(){
-
-    httpObject = getHTTPObject();
-
-
-
-    if (vrfy(this)!= false) {
-
-
-
-      if (httpObject != null) {
-
-        httpObject.open("GET", "ereginfo_.php?slno="+document.getElementById('slno').value
-
-            +'&selctshift='+document.getElementById('selctshift').value
-
-            +'&studname='+document.getElementById('studname').value
-
-            +'&fathername='+document.getElementById('fathername').value
-
-            +'&mothername='+document.getElementById('mothername').value
-
-            +'&classroll='+document.getElementById('classroll').value
-
-            +'&studemail='+document.getElementById('studemail').value
-
-            +'&orgfilename='+document.getElementById('orgfilename').value
-
-            +'&filename='+document.getElementById('filename').value
-
-            +'&brdateday='+document.getElementById('brdateday').value
-
-            +'&brdatemonth='+document.getElementById('brdatemonth').value
-
-            +'&brdateyear='+document.getElementById('brdateyear').value
-
-            +'&gender='+document.getElementById('gender').value
-
-            +'&selecttrade='+document.getElementById('selecttrade').value
-
-            +'&religion='+document.getElementById('religion').value
-
-            +'&medium='+document.getElementById('medium').value
-
-            +'&selnation='+document.getElementById('selnation').value
-
-            +'&sscboard='+document.getElementById('sscboard').value
-
-            +'&sscyear='+document.getElementById('sscyear').value
-
-            +'&sscroll='+document.getElementById('sscroll').value
-
-            +'&sscresult='+document.getElementById('sscresult').value
-
-            +'&sscgrade='+document.getElementById('sscgrade').value
-
-            +'&jscboard='+document.getElementById('jscboard').value
-
-            +'&jscyear='+document.getElementById('jscyear').value
-
-            +'&jscroll='+document.getElementById('jscroll').value
-
-            +'&jscresult='+document.getElementById('jscresult').value
-
-            +'&jscgrade='+document.getElementById('jscgrade').value, true);
-
-        //}
-
-        httpObject.send(null);
-
-        httpObject.onreadystatechange = setOutput;
-
-      }
-
-    }
-
-  }
-
-
-
-
-
-  var httpObject = null;
-
-  var jsArray = new Array();
-  var jsArrayCodeName = new Array();
-  jsArray[0] = 80;
-jsArrayCodeName[0] = "Computer Office Application";
-jsArray[1] = 40;
-jsArrayCodeName[1] = "Graphics Design and Multimedia Programming";
-
-  function showSeat(tmp)
-  {
-    //console.log(tmp.selectedIndex-1);
-    if(tmp.selectedIndex==0)
-      document.getElementById("seatspan").innerHTML = "";
-    else
-      document.getElementById("seatspan").innerHTML = "Total Seat " + jsArray[tmp.selectedIndex-1] +" for Trade ("+jsArrayCodeName[tmp.selectedIndex-1]+")";
-
-  }
-
-
-  //-->
 
 </script>
 <div align="center">
@@ -1396,7 +660,7 @@ jsArrayCodeName[1] = "Graphics Design and Multimedia Programming";
               <td align="left">Board</td>
               <td bgcolor="#eeeeee">&nbsp;</td>
               <td colspan="2" align="left" bgcolor="#eeeeee">
-			          <select name="sscboard" tabindex="16" id="sscboard">
+			          <select name="jscboard" tabindex="16" id="jscboard">
                   <option selected value=""> --Select Board -- </option>
                   <option value="BTEB">BTEB</option>
                   <option value="Dhaka">Dhaka</option>
@@ -1413,9 +677,9 @@ jsArrayCodeName[1] = "Graphics Design and Multimedia Programming";
                   <option value="Others">Others</option>
                 </select>
 							</td>
-              <td align="left" >Year</td>
+              <td align="left" >Passing Year</td>
               <td >&nbsp;</td>
-              <td align="left" ><input required="required" type="text" name="sscyear" size="6" id="sscyear"></td>
+              <td align="left" ><input type="text" name="jscyear" size="6" id="jscyear"></td>
               <td>&nbsp;</td>
             </tr>
 
@@ -1423,22 +687,22 @@ jsArrayCodeName[1] = "Graphics Design and Multimedia Programming";
               <td>&nbsp;</td>
               <td align="left">Roll</td>
               <td >&nbsp;</td>
-              <td colspan="2" align="left" ><input required="required" type="text" name="sscroll" id="sscroll"></td>
+              <td colspan="2" align="left" ><input type="text" name="jscroll" id="jscroll"></td>
               <td align="left" >Result</td>
               <td >&nbsp;</td>
               <td align="left" >
-                <select name="sscresult" tabindex="8" id="sscresult">
+                <select name="jscresult" tabindex="8" id="jscresult">
                   <option value="gpa" selected> GPA </option>
                   <option value="div">DIV</option>
                </select>
-                <input type="text" required="required" name="sscgrade" size="6" id="sscgrade"></td>
+                <input type="text" name="jscgrade" size="6" id="jscgrade"></td>
               <td>&nbsp;</td>
             </tr>
             <tr bordercolor="#eeeeee" bgcolor="#eeeeee">
               <td>&nbsp;</td>
               <td align="left">Registration Number</td>
               <td >&nbsp;</td>
-              <td colspan="2" align="left" ><input required="required" type="text" name="sscregi" id="sscregi"></td>
+              <td colspan="2" align="left" ><input type="text" name="jscregi" id="jscregi"></td>
               <td align="left" >&nbsp;</td>
               <td >&nbsp;</td>
               <td align="left" >&nbsp;</td>
@@ -1472,9 +736,9 @@ jsArrayCodeName[1] = "Graphics Design and Multimedia Programming";
                   <option value="Others">Others</option>
                 </select>
 							</td>
-              <td align="left" >Year</td>
+              <td align="left" >Passing Year</td>
               <td >&nbsp;</td>
-              <td align="left" ><input required="required" type="text" name="sscyear" size="6" id="sscyear"></td>
+              <td align="left" ><input type="text" name="sscyear" size="6" id="sscyear"></td>
               <td>&nbsp;</td>
             </tr>
 
@@ -1482,7 +746,7 @@ jsArrayCodeName[1] = "Graphics Design and Multimedia Programming";
               <td>&nbsp;</td>
               <td align="left">Roll</td>
               <td >&nbsp;</td>
-              <td colspan="2" align="left" ><input required="required" type="text" name="sscroll" id="sscroll"></td>
+              <td colspan="2" align="left" ><input  type="text" name="sscroll" id="sscroll"></td>
               <td align="left" >Result</td>
               <td >&nbsp;</td>
               <td align="left" >
@@ -1490,18 +754,18 @@ jsArrayCodeName[1] = "Graphics Design and Multimedia Programming";
                   <option value="gpa" selected> GPA </option>
                   <option value="div">DIV</option>
                </select>
-                <input type="text" required="required" name="sscgrade" size="6" id="sscgrade"></td>
+                <input type="text"  name="sscgrade" size="6" id="sscgrade"></td>
               <td>&nbsp;</td>
             </tr>
             <tr bordercolor="#eeeeee" bgcolor="#eeeeee">
               <td>&nbsp;</td>
               <td align="left">Registration Number</td>
               <td >&nbsp;</td>
-              <td colspan="2" align="left" ><input required="required" type="text" name="sscregi" id="sscregi"></td>
+              <td colspan="2" align="left" ><input  type="text" name="sscregi" id="sscregi"></td>
               <td align="left" >Group</td>
               <td >&nbsp;</td>
               <td align="left" >
-              <select name="sscgroup" tabindex="16" id="sscboard">
+              <select name="sscgroup" tabindex="16" id="sscgroup">
                   <option selected value=""> --Select Group -- </option>
                   <option value="Science">Science</option>
                   <option value="Humanities">Humanities</option>
@@ -1512,118 +776,179 @@ jsArrayCodeName[1] = "Graphics Design and Multimedia Programming";
             </tr>
 
 
+            <tr>
+              <td>&nbsp;</td>
+              <td colspan="8" align="left"><span class="style1">------- H.S.C. or Equvalent Exam ---------------------------------------------------------------------------------------------------------------</span><span class="style1">-------------------------</span></td>
+            </tr>
+            <tr bordercolor="#eeeeee" bgcolor="#eeeeee">
+              <td>&nbsp;</td>
+              <td align="left">Board</td>
+              <td bgcolor="#eeeeee">&nbsp;</td>
+              <td colspan="2" align="left" bgcolor="#eeeeee">
+			          <select name="hscboard" tabindex="16" id="hscboard">
+                  <option selected value=""> --Select Board -- </option>
+                  <option value="BTEB">BTEB</option>
+                  <option value="Dhaka">Dhaka</option>
+                  <option value="Barisal">Barisal</option>
+                  <option value="Chittagong">Chittagong</option>
+                  <option value="Comilla">Comilla</option>
+                  <option value="Dinajpur">Dinajpur</option>
+                  <option value="Jessore">Jessore</option>
+                  <option value="Rajshahi">Rajshahi</option>
+                  <option value="Sylhet">Sylhet</option>
+                  <option value="Madrasa">Madrasa</option>
+                  <option value="Open University">Open University</option>
+				          <option value="National">National University</option>
+                  <option value="Others">Others</option>
+                </select>
+							</td>
+              <td align="left" >Passing Year</td>
+              <td >&nbsp;</td>
+              <td align="left" ><input  type="text" name="hscyear" size="6" id="hscyear"></td>
+              <td>&nbsp;</td>
+            </tr>
+
+            <tr bordercolor="#eeeeee" bgcolor="#eeeeee">
+              <td>&nbsp;</td>
+              <td align="left">Roll</td>
+              <td >&nbsp;</td>
+              <td colspan="2" align="left" ><input type="text" name="hscroll" id="hscroll"></td>
+              <td align="left" >Result</td>
+              <td >&nbsp;</td>
+              <td align="left" >
+                <select name="hscresult" tabindex="8" id="hscresult">
+                  <option value="gpa" selected> GPA </option>
+                  <option value="div">DIV</option>
+               </select>
+                <input type="text"  name="hscgrade" size="6" id="hscgrade"></td>
+              <td>&nbsp;</td>
+            </tr>
+            <tr bordercolor="#eeeeee" bgcolor="#eeeeee">
+              <td>&nbsp;</td>
+              <td align="left">Registration Number</td>
+              <td >&nbsp;</td>
+              <td colspan="2" align="left" ><input  type="text" name="hscregi" id="hscregi"></td>
+              <td align="left" >Group</td>
+              <td >&nbsp;</td>
+              <td align="left" >
+              <select name="hscgroup" tabindex="16" id="hscgroup">
+                  <option selected value=""> --Select Group -- </option>
+                  <option value="Science">Science</option>
+                  <option value="Humanities">Humanities</option>
+                  <option value="Business Studies">Business Studies</option>
+                  <option value="Others">Others</option>
+                </select>
+              <td>&nbsp;</td>
+            </tr>
 
 
             <tr>
               <td height="24">&nbsp;</td>
               <td colspan="8" align="left" valign="bottom"><span class="style1">------- Honours or Degree or Fazil or Equvalent Exam ---------------------------------------------------------------------------------</span><span class="style1">-------------------------</span></td>
             </tr>
-
             <tr bordercolor="#eeeeee" bgcolor="#eeeeee">
-
               <td>&nbsp;</td>
-
-              <td align="left">Board/University</td>
-
+              <td align="left">University</td>
               <td bgcolor="#eeeeee">&nbsp;</td>
-
-              <td colspan="2" align="left" bgcolor="#eeeeee"><input type="text" name="jscboard" id="jscboard"></td>
-
-              <td align="left" >Year</td>
-
+              <td colspan="2" align="left" bgcolor="#eeeeee"><input type="text" name="deguni" id="deguni"></td>
+              <td align="left" >Passing Year</td>
               <td >&nbsp;</td>
-
-              <td align="left" ><input type="text" name="jscyear" size="6" id="jscyear"></td>
-
+              <td align="left" ><input type="text" name="degyear" size="6" id="degyear"></td>
               <td>&nbsp;</td>
-
             </tr>
-
             <tr bordercolor="#eeeeee" bgcolor="#eeeeee">
-
               <td>&nbsp;</td>
-
               <td align="left">Roll</td>
-
               <td >&nbsp;</td>
-
-              <td colspan="2" align="left" ><input type="text" name="jscroll" id="jscroll"></td>
-
+              <td colspan="2" align="left" ><input type="text" name="degroll" id="degroll"></td>
               <td align="left" >Result</td>
-
               <td >&nbsp;</td>
-
-              <td align="left" ><select name="jscresult" tabindex="8" id="jscresult">
-
-                  <option value="gpa" selected> GPA </option>
-
+              <td align="left" ><select name="degresult" tabindex="8" id="degresult">
+                  <option value="cgpa" selected> CGPA </option>
                   <option value="div">DIV</option>
-
                 </select>
-
-                <input type="text" name="jscgrade" size="6" id="jscgrade"></td>
-
+                <input type="text" name="deggrade" size="6" id="deggrade"></td>
               <td>&nbsp;</td>
-
+            </tr>
+            <tr bordercolor="#eeeeee" bgcolor="#eeeeee">
+              <td>&nbsp;</td>
+              <td align="left">Registration Number</td>
+              <td >&nbsp;</td>
+              <td colspan="2" align="left" ><input  type="text" name="degregi" id="degregi"></td>
+              <td align="left" >Subject</td>
+              <td >&nbsp;</td>
+              <td align="left" ><input type="text" name="degsub" id="degsub">
+              <td>&nbsp;</td>
             </tr>
 
+
+            <tr>
+              <td height="24">&nbsp;</td>
+              <td colspan="8" align="left" valign="bottom"><span class="style1">------- Masters or Equvalent Exam ---------------------------------------------------------------------------------</span><span class="style1">-------------------------</span></td>
+            </tr>
+            <tr bordercolor="#eeeeee" bgcolor="#eeeeee">
+              <td>&nbsp;</td>
+              <td align="left">University</td>
+              <td bgcolor="#eeeeee">&nbsp;</td>
+              <td colspan="2" align="left" bgcolor="#eeeeee"><input type="text" name="masuni" id="masuni"></td>
+              <td align="left" >Passing Year</td>
+              <td >&nbsp;</td>
+              <td align="left" ><input type="text" name="masyear" size="6" id="masyear"></td>
+              <td>&nbsp;</td>
+            </tr>
+            <tr bordercolor="#eeeeee" bgcolor="#eeeeee">
+              <td>&nbsp;</td>
+              <td align="left">Roll</td>
+              <td >&nbsp;</td>
+              <td colspan="2" align="left" ><input type="text" name="masroll" id="masroll"></td>
+              <td align="left" >Result</td>
+              <td >&nbsp;</td>
+              <td align="left" ><select name="masresult" tabindex="8" id="masresult">
+                  <option value="cgpa" selected> CGPA </option>
+                  <option value="div">DIV</option>
+                </select>
+                <input type="text" name="masgrade" size="6" id="masgrade"></td>
+              <td>&nbsp;</td>
+            </tr>
+            <tr bordercolor="#eeeeee" bgcolor="#eeeeee">
+              <td>&nbsp;</td>
+              <td align="left">Registration Number</td>
+              <td >&nbsp;</td>
+              <td colspan="2" align="left" ><input  type="text" name="masregi" id="masregi"></td>
+              <td align="left" >Subject</td>
+              <td >&nbsp;</td>
+              <td align="left" ><input  type="text" name="massub" id="massub">
+              <td>&nbsp;</td>
+            </tr>
             
              <tr>
-
               <td>&nbsp;</td>
-
               <td colspan="8" align="left"><span class="style1">------- Payment Method ---------------------------------------------------------------------------------------------------------------</span><span class="style1">-------------------------</span></td>
-
             </tr>
             <tr bordercolor="#eeeeee" bgcolor="#eeeeee">
-
               <td>&nbsp;</td>
-
               <td align="left">Payment Type</td>
-
               <td bgcolor="#eeeeee">&nbsp;</td>
-
               <td colspan="2" align="left" bgcolor="#eeeeee">
-				  
-			  <select name="ptype" tabindex="16" id="sscboard" required="required">
-
+			          <select name="ptype" tabindex="16" id="ptype" required="required">
                   <option selected value=""> --Payment Type -- </option>
-
                   <option value="Cash">Cash</option>
                   <option value="Bkash">Bkash</option>
                 </select>
-				</td>
-
+				      </td>
               <td align="left"> Transection Date</td>
-
               <td ></td>
-
               <td align="left" ><input type="text" name="pdate" id="pdate"></td>
-
               <td>&nbsp;</td>
-
             </tr>
             <tr bordercolor="#eeeeee" bgcolor="#eeeeee">
-
               <td>&nbsp;</td>
-
               <td colspan="2" align="left">Mobile Number<font style="color:#F00"> </font></td>
-
-              
-
               <td colspan="2" align="left" ><input type="text" name="rmobile" id="rtransection"></td>
-
-             
-
-            
-
               <td align="left" >Transection ID<font style="color:#F00"> </font></td>
-
               <td colspan="2" align="left" ><input type="text" name="rtransection" id="rtransection"></td>
- <td>Amount: <input type="text" name="pamount" id="pamount"></td>
-            </tr>
-
-            
+              <td>Amount: <input type="text" name="pamount" id="pamount"></td>
+            </tr>     
 			<tr>
 
               <td>&nbsp;</td>

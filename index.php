@@ -37,7 +37,7 @@ $i++;
     
  <title>Bamundi Karigori Training Center</title>	
     
-    <link href="https://ctmibd.com/assets/images/fb-icon.ico" rel="icon">
+    <link href="site_images/icon.ico" rel="icon">
     
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
