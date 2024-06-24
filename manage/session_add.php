@@ -10,7 +10,11 @@
     $results = mysqli_query($conn,$txntype);
     $row = mysqli_fetch_array($results);
     $last_id = $row['session_id'];
+<<<<<<< HEAD
     $session_name = $row['session_name'];
+=======
+    $br_name = $row['session_name'];
+>>>>>>> ea95281a22bb0092b322719e14beb259a5790aab
     if ($last_id == "")
     {
         $session_id = "1";
@@ -70,16 +74,26 @@
                 <div class="col-md-12">
                 <div class="form-group">
                     <label>Session ID</label>
+<<<<<<< HEAD
                        <input name="trade_id" readonly value="<?php echo $session_id; ?>" class="form-control" style="width: 100%;" >
                   </div><!-- /.form-group -->
             
                   <div class="form-group">
                     <label>Session Name</label>
                        <input name="session_name" class="form-control" style="width: 100%;" placeholder="" required >
+=======
+                       <input name="br_id" readonly value="<?php echo $session_id; ?>" class="form-control" style="width: 100%;" >
+                  </div><!-- /.form-group -->
+            
+                <div class="form-group">
+                    <label>Session Name</label>
+                       <input name="br_name" class="form-control" style="width: 100%;" placeholder="Enter transaction type name" required >
+>>>>>>> ea95281a22bb0092b322719e14beb259a5790aab
                   </div><!-- /.form-group -->
 
                   <div class="form-group">
                     <label>Session Year</label>
+<<<<<<< HEAD
                        <input name="session_year" class="form-control" style="width: 100%;" placeholder="" required >
                   </div><!-- /.form-group -->
                   <div class="form-group">
@@ -97,6 +111,24 @@
                     </select>
                   </div><!-- /.form-group -->
 
+=======
+                       <input name="br_address" class="form-control" style="width: 100%;" placeholder="Enter transaction type name" required >
+                  </div><!-- /.form-group -->
+
+                  <div class="form-group">
+                    <label>Form Open ? </label>
+                       <input name="br_dirname" class="form-control" style="width: 100%;" placeholder="Enter transaction type name" required >
+                  </div><!-- /.form-group -->
+
+                  <div class="form-group">
+                    <label>Branch Name </label>
+                       <input name="br_dirmob" class="form-control" style="width: 100%;" placeholder="Enter transaction type name" required >
+                  </div><!-- /.form-group -->
+                  <div class="form-group">
+                    <label>Course Name </label>
+                       <input name="br_dirmob" class="form-control" style="width: 100%;" placeholder="Enter transaction type name" required >
+                  </div><!-- /.form-group -->
+>>>>>>> ea95281a22bb0092b322719e14beb259a5790aab
         
 </div> <!-- /.col -->	
                 <div class="col-md-12" align="center">
@@ -113,12 +145,22 @@
 <table class="table table-bordered">
   <thead>
     <tr>
+<<<<<<< HEAD
       <th scope="col">#SL</th>
       <th scope="col">Session Name</th>
       <th scope="col">Session Year</th>
       <th scope="col">Session Duration</th>
       <th scope="col">Status</th>
       <th scope="col">Admission</th>
+=======
+      <th scope="col">Session ID</th>
+      <th scope="col">Session Name</th>
+      <th scope="col">Session Year</th>
+      <th scope="col">Admission </th>
+      <th scope="col">Status</th>
+      <th scope="col">Course</th>
+      <th scope="col">Action</th>
+>>>>>>> ea95281a22bb0092b322719e14beb259a5790aab
     </tr>
   </thead>
   <tbody>
@@ -134,6 +176,7 @@
 
 
     <tr>
+<<<<<<< HEAD
       <th scope="row"><?=$i;?></th>
       <td><?=$row['session_name'];?></td>
       <td><?=$row['session_year'];?></td>
@@ -141,6 +184,15 @@
       <td><?=$row['session_status'];?></td>
       <td><?=$row['session_form'];?></td>
       <td> <a href="" class="btn btn-primary" data-toggle="modal" data-target="#coureedit">Edit</a><a href="" class="btn btn-danger">Delete</a>   </td>
+=======
+      <th scope="row"><?=$row['session_id'];?></th>
+      <td><?=$row['session_name'];?></td>
+      <td><?=$row['session_year'];?></td>
+      <td><?=$row['session_form'];?></td>
+      <td><?=$row['session_status'];?></td>
+      <td><?=$row['course_id'];?></td>
+      <td> <a href="" class="btn btn-success" data-toggle="modal" data-target="#exampleModalLong"> Edit </a><a href="" class="btn btn-danger"> Delete </a>   </td>
+>>>>>>> ea95281a22bb0092b322719e14beb259a5790aab
     </tr>
 
     <?php $i++; } ?>
@@ -154,7 +206,11 @@
                 </div></div>
 
 <!-- Modal -->
+<<<<<<< HEAD
 <div class="modal fade" id="coureedit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+=======
+<div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+>>>>>>> ea95281a22bb0092b322719e14beb259a5790aab
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -165,7 +221,11 @@
       </div>
       <div class="modal-body">
         
+<<<<<<< HEAD
 <p>Hello!</p>
+=======
+
+>>>>>>> ea95281a22bb0092b322719e14beb259a5790aab
 
 
       </div>

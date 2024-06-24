@@ -157,32 +157,63 @@ $app_id = isset($_GET['app_id']) ? intval($_GET['app_id']) : null;
       <tr>
     </table>
     <table class="table table-sm table table-bordered table-striped">
-      <th colspan="6" align="center">Educational Details</th>
+      <th colspan="7" align="center">Educational Details</th>
       </tr>
       <tr align="center">
         <th>Exam Name</th> 
         <th>Board/University</th> 
+        <th>Group/Subject</th>
         <th>Passing Year</th> 
         <th>Roll NO</th> 
         <th>Registration NO</th>
         <th>Result</th> 
       </tr>
       <tr>
+        <td>J.S.C</td> 
+        <td><?=$row['jscboard']; ?></td> 
+        <td> </td> 
+        <td><?=$row['jscyear']; ?></td> 
+        <td><?=$row['jscroll']; ?></td> 
+        <td><?=$row['jscregi']; ?></td> 
+        <td><?=$row['jscgrade']; ?></td> 
+      </tr>
+      <tr>
         <td>S.S.C</td> 
         <td><?=$row['sscboard']; ?></td> 
+        <td><?=$row['sscgroup']; ?></td> 
         <td><?=$row['sscyear']; ?></td> 
         <td><?=$row['sscroll']; ?></td> 
         <td><?=$row['sscregi']; ?></td> 
         <td><?=$row['sscgrade']; ?></td> 
       </tr>
       <tr>
-        <td>Graduation</td> 
-        <td><?=$row['jscboard']; ?></td> 
-        <td><?=$row['jscyear']; ?></td> 
-        <td><?=$row['jscroll']; ?></td> 
-        <td></td> 
-        <td><?=$row['jscgrade']; ?></td>
+        <td>H.S.C</td> 
+        <td><?=$row['hscboard']; ?></td> 
+        <td><?=$row['hscgroup']; ?></td> 
+        <td><?=$row['hscyear']; ?></td> 
+        <td><?=$row['hscroll']; ?></td> 
+        <td><?=$row['hscregi']; ?></td> 
+        <td><?=$row['hscgrade']; ?></td> 
       </tr>
+      <tr>
+        <td>Honours/ Degree </td> 
+        <td><?=$row['deguni']; ?></td> 
+        <td><?=$row['degsub']; ?></td> 
+        <td><?=$row['degyear']; ?></td> 
+        <td><?=$row['degroll']; ?></td> 
+        <td><?=$row['degregi']; ?></td> 
+        <td><?=$row['deggrade']; ?></td> 
+      </tr>
+      <tr>
+        <td>Masters</td> 
+        <td><?=$row['masuni']; ?></td> 
+        <td><?=$row['massub']; ?></td> 
+        <td><?=$row['masyear']; ?></td> 
+        <td><?=$row['masroll']; ?></td> 
+        <td><?=$row['masregi']; ?></td> 
+        <td><?=$row['masgrade']; ?></td> 
+      </tr>
+      
     </table>
         <table class="table table-sm table table-bordered table-striped">
       <th colspan="6" align="center">Transection Details</th>
