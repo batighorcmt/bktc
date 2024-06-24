@@ -45,7 +45,7 @@
         <div class="row">
             <div class="col-lg-12 col-12">
                 <div class="card">
-                <h5 class="card-header">Student List</h5>
+                <h5 class="card-header">Student List (Short Course)</h5>
                 <div class="card-body">  
                     <table class="table table-bordered table-striped table-responsive" id="example1">
                               <thead>
@@ -79,7 +79,7 @@
                               <tbody>
                                  <?php
                                 $i=1;
-                                $sqlt = "SELECT * from application as app, admited_student as ads where app.app_id=ads.app_id and ads.status='admited' order by trainee_id asc";
+                                $sqlt = "SELECT * from application as app, admited_student as ads where app.app_id=ads.app_id and ads.status='admited' and ads.trade_id='3' order by trainee_id asc";
                                 $resultt = $conn->query($sqlt);
                                 while($row = $resultt->fetch_array())
                                 { 
@@ -117,7 +117,7 @@
                       <ul class="dropdown-menu" role="menu">
                         <li><a href="trainee_edit.php?trainee_id=<?=$row['trainee_id'];?>">Edit</a></li>
                         <li><a href="#">Profile View </a></li>
-						<li><a href="applicant_profile.php?app_id=<?=$row['app_id'];?>">Print Profile</a></li>
+						<li><a href="applicant_profile.php?app_id=<?=$row['app_id'];?>&trade_id=<?=$row['trade_id'];?>">Print Profile</a></li>
             <li><a target="_blank" href="std_payslip.php?trainee_id=<?=$row['trainee_id'];?>">Payment History</a></li>
                         <li><a href="std_delete.php?trainee_id=<?=$row['trainee_id'];?>">Delete</a></li>
                       </ul>

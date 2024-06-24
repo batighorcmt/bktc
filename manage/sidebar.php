@@ -84,6 +84,12 @@
                 </a>
               </li>
               <li class="nav-item">
+                <a href="session_add.php" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Session Setup</p>
+                </a>
+              </li>
+              <li class="nav-item">
                 <a href="course_add.php" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Course Setup</p>
@@ -130,9 +136,15 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="std_list.php" class="nav-link">
+                <a href="srt_std_list.php" class="nav-link">
                   <i class="fa fa-list-ol nav-icon"></i>
-                  <p>Student List</p>
+                  <p>Students (Short Course)</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="adv_std_list.php" class="nav-link">
+                  <i class="fa fa-list-ol nav-icon"></i>
+                  <p>Students (Advanced)</p>
                 </a>
               </li>
               <li class="nav-item">
