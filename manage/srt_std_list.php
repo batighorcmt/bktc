@@ -79,7 +79,7 @@
                               <tbody>
                                  <?php
                                 $i=1;
-                                $sqlt = "SELECT * from application as app, admited_student as ads where app.app_id=ads.app_id and ads.status='admited' and ads.trade_id='3' order by trainee_id asc";
+                                $sqlt = "SELECT * from application as app, admited_student as ads where app.app_id=ads.app_id and ads.status='admited' order by trainee_id asc";
                                 $resultt = $conn->query($sqlt);
                                 while($row = $resultt->fetch_array())
                                 { 
