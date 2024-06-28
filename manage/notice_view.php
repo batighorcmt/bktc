@@ -144,8 +144,8 @@ include '../mainnav.php';
                 <div class="card-body">
 
 <?=$row['notice_text'];?>
-<a href="../notice/<?=$row['notice_file'];?>"><img src="Download" height=20% width=20%></th>
-                        </tr>  
+<a href="../notice/<?=$row['notice_file'];?>">Download</a>
+                
 <hr>
 <small></small>
               </div>
