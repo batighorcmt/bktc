@@ -69,14 +69,30 @@
                     </select>
                   </div><!-- /.form-group -->
             
+                                  <div class="form-group">
+                    <label>Purpose</label>
+                                  <select name="payment_purpose" class="form-control" data-placeholder="Select a Purpose" style="width: 100%;" required>
+                                  <<?php
+                                $i=1;
+                                $sql = "SELECT * FROM txn_cat where txn_type_id=1";
+                                $result = $conn->query($sql);
+                                while($row = $result->fetch_array())
+                                { 
+                                ?>
+                                  	<option value="<?=$row['txn_cat_id'];?>"> <?=$row['txn_cat_name'];?></option>
+
+                             <?php $i++; } ?>
+                    </select>
+                  </div><!-- /.form-group -->
+
                 <div class="form-group">
                     <label>Payment Date</label>
-                       <input name="payment_date" value="<?php echo date('Y-m-d'); ?>" class="form-control" style="width: 100%;">
+                       <input type="date" name="payment_date" value="<?php echo date('Y-m-d'); ?>" class="form-control" style="width: 100%;" required>
                   </div><!-- /.form-group -->
 
                   <div class="form-group">
                     <label>Payment Method</label>
-                                  <select name="payment_method" class="form-control select2" data-placeholder="Select a Trainee" style="width: 100%;">
+                                  <select name="payment_method" class="form-control" data-placeholder="Select a Trainee" style="width: 100%;" required>
                                   <option value="Cash"> Cash </option>
                                   <option value="Bkash"> Bkash </option>
                                   <option value="Rocket"> Rocket </option>
@@ -93,7 +109,7 @@
 
                    	<div class="form-group">
                     	<label>Amount</label>
-						<input name="payment_amount" class="form-control" style="width: 100%;" >
+						<input name="payment_amount" class="form-control" style="width: 100%;" required>
 					</div><!-- /.form-group -->
 					
 					<div class="form-group">

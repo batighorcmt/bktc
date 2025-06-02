@@ -1,0 +1,155 @@
+<?php
+// std_admit_save.php
+
+include 'db_conn.php';
+
+if(isset($_POST['submit'])) {
+    // Retrieve all form data
+    $trainee_id = $_POST['trainee_id'];
+    $app_id = $_POST['app_id'];
+    $username = $_POST['username'];
+    $password = $_POST['password'];
+    
+    // Personal details
+    $studname = $_POST['studname'];
+    $fathername = $_POST['fathername'];
+    $mothername = $_POST['mothername'];
+    $selecttrade = $_POST['selecttrade'];
+    $course = $_POST['course'];
+    $ssession = $_POST['ssession'];
+    $bg = $_POST['bg'];
+    $nid = $_POST['nid'];
+    $dob = $_POST['dob'];
+    $cnumber = $_POST['cnumber'];
+    $gnumber = $_POST['gnumber'];
+    $studemail = $_POST['studemail'];
+    $selnation = $_POST['selnation'];
+    $religion = $_POST['religion'];
+    $gender = $_POST['gender'];
+    $saddress = $_POST['saddress'];
+    
+    // Educational details
+    $jscboard = $_POST['jscboard'];
+    $jscyear = $_POST['jscyear'];
+    $jscroll = $_POST['jscroll'];
+    $jscregi = $_POST['jscregi'];
+    $jscgrade = $_POST['jscgrade'];
+    
+    $sscboard = $_POST['sscboard'];
+    $sscgroup = $_POST['sscgroup'];
+    $sscyear = $_POST['sscyear'];
+    $sscroll = $_POST['sscroll'];
+    $sscregi = $_POST['sscregi'];
+    $sscgrade = $_POST['sscgrade'];
+    
+    $hscboard = $_POST['hscboard'];
+    $hscgroup = $_POST['hscgroup'];
+    $hscyear = $_POST['hscyear'];
+    $hscroll = $_POST['hscroll'];
+    $hscregi = $_POST['hscregi'];
+    $hscgrade = $_POST['hscgrade'];
+    
+    $deguni = $_POST['deguni'];
+    $degsub = $_POST['degsub'];
+    $degyear = $_POST['degyear'];
+    $degroll = $_POST['degroll'];
+    $degregi = $_POST['degregi'];
+    $deggrade = $_POST['deggrade'];
+    
+    $masuni = $_POST['masuni'];
+    $massub = $_POST['massub'];
+    $masyear = $_POST['masyear'];
+    $masroll = $_POST['masroll'];
+    $masregi = $_POST['masregi'];
+    $masgrade = $_POST['masgrade'];
+    
+    // Transaction details
+    $ptype = $_POST['ptype'];
+    $pdate = $_POST['pdate'];
+    $rmobile = $_POST['rmobile'];
+    $pamount = $_POST['pamount'];
+    $rtransection = $_POST['rtransection'];
+    
+    // Admission information
+    $shift = $_POST['shift'];
+    $file_submit = $_POST['file_submit'];
+    $status = $_POST['status'];
+    $contract = $_POST['contract'];
+    
+    // Update query for application table
+    $sql = "UPDATE application SET 
+            studname = '$studname',
+            fathername = '$fathername',
+            mothername = '$mothername',
+            selecttrade = '$selecttrade',
+            course = '$course',
+            ssession = '$ssession',
+            bg = '$bg',
+            nid = '$nid',
+            dob = '$dob',
+            cnumber = '$cnumber',
+            gnumber = '$gnumber',
+            studemail = '$studemail',
+            selnation = '$selnation',
+            religion = '$religion',
+            gender = '$gender',
+            saddress = '$saddress',
+            jscboard = '$jscboard',
+            jscyear = '$jscyear',
+            jscroll = '$jscroll',
+            jscregi = '$jscregi',
+            jscgrade = '$jscgrade',
+            sscboard = '$sscboard',
+            sscgroup = '$sscgroup',
+            sscyear = '$sscyear',
+            sscroll = '$sscroll',
+            sscregi = '$sscregi',
+            sscgrade = '$sscgrade',
+            hscboard = '$hscboard',
+            hscgroup = '$hscgroup',
+            hscyear = '$hscyear',
+            hscroll = '$hscroll',
+            hscregi = '$hscregi',
+            hscgrade = '$hscgrade',
+            deguni = '$deguni',
+            degsub = '$degsub',
+            degyear = '$degyear',
+            degroll = '$degroll',
+            degregi = '$degregi',
+            deggrade = '$deggrade',
+            masuni = '$masuni',
+            massub = '$massub',
+            masyear = '$masyear',
+            masroll = '$masroll',
+            masregi = '$masregi',
+            masgrade = '$masgrade',
+            ptype = '$ptype',
+            pdate = '$pdate',
+            rmobile = '$rmobile',
+            pamount = '$pamount',
+            rtransection = '$rtransection'
+            WHERE app_id = $app_id";
+    
+    if(mysqli_query($conn, $sql)) {
+        // Insert into admited_student table
+        $insert_sql = "INSERT INTO admited_student (
+            trainee_id, app_id, username, password, shift, 
+            file_submit, status, contract_amount, admit_date
+        ) VALUES (
+            '$trainee_id', '$app_id', '$username', '$password', '$shift',
+            '$file_submit', '$status', '$contract', NOW()
+        )";
+        
+        if(mysqli_query($conn, $insert_sql)) {
+            header("Location: admit_success.php?trainee_id=$trainee_id");
+            exit();
+        } else {
+            echo "Error: " . $insert_sql . "<br>" . mysqli_error($conn);
+        }
+    } else {
+        echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+    }
+    
+    mysqli_close($conn);
+}
+?>

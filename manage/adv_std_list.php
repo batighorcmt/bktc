@@ -45,7 +45,7 @@
         <div class="row">
             <div class="col-lg-12 col-12">
                 <div class="card">
-                <h5 class="card-header">Payment List</h5>
+                <h5 class="card-header">Student List (Advanced Course)</h5>
                 <div class="card-body">  
                     <table class="table table-bordered table-striped table-responsive" id="example1">
                               <thead>
@@ -53,20 +53,25 @@
                                     <th> SL NO </th>
                                     <th> 
                                     	<div>Student Name</div>
+                                    	<div>Trainee ID</div>
                                     </th>
-                                    <th>Trainee ID</th>
                                     <th> 
                                     	<div>Mobile</div>
+                                    	<div>Email</div> 
                                     </th>
                                    <th> 
                                    		<div>Course Name</div>
                                    </th>
                                    <th> <div>Session</div>
                                    </th>
-                                  
+                                   <th> <div>Shift</div>
+                                   </th>
                                    <th><div>Status</div></th>
                                    <th>
-                                    	<div>Payment Amount</div>
+                                    	<div>Address</div>
+                                  </th>
+                                  <th>
+                                    	<div>Photo</div>
                                   </th>
                                     <th> Action </th>
                                  </tr>
@@ -74,7 +79,7 @@
                               <tbody>
                                  <?php
                                 $i=1;
-                                $sqlt = "SELECT * from admited_student as ads, application as app, trainee_payment as tp WHERE ads.app_id=app.app_id and ads.trainee_id=tp.trainee_id";
+                                $sqlt = "SELECT * from application as app, admited_student as ads where app.app_id=ads.app_id and ads.status='admited'  and app.course_type='Advanced'  order by trainee_id asc";
                                 $resultt = $conn->query($sqlt);
                                 while($row = $resultt->fetch_array())
                                 { 
@@ -82,12 +87,12 @@
                                 <tr>
                                   <td><?=$i;?></td>
                                   <td>
-                                  	<div><strong><a href="std_payslip.php?trainee_id=<?=$row['trainee_id'];?>"><?=$row['studname'];?></a></strong></div>
-                                  	<div> </div>
+                                  	<div><strong><a href="trainee_profile.php?trainee_id=<?=$row['trainee_id'];?>"><?=$row['studname'];?></a></strong></div>
+                                  	<div><?=$row['trainee_id'];?></div>
                                   </td>
-                                  <td><?=$row['trainee_id'];?></td>
                                   <td>
                                   	<div><strong><a href="tel:<?=$row['cnumber'];?>"><?=$row['cnumber'];?></a></strong></div>
+                                  	<div><?=$row['studemail'];?></div>
                                   </td>
                                   <td>
 									<div><?=$row['course'];?></div>
@@ -95,47 +100,58 @@
                                   <td><div>
                                     <?=$row['ssession'];?>
                                   </div></td>
-                                  
+                                  <td><div>
+                                    <?=$row['shift'];?>
+                                  </div></td>
                                   <td><div>
                                     <?=$row['status'];?>
                                   </div></td>
                                   	<td>
-                                  	    <div><?=$row['payment_amount'];?></div>
+                                  	    <div><?=$row['saddress'];?></div>
                                   	</td>
-
+                                  	<td>
+                                  	    <div><img class="img-bordered-sm" height="100" width="80" src="../img/appliedstd/<?=$row['pic_file'];?>"></div>
+                                  	</td>
                                   <td> <div class="btn-group">
                       <button type="button" class="btn btn-default btn-flat dropdown-toggle" data-toggle="dropdown">Action</button>
                       <ul class="dropdown-menu" role="menu">
                         <li><a href="trainee_edit.php?trainee_id=<?=$row['trainee_id'];?>">Edit</a></li>
-            <li><a target="_blank" href="payment_receipt.php?payment_id=<?=$row['payment_sys_id'];?>">Payment Receipt</a></li>
-                        <li><a href="std_fees_delete.php?trainee_id=<?=$row['trainee_id'];?>">Delete</a></li>
+                        <li><a href="#">Profile View </a></li>
+						<li><a href="applicant_profile.php?app_id=<?=$row['app_id'];?>&trade_id=<?=$row['trade_id'];?>">Print Profile</a></li>
+            <li><a target="_blank" href="std_payslip.php?trainee_id=<?=$row['trainee_id'];?>">Payment History</a></li>
+                        <li><a href="std_delete.php?trainee_id=<?=$row['trainee_id'];?>">Delete</a></li>
                       </ul>
                     </div></td>
                              </tr>
                              <?php $i++; } ?>
                               </tbody>
                               <tfoot>
-                              <tr>
-                                    <th> SL NO </th>
+                              	<tr>
+                                  <th> SL NO </th>
                                     <th> 
                                     	<div>Student Name</div>
+                                    	<div>Trainee ID</div>
                                     </th>
-                                    <th>Trainee ID</th>
                                     <th> 
                                     	<div>Mobile</div>
+                                    	<div>Email</div> 
                                     </th>
                                    <th> 
                                    		<div>Course Name</div>
                                    </th>
                                    <th> <div>Session</div>
                                    </th>
-                                  
+                                   <th> <div>Shift</div>
+                                   </th>
                                    <th><div>Status</div></th>
                                    <th>
-                                    	<div>Payment Amount</div>
+                                    	<div>Address</div>
+                                  </th>
+                                  <th>
+                                    	<div>Photo</div>
                                   </th>
                                     <th> Action </th>
-                                 </tr>	
+                                 </tr>
                               </tfoot>
                            </table>
                     </div>

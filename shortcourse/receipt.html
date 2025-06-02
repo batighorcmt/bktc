@@ -1,0 +1,194 @@
+<?php
+include '../manage/db_conn.php';
+$app_id = isset($_GET['app_id']) ? intval($_GET['app_id']) : null;
+?> 
+ 
+
+    <section style="background-color: #FFF;">
+  <div class="container py-5">
+    <div class="row">
+      <div class="col-sm-12">
+<?php 
+    $sqlinst = "SELECT * from inst_data limit 1";
+  $resultinst = $conn->query($sqlinst);
+  while($r = $resultinst->fetch_assoc())
+  { 
+        $instname = $r['inst_name'];
+        $instadd = $r['inst_add'];
+        $instaddress = $r['inst_address'];
+?>
+<div class="table-responsive">
+    <table class="table table-sm>
+      <tr>
+        <td> <img src="../site_images/logo.png" alt="BKTC Logo" width="100px" height="100px"> </td>
+        <td>
+        <h1 align="center" class=""><?php echo $instname; ?></h1>
+    <h6 align="center" class=""><?php echo $instadd; ?></h6>
+    <h6 align="center" class=""><?php echo $instaddress; ?></h6>
+        </td>
+        <td></td>
+      </tr>
+  </table>
+
+
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8">
+  <title>রসিদ রিপোর্ট</title>
+  <style>
+    body {
+      font-family: 'Siyam Rupali', Arial, sans-serif;
+      background: #f0f0f0;
+      padding: 20px;
+    }
+
+    .receipt-container {
+      width: 800px;
+      margin: auto;
+      background: white;
+      padding: 40px 50px;
+      border: 1px solid #888;
+      border-radius: 5px;
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .header h2 {
+      margin: 0;
+      font-size: 22px;
+    }
+
+    .header p {
+      margin: 4px 0;
+      font-size: 14px;
+    }
+
+    .title {
+      text-align: center;
+      font-size: 18px;
+      margin: 20px 0;
+      border-top: 1px dashed #aaa;
+      border-bottom: 1px dashed #aaa;
+      padding: 10px 0;
+      font-weight: bold;
+    }
+
+    .row {
+      display: flex;
+      justify-content: space-between;
+      margin: 10px 0;
+    }
+
+    .label {
+      width: 200px;
+      font-weight: bold;
+    }
+
+    .value {
+      flex: 1;
+      border-bottom: 1px dotted #aaa;
+      padding: 2px 10px;
+    }
+
+    .footer {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 50px;
+      font-size: 14px;
+      font-weight: bold;
+    }
+
+    .print-button {
+      text-align: center;
+      margin-top: 30px;
+    }
+
+    button {
+      padding: 10px 20px;
+      font-size: 14px;
+      background: #007BFF;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    @media print {
+      .print-button {
+        display: none;
+      }
+      body {
+        background: none;
+        padding: 0;
+      }
+      .receipt-container {
+        border: none;
+        box-shadow: none;
+        padding: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="receipt-container">
+    <div class="header">
+      <h2>ধানশিরা (স্কুল সংলগ্ন) নূরানী ও হাফিজিয়া আবাসিক মাদ্রাসা</h2>
+      <p>ধানশিরা, দুর্গাপুর, নেত্রকোনা | মোবাইল: ০১৮৭৮-৮৮৮৮৪৮, ০১৯২০-৯৯৯৯৯৮</p>
+    </div>
+
+    <div class="title">রসিদ / Receipt</div>
+
+    <div class="row">
+      <div class="label">বই নম্বর / Book No:</div>
+      <div class="value">..........................</div>
+      <div class="label">রসিদ নম্বর / Receipt No:</div>
+      <div class="value">..................</div>
+    </div>
+
+    <div class="row">
+      <div class="label">তারিখ / Date:</div>
+      <div class="value">..................</div>
+    </div>
+
+    <div class="row">
+      <div class="label">দাতার নাম / Donor (الاسم):</div>
+      <div class="value">..........................</div>
+    </div>
+
+    <div class="row">
+      <div class="label">ঠিকানা / Address (العنوان):</div>
+      <div class="value">..........................</div>
+    </div>
+
+    <div class="row">
+      <div class="label">পরিমাণ / Amount (المبلغ):</div>
+      <div class="value">..........................</div>
+    </div>
+
+    <div class="row">
+      <div class="label">কথায় / In Words (بالكلمات):</div>
+      <div class="value">..........................</div>
+    </div>
+
+    <div class="row">
+      <div class="label">উদ্দেশ্য / Purpose (النوعية):</div>
+      <div class="value">..........................</div>
+    </div>
+
+    <div class="footer">
+      <div>আদায়কারী / Collector: ....................</div>
+      <div>প্রিন্সিপাল / Principal: ....................</div>
+    </div>
+  </div>
+
+  <div class="print-button">
+    <button onclick="window.print()">প্রিন্ট করুন</button>
+  </div>
+
+</body>
+</html>

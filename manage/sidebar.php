@@ -124,13 +124,13 @@
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-tree"></i>
               <p style="color:yellow";>
-                Student Management
+                Student Management (Short Course)
                 <i class="fas fa-angle-left right"></i>
               </p>
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="std_add.php" class="nav-link">
+                <a href="../adv_reg_info.php" class="nav-link">
                   <i class="far fa-user nav-icon"></i>
                   <p>Add New Student</p>
                 </a>
