@@ -124,7 +124,7 @@
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-tree"></i>
               <p style="color:yellow";>
-                Student Management (Short Course)
+                Student Management
                 <i class="fas fa-angle-left right"></i>
               </p>
             </a>
