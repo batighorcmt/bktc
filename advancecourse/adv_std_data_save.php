@@ -12,7 +12,7 @@ $file_ext = strtolower(end($div));
 $unique_image = substr(md5(time()), 0, 10).'.'.$file_ext;
 $uploaded_image = "../img/appliedstd/".$unique_image;
 
-$sql = "INSERT INTO application (insname, ssession, pic_file, studname, cnumber, fathername, mothername, gnumber, studemail, brdateday, brdatemonth, brdateyear, dob, selecttrade, course, religion, gender, saddress, selnation, bg, nid, sscboard, sscyear, sscroll, sscresult, sscgrade, sscregi, sscgroup, hscboard, hscyear, hscroll, hscresult, hscgrade, hscregi, hscgroup, deguni, degyear, degroll, degresult, deggrade, degregi, degsub, masuni, masyear, masroll, masresult, masgrade, masregi, massub, jscboard, jscyear, jscroll, jscregi, jscresult, jscgrade, ptype, pdate, pamount, rmobile, rtransection, reference, app_status, course_type) VALUES ('$insname', '$ssession', '$unique_image', '$studname', '$cnumber', '$fathername', '$mothername', '$gnumber', '$studemail', '$brdateday', '$brdatemonth', '$brdateyear', '$dob', '$selecttrade', '$course', '$religion', '$gender', '$saddress', '$selnation', '$bg', '$nid', '$sscboard', '$sscyear', '$sscroll', '$sscresult', '$sscgrade', '$sscregi', '$sscgroup', '$hscboard', '$hscyear', '$hscroll', '$hscresult', '$hscgrade', '$hscregi', '$hscgroup', '$deguni', '$degyear', '$degroll', '$degresult', '$deggrade', '$degregi', '$degsub', '$masuni', '$masyear', '$masroll', '$masresult', '$masgrade', '$masregi', '$massub', '$jscboard', '$jscyear', '$jscroll', '$jscregi', '$jscresult', '$jscgrade', '$ptype', '$pdate', '$pamount', '$rmobile', '$rtransection', '$reference', 'Applied' '$course_type')";
+$sql = "INSERT INTO application (insname, ssession, pic_file, studname, cnumber, fathername, mothername, gnumber, studemail, brdateday, brdatemonth, brdateyear, dob, selecttrade, course, religion, gender, saddress, selnation, bg, nid, sscboard, sscyear, sscroll, sscresult, sscgrade, sscregi, sscgroup, hscboard, hscyear, hscroll, hscresult, hscgrade, hscregi, hscgroup, deguni, degyear, degroll, degresult, deggrade, degregi, degsub, masuni, masyear, masroll, masresult, masgrade, masregi, massub, jscboard, jscyear, jscroll, jscregi, jscresult, jscgrade, ptype, pdate, pamount, rmobile, rtransection, reference, app_status, course_type) VALUES ('$insname', '$ssession', '$unique_image', '$studname', '$cnumber', '$fathername', '$mothername', '$gnumber', '$studemail', '$brdateday', '$brdatemonth', '$brdateyear', '$dob', '$selecttrade', '$course', '$religion', '$gender', '$saddress', '$selnation', '$bg', '$nid', '$sscboard', '$sscyear', '$sscroll', '$sscresult', '$sscgrade', '$sscregi', '$sscgroup', '$hscboard', '$hscyear', '$hscroll', '$hscresult', '$hscgrade', '$hscregi', '$hscgroup', '$deguni', '$degyear', '$degroll', '$degresult', '$deggrade', '$degregi', '$degsub', '$masuni', '$masyear', '$masroll', '$masresult', '$masgrade', '$masregi', '$massub', '$jscboard', '$jscyear', '$jscroll', '$jscregi', '$jscresult', '$jscgrade', '$ptype', '$pdate', '$pamount', '$rmobile', '$rtransection', '$reference', 'Applied', '$course_type')";
 
 		 
 $result = $conn->query($sql);
@@ -21,7 +21,7 @@ $last_id = $conn->insert_id;
 
 if($result == True AND move_uploaded_file($file_temp, $uploaded_image)){
 
-  echo "<script>window.location.assign('shortcourse/print_app.php?cnumber=$cnumber&app_id=$last_id');</script>";
+  echo "<script>window.location.assign('aprint_app.php?cnumber=$cnumber&app_id=$last_id');</script>";
 }
 else{
     echo "<script>window.location.assign('adv_std_reg.php?error=Something went wrong!');</script>";
