@@ -21,7 +21,7 @@ $last_id = $conn->insert_id;
 
 if($result == True AND move_uploaded_file($file_temp, $uploaded_image)){
 
-  echo "<script>window.location.assign('aprint_app.php?cnumber=$cnumber&app_id=$last_id');</script>";
+  echo "<script>window.location.assign('../shortcourse/print_app.php?cnumber=$cnumber&app_id=$last_id');</script>";
 }
 else{
     echo "<script>window.location.assign('adv_std_reg.php?error=Something went wrong!');</script>";
