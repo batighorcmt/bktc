@@ -1,5 +1,5 @@
 <?php
-include 'manage/db_conn.php';
+include '../manage/db_conn.php';
 ?>
 
 
@@ -13,28 +13,28 @@ include 'manage/db_conn.php';
     
  <title>Advanced Course Registration | Bamundi Karigori Training Center</title>	
     
-    <link href="site_images/icon.ico" rel="icon">
+    <link href="../site_images/icon.ico" rel="icon">
     
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     
     <!-- Bootstrap core CSS -->
-    <link href="elements/bootstrap.min.css" rel="stylesheet">
+    <link href="../elements/bootstrap.min.css" rel="stylesheet">
     
     <!-- Your custom styles (optional) -->
-    <link rel="stylesheet" href="elements/animate.css">
+    <link rel="stylesheet" href="../elements/animate.css">
     
-    <link rel="stylesheet" href="elements/all-fonts.css">
+    <link rel="stylesheet" href="../elements/all-fonts.css">
     
-    <link href="elements/style.css" rel="stylesheet">
+    <link href="../elements/style.css" rel="stylesheet">
     
-     <link href="elements/owl.carousel.min.css" rel="stylesheet">
+     <link href="../elements/owl.carousel.min.css" rel="stylesheet">
 	 
-	 <link rel="stylesheet" href="elements/carlous.css">
-	   <script src="elements/jquery.min.js.download"></script>
-  <script src="elements/bootstrap.min.js.download"></script>
+	 <link rel="stylesheet" href="../elements/carlous.css">
+	   <script src="../elements/jquery.min.js.download"></script>
+  <script src="../elements/bootstrap.min.js.download"></script>
      
-   <link href="elements/font.css" rel="stylesheet">
+   <link href="../elements/font.css" rel="stylesheet">
    <link href="https://fonts.maateen.me/kalpurush/font.css" rel="stylesheet">
 
    
@@ -110,12 +110,12 @@ include 'manage/db_conn.php';
       <!--Lower-header-->
       		<div class="container">
             	<div class="row">
-                	<div class="col-md-2"> <div class="main-logo"> <img width="100" class="img-fluid" src="site_images/bktc_logo.png"> </div> </div>
+                	<div class="col-md-2"> <div class="main-logo"> <img width="100" class="img-fluid" src="../site_images/bktc_logo.png"> </div> </div>
                     <div class="col-md-10"> 
                     	<div class="main-manu">
                         	
 <?php
-include 'mainnav.php';
+include '../mainnav.php';
 ?>
                             
                         </div>
@@ -157,7 +157,7 @@ include 'mainnav.php';
   </div>
 
 
-<?php include 'footer.php'; ?>
+<?php include '../footer.php'; ?>
 
             
              
@@ -167,10 +167,10 @@ include 'mainnav.php';
 <a href="#" class="scrollup border-0" style="display: none;"> <i class="fa fa-angle-double-up" aria-hidden="true"></i> </a>
 
 
-	<script type="text/javascript" src="elements/jquery-3.3.1.min.js.download"></script>
-    <script type="text/javascript" src="elements/wow.js.download"></script>
-    <script type="text/javascript" src="elements/owl.carousel.min.js.download"></script>
-    <script src="elements/jquery-ui.js.download"></script>
+	<script type="text/javascript" src="../elements/jquery-3.3.1.min.js.download"></script>
+    <script type="text/javascript" src="../elements/wow.js.download"></script>
+    <script type="text/javascript" src="../elements/owl.carousel.min.js.download"></script>
+    <script src="../elements/jquery-ui.js.download"></script>
 
           <script>
 $(document).ready(function(){ 

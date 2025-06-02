@@ -1,5 +1,5 @@
 <?php 
-include 'manage/db_conn.php';
+include '../manage/db_conn.php';
 extract($_REQUEST);
 $agg = $_POST['agree'];
 ?>
@@ -78,7 +78,7 @@ $agg = $_POST['agree'];
       <div class="card-header bg-primary text-white">
         <div class="row">
           <div class="col-md-2">
-            <img src="site_images/bktc_logo.png" height="80" class="img-fluid">
+            <img src="../site_images/bktc_logo.png" height="80" class="img-fluid">
           </div>
           <div class="col-md-10">
             <h4 class="mb-0">Bamundi Karigori Training Center</h4>
@@ -172,7 +172,7 @@ $agg = $_POST['agree'];
           
           <div class="col-md-6">
             <div class="text-center mb-2">
-              <img id="previewImg" src="site_images/manpicture.jpg" class="preview-img" width="200" height="250">
+              <img id="previewImg" src="../site_images/manpicture.jpg" class="preview-img" width="200" height="250">
             </div>
             <div class="form-group">
               <input type="file" name="pic_file" class="form-control form-control-sm" onchange="previewFile(this);" required>

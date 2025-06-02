@@ -245,7 +245,7 @@ include 'mainnav.php';
               <div class="card">
                 <h5 class="card-header" style="background-color:#00a953; color:#FFFFFF; margin:10px; border-radius:5px;"><strong>অনলাইন আবেদন</strong></h5>
                 <div class="card-body">
-                  <a href="adv_reg_info.php"><div class=""><img src="site_images/1yearr.png" height="50px" width="50px"> <span align="left">১ বছর মেয়াদী অ্যাডভান্সড সার্টিফিকেট কোর্স ( ফাইন আর্টস/চারুকলা , কম্পিউটার টেকনোলজি/আইসিটি ভর্তি ও ফিজিক্যাল এডুকেশন)</span></div> </a><br>
+                  <a href="advancecourse/adv_reg_info.php"><div class=""><img src="site_images/1yearr.png" height="50px" width="50px"> <span align="left">১ বছর মেয়াদী অ্যাডভান্সড সার্টিফিকেট কোর্স ( ফাইন আর্টস/চারুকলা , কম্পিউটার টেকনোলজি/আইসিটি ভর্তি ও ফিজিক্যাল এডুকেশন)</span></div> </a><br>
                   
                   <a href="shortcourse/srt_reg_info.php"><div class=""><img src="site_images/6month.jpg" height="50px" width="50px"> <span align="left">৩৬০ ঘন্টা/৬ মাস মেয়াদী বেসিক কোর্স</span></div> </a>
                 <!--<button> Details </button>-->
