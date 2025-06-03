@@ -109,11 +109,11 @@
                                   <td><div>
                                     <?=$row['status'];?>
                                   </div></td>
-                                  <th>
-                                    	<div><?=$row['course_type'];?></div>
-                                  </th>
+                                  <td>
+                                    	<div><?=$row['saddress'];?></div>
+                                  </td>
                                   	<td>
-                                  	    <div><?=$row['saddress'];?></div>
+                                  	    <div><?=$row['course_type'];?></div>
                                   	</td>
                                   	<td>
                                   	    <div><img class="img-bordered-sm" height="100" width="80" src="../img/appliedstd/<?=$row['pic_file'];?>"></div>
