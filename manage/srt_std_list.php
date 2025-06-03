@@ -71,6 +71,9 @@
                                     	<div>Address</div>
                                   </th>
                                   <th>
+                                    	<div>Course Type</div>
+                                  </th>
+                                  <th>
                                     	<div>Photo</div>
                                   </th>
                                     <th> Action </th>
@@ -106,6 +109,9 @@
                                   <td><div>
                                     <?=$row['status'];?>
                                   </div></td>
+                                  <th>
+                                    	<div><?=$row['course_type'];?></div>
+                                  </th>
                                   	<td>
                                   	    <div><?=$row['saddress'];?></div>
                                   	</td>
@@ -146,6 +152,9 @@
                                    <th><div>Status</div></th>
                                    <th>
                                     	<div>Address</div>
+                                  </th>
+                                  <th>
+                                    	<div>Course Type</div>
                                   </th>
                                   <th>
                                     	<div>Photo</div>
