@@ -93,7 +93,7 @@
     <div class="col-md-4">
       <div class="card custom-card p-3">
         <h5 class="card-title mb-3">Student List Print</h5>
-        <form action="report/student_list.php" method="post" target="_blank">
+        <form action="report/print_student_list.php" method="post" target="_blank">
           <div class="form-section">
             <div class="form-section-title">Select Session and Admission Type</div>
           <div class="mb-3">
