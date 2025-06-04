@@ -121,7 +121,7 @@
             </select>
           </div>
           <div class="mb-3">
-            <label for="dropdown1" class="form-label">Session</label>
+            <label for="dropdown1" class="form-label">Trade</label>
             <select name="selecttrade" class="form-control" id="dropdown2">
               <option value="">Select Trade</option>
                   <?php 
@@ -134,7 +134,7 @@
             </select>
           </div>
           <div class="mb-3">
-            <label for="dropdown1" class="form-label">Session</label>
+            <label for="dropdown1" class="form-label">Course/ Subject</label>
             <select name="course" class="form-control" id="dropdown3">
               <option value="">Select Subject</option>
                   <?php 
