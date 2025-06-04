@@ -130,6 +130,12 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
+                <a href="std_applications.php" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Received Applications</p>
+                </a>
+              </li>
+              <li class="nav-item">
                 <a href="../adv_reg_info.php" class="nav-link">
                   <i class="far fa-user nav-icon"></i>
                   <p>Add New Student</p>
@@ -148,15 +154,9 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="std_query.php" class="nav-link">
-                  <i class="fa fa-print nav-icon"></i>
-                  <p>Print Student List</p>
-                </a>
-              </li>
-              <li class="nav-item">
                 <a href="std_fees_add.php" class="nav-link">
                   <i class="fa fa-edit nav-icon"></i>
-                  <p>Student's Fees Colection</p>
+                  <p>Fees Colection</p>
                 </a>
               </li>
               <li class="nav-item">
@@ -169,12 +169,6 @@
                 <a href="std_report_print.php" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Student Report Print</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="std_applications.php" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Received Applications</p>
                 </a>
               </li>
             </ul>
