@@ -99,7 +99,7 @@ $result = $stmt->get_result();
       <img src="../../site_images/bktc_logo.png" alt="logo" class="school-logo me-3">
       <div>
         <h4 class="mb-0 fw-bold"><?php echo $instname; ?></h4>
-        <p class="mb-0"><?php echo $instadd; ?> <?php echo $instaddress; ?></p>
+        <p class="mb-0"><?php echo $instadd; ?></p>
         <p class="mb-0"><?php echo $instaddress; ?></p>
         <h5 class="mt-2">Student List</h5>
       </div>
