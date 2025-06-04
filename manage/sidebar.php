@@ -166,7 +166,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="std_report_print.php" class="nav-link">
+                <a href="std_query.php" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Student Report Print</p>
                 </a>
