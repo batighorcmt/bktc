@@ -152,7 +152,7 @@ $result = $stmt->get_result();
   </div>
 
   <div class="text-center no-print mt-4">
-    <button onclick="window.print()" class="btn btn-primary"> 🖨️ Print </button>
+    <button onclick="window.print()" class="btn btn-primary"> 🖨️ Print </button> 
   </div>
 
 </body>
