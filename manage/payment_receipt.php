@@ -70,7 +70,7 @@ function convertNum($number){
 
 
 <?php 
-    $sqlinst = "SELECT * from inst_data limit 1";
+ $sqlinst = "SELECT * from inst_data limit 1";
   $resultinst = $conn->query($sqlinst);
   while($r = $resultinst->fetch_assoc())
   { 

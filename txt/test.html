@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8">
+  <title>শিক্ষার্থী তালিকা ২০২৫</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Siyam Rupali', Arial, sans-serif;
+    }
+    .school-logo {
+      height: 80px;
+    }
+    .info-line {
+      font-size: 15px;
+      margin-bottom: 15px;
+    }
+    table th, table td {
+      vertical-align: middle;
+    }
+    @media print {
+      .no-print {
+        display: none;
+      }
+      table {
+        font-size: 12px;
+      }
+    }
+  </style>
+</head>
+<body class="p-4">
+
+  <div class="text-center mb-4">
+    <div class="d-flex align-items-center justify-content-center mb-2">
+      <img src="logo.png" alt="স্কুল লোগো" class="school-logo me-3">
+      <div>
+        <h4 class="mb-0 fw-bold">জোড়পুকুরিয়া মাধ্যমিক বিদ্যালয়</h4>
+        <p class="mb-0">গাংনী, মেহেরপুর</p>
+        <h5 class="mt-2">শিক্ষার্থী তালিকা - ২০২৫</h5>
+      </div>
+    </div>
+  </div>
+
+  <div class="row info-line">
+    <div class="col-md-4"><strong>শ্রেণি:</strong> ........................................</div>
+    <div class="col-md-4"><strong>শাখা:</strong> ........................................</div>
+    <div class="col-md-4"><strong>শ্রেণি শিক্ষকের নাম:</strong> ........................................</div>
+  </div>
+
+  <div class="table-responsive">
+    <table class="table table-bordered text-center align-middle">
+      <thead class="table-secondary">
+        <tr>
+          <th scope="col">ক্রম</th>
+          <th scope="col">ছাত্র/ছাত্রীর নাম</th>
+          <th scope="col">রোল নং</th>
+          <th scope="col">পিতার নাম</th>
+          <th scope="col">মাতার নাম</th>
+          <th scope="col">গ্রাম</th>
+          <th scope="col">ডাকঘর</th>
+          <th scope="col">মোবাইল নং</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- ১৭টি ফাঁকা সারি -->
+        {% for i in range(1, 18) %}
+        <tr>
+          <td>{{ i }}</td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+        {% endfor %}
+        <!-- HTML-এ সরাসরি চাইলে নিচের মতো কপি করে লিখতে হবে -->
+        <tr><td>১</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td>২</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td>৩</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+        <!-- ... আরও কপি করে পূরণ করুন ... -->
+      </tbody>
+    </table>
+  </div>
+
+</body>
+</html>

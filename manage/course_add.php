@@ -21,8 +21,7 @@
         $course_id = intval($course_id);
         $course_id = ($course_id + 1);
     }
-    
-    
+        
     ?>
 
 
