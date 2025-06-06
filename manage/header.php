@@ -30,6 +30,8 @@
   <!-- summernote -->
   <link rel="stylesheet" href="plugins/summernote/summernote-bs4.min.css">
   <!-- Theme style -->
+   <!-- Head section অথবা footer.php-তে রাখো -->
+
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 	<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" />
   <link href="https://fonts.maateen.me/kalpurush/font.css" rel="stylesheet">

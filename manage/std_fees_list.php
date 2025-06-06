@@ -1,170 +1,140 @@
 <?php 
-   session_start();
-   include "db_conn.php";
-   if (isset($_SESSION['username']) && isset($_SESSION['id'])) {   ?>
-<?php include('header.php'); ?>
+session_start();
+include "db_conn.php";
 
-<body class="hold-transition sidebar-mini layout-fixed">
-<div class="wrapper">
+if (!isset($_SESSION['username']) || $_SESSION['role'] != 'admin') {
+    header("Location: index.php");
+    exit();
+}
 
-    <?php if ($_SESSION['role'] == 'admin') {?>
-              <!-- For Admin -->
+include('header.php'); 
+include('sidebar.php'); 
 
-      <?php include('sidebar.php'); ?>
+// Trade dropdown data
+$tradeQuery = "SELECT * FROM trade WHERE trade_status = 'Active'";
+$tradeResult = $conn->query($tradeQuery);
 
-      <!-- Content Wrapper. Contains page content -->
-      <div class="content-wrapper">
-        <!-- Content Header (Page header) -->
-        <div class="content-header">
-          <div class="container-fluid">
-            <div class="row mb-2">
-              <div class="col-sm-6">
-                <h1 class="m-0"> </h1>
-              </div><!-- /.col -->
-            </div><!-- /.row -->    
+// Course dropdown data
+$courseQuery = "SELECT * FROM course WHERE course_status = 'Active'";
+$courseResult = $conn->query($courseQuery);
 
-  <div class="row">
-    <div class="col-lg-12 col-12">
+// Session dropdown data
+$sessionQuery = "SELECT * FROM session WHERE session_status = 'Active'";
+$sessionResult = $conn->query($sessionQuery);
 
-    <?php if (isset($_GET['update'])) { ?>
-      	      <div class="success alert-success" role="alert">
-				  <?=$_GET['update']?>
-			  </div>
+?>
 
-			  <?php } elseif (isset($_GET['error'])) { ?>
-       <div class="danger alert-danger" role="alert">
-      <?=$_GET['error']?>
+<div class="content-wrapper">
+  <section class="content-header">
+    <h1>Payment List</h1>
+  </section>
+
+  <section class="content">
+    <div class="container-fluid">
+
+<div class="card mb-3 shadow-sm border-primary">
+  <div class="card-body">
+    <form id="filterForm" class="row g-2">
+      <div class="col-md-2">
+        <label for="from_date" class="form-label">From Date</label>
+        <input type="date" name="from_date" class="form-control">
       </div>
-      <?php } else {
+      <div class="col-md-2">
+        <label for="to_date" class="form-label">To Date</label>
+        <input type="date" name="to_date" class="form-control">
+      </div>
+      <div class="col-md-2">
+        <label for="selecttrade" class="form-label">Trade</label>
+        <select name="selecttrade" class="form-control">
+          <option value="">All</option>
+          <?php while($row = $tradeResult->fetch_assoc()): ?>
+            <option value="<?= htmlspecialchars($row['trade_name']) ?>"><?= htmlspecialchars($row['trade_name']) ?></option>
+          <?php endwhile; ?>
+        </select>
+      </div>
+      <div class="col-md-2">
+        <label for="course" class="form-label">Course</label>
+        <select name="course" class="form-control">
+          <option value="">All</option>
+          <?php while($row = $courseResult->fetch_assoc()): ?>
+            <option value="<?= htmlspecialchars($row['course_name']) ?>"><?= htmlspecialchars($row['course_name']) ?></option>
+          <?php endwhile; ?>
+        </select>
+      </div>
+      <div class="col-md-2">
+        <label for="session" class="form-label">Session</label>
+        <select name="session" class="form-control">
+          <option value="">All</option>
+          <?php while($row = $sessionResult->fetch_assoc()): ?>
+            <option value="<?= htmlspecialchars($row['session_name']) ?>"><?= htmlspecialchars($row['session_name']) ?></option>
+          <?php endwhile; ?>
+        </select>
+      </div>
+      <div class="col-md-1 d-flex align-items-end">
+  <button type="button" id="resetBtn" class="btn btn-secondary w-100 btn-danger">Reset</button>
+</div>
+<div class="col-md-1 d-flex align-items-end">
+  <button type="submit" class="btn btn-primary w-100">Search</button>
+</div>
 
-      }
-       ?>
-    </div>
-    </div>
-
-        <div class="row">
-            <div class="col-lg-12 col-12">
-                <div class="card">
-                <h5 class="card-header">Payment List</h5>
-                <div class="card-body">  
-                    <table class="table table-bordered table-striped table-responsive" id="example1">
-                              <thead>
-                                 <tr>
-                                    <th> SL NO </th>
-                                    <th> 
-                                    	<div>Student Name</div>
-                                    </th>
-                                    <th>Trainee ID</th>
-                                    <th> 
-                                    	<div>Mobile</div>
-                                    </th>
-                                   <th> 
-                                   		<div>Course Name</div>
-                                   </th>
-                                   <th> <div>Session</div>
-                                   </th>
-                                  
-                                   <th><div>Status</div></th>
-                                   <th>
-                                    	<div>Payment Amount</div>
-                                  </th>
-                                    <th> Action </th>
-                                 </tr>
-                              </thead>
-                              <tbody>
-                                 <?php
-                                $i=1;
-                                $sqlt = "SELECT * from admited_student as ads, application as app, trainee_payment as tp WHERE ads.app_id=app.app_id and ads.trainee_id=tp.trainee_id";
-                                $resultt = $conn->query($sqlt);
-                                while($row = $resultt->fetch_array())
-                                { 
-                                ?>
-                                <tr>
-                                  <td><?=$i;?></td>
-                                  <td>
-                                  	<div><strong><a href="std_payslip.php?trainee_id=<?=$row['trainee_id'];?>"><?=$row['studname'];?></a></strong></div>
-                                  	<div> </div>
-                                  </td>
-                                  <td><?=$row['trainee_id'];?></td>
-                                  <td>
-                                  	<div><strong><a href="tel:<?=$row['cnumber'];?>"><?=$row['cnumber'];?></a></strong></div>
-                                  </td>
-                                  <td>
-									<div><?=$row['course'];?></div>
-                                  	</td>
-                                  <td><div>
-                                    <?=$row['ssession'];?>
-                                  </div></td>
-                                  
-                                  <td><div>
-                                    <?=$row['status'];?>
-                                  </div></td>
-                                  	<td>
-                                  	    <div><?=$row['payment_amount'];?></div>
-                                  	</td>
-
-                                  <td> <div class="btn-group">
-                      <button type="button" class="btn btn-default btn-flat dropdown-toggle" data-toggle="dropdown">Action</button>
-                      <ul class="dropdown-menu" role="menu">
-                        <li><a href="trainee_edit.php?trainee_id=<?=$row['trainee_id'];?>">Edit</a></li>
-            <li><a target="_blank" href="payment_receipt.php?payment_id=<?=$row['payment_sys_id'];?>">Payment Receipt</a></li>
-                        <li><a href="std_fees_delete.php?trainee_id=<?=$row['trainee_id'];?>">Delete</a></li>
-                      </ul>
-                    </div></td>
-                             </tr>
-                             <?php $i++; } ?>
-                              </tbody>
-                              <tfoot>
-                              <tr>
-                                    <th> SL NO </th>
-                                    <th> 
-                                    	<div>Student Name</div>
-                                    </th>
-                                    <th>Trainee ID</th>
-                                    <th> 
-                                    	<div>Mobile</div>
-                                    </th>
-                                   <th> 
-                                   		<div>Course Name</div>
-                                   </th>
-                                   <th> <div>Session</div>
-                                   </th>
-                                  
-                                   <th><div>Status</div></th>
-                                   <th>
-                                    	<div>Payment Amount</div>
-                                  </th>
-                                    <th> Action </th>
-                                 </tr>	
-                              </tfoot>
-                           </table>
-                    </div>
-                </div>
-
-
-                </div>
-                </div>
-            </div>
-
-          </div><!-- /.container-fluid -->
-        </div>
-        <!-- /.content-header --> 
-      </div><!-- /.container-fluid -->
-        </section>
-        <!-- /.content -->
+    </form>
   </div>
-  <!-- /.content-wrapper -->
+</div>
 
-  <!-- Page specific script -->
+      <!-- Table Results -->
+      <div id="paymentTable"></div>
 
-  
-  <?php } else {
-    header("Location: dashboard.php");
-      	 } ?>
+    </div>
+  </section>
+</div>
 
-  
-  <?php include('footer.php'); ?>
+<?php include('footer.php'); ?>
 
-<?php } else{
-	header("Location: index.php");
-} ?>
+<!-- AJAX Script -->
+<script>
+$(document).ready(function () {
+  // ফর্ম সাবমিটে AJAX চালাও
+  $('#filterForm').on('submit', function (e) {
+    e.preventDefault(); // ফর্ম সাবমিট করে রিফ্রেশ বন্ধ
+    loadPayments();
+  });
+
+  // রিসেট বাটন ক্লিক করলে ইনপুট ক্লিয়ার করে ডেটা রিলোড করাও
+  $('#resetBtn').click(function () {
+    $('#filterForm')[0].reset();
+    loadPayments();
+  });
+
+  // পেজ লোডেই সব ডেটা লোড করাও
+  loadPayments();
+});
+
+function loadPayments() {
+  $.ajax({
+    url: 'ajax/filter_payments.php',
+    method: 'POST',
+    data: $('#filterForm').serialize(),
+    success: function (data) {
+      $('#paymentTable').html(data);
+      $('#paymentTableData').DataTable(); // টেবিল রেন্ডার করার পর ডেটাটেবল চালাও
+    },
+    error: function (xhr) {
+      alert('AJAX error: ' + xhr.responseText);
+    }
+  });
+}
+</script>
+
+
+<!-- jQuery UI CSS + JS -->
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script>
+
+<script>
+$(function () {
+  $(".datepicker").datepicker({
+    dateFormat: 'dd/mm/yy'
+  });
+});
+</script>

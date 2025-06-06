@@ -1,7 +1,7 @@
  <?php
 extract($_REQUEST);
 include("db_conn.php");
-$sql = "INSERT INTO trainee_payment (trainee_id, payment_date, payment_method, payment_txn, payment_amount, payment_purpose, remarks) VALUES ('$trainee_id', '$payment_date', '$payment_method', '$payment_txn', '$payment_amount', '$payment_purpose', '$remarks')";
+$sql = "INSERT INTO trainee_payment (trainee_id, payment_date, payment_method, payment_txn, payment_amount, payment_purpose, payment_status, remarks) VALUES ('$trainee_id', '$payment_date', '$payment_method', '$payment_txn', '$payment_amount', '$payment_purpose', '$payment_status', '$remarks')";
 		 
 $result = $conn->query($sql);
 $last_id = $conn->insert_id;
