@@ -4,7 +4,7 @@ include "../db_conn.php";
 include "../header.php";
 include "../sidebar.php";
 
-$sql = "SELECT * FROM users WHERE role = 'Manager' ORDER BY id DESC";
+$sql = "SELECT * FROM users ORDER BY id DESC";
 $result = mysqli_query($conn, $sql);
 ?>
 
