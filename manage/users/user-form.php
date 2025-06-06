@@ -67,7 +67,9 @@ if (isset($_GET['id'])) {
               <label for="role">Role <span class="text-danger">*</span></label>
               <select name="role" id="role" class="form-control" required>
                 <option value="">Select Role</option>
-                <option value="Manager" <?= $role == 'Manager' ? 'selected' : '' ?>>Manager</option>
+                <option value="admin" <?= $role == 'admin' ? 'selected' : '' ?>>Admin</option>
+                <option value="manager" <?= $role == 'manager' ? 'selected' : '' ?>>Manager</option>
+                <option value="user" <?= $role == 'user' ? 'selected' : '' ?>>User</option>
               </select>
             </div>
 
