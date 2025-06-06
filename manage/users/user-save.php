@@ -15,7 +15,7 @@ if (isset($_GET['delete'])) {
     }
 
     mysqli_query($conn, "DELETE FROM users WHERE id = $id");
-    header("Location: user-list.php?msg=User deleted successfully");
+    header("Location: user_list.php?msg=User deleted successfully");
     exit;
 }
 
@@ -66,7 +66,7 @@ if (isset($_POST['save'])) {
         $sql .= " WHERE id=$id";
 
         mysqli_query($conn, $sql);
-        header("Location: user-list.php?msg=User updated successfully");
+        header("Location: user_list.php?msg=User updated successfully");
     } else {
         // INSERT
         $password = password_hash('123456', PASSWORD_DEFAULT); // Default password
