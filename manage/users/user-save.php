@@ -74,7 +74,7 @@ if (isset($_POST['save'])) {
         $sql = "INSERT INTO users (name, username, mobile, email, role, user_photo, password) 
                 VALUES ('$name', '$username', '$mobile', '$email', '$role', '$user_photo', '$password')";
         mysqli_query($conn, $sql);
-        header("Location: user-list.php?msg=User added successfully");
+        header("Location: user_list.php?msg=User added successfully");
     }
 
     exit;
