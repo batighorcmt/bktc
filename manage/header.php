@@ -184,6 +184,12 @@
           <i class="fas fa-th-large"></i>
         </a>
       </li>
+      <li class="nav-item">
+  <a class="nav-link text-danger" href="logout.php">
+    <i class="bi bi-box-arrow-right"></i> Logout
+  </a>
+</li>
+
     </ul>
   </nav>
   <!-- /.navbar -->

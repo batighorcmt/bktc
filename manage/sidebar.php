@@ -12,7 +12,7 @@
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
-          <img src="dist/img/<?=$_SESSION['user_photo']?>" class="img-circle elevation-2" alt="<?=$_SESSION['name']?>'s Image">
+          <img src="uploads/<?=$_SESSION['user_photo']?>" class="img-circle elevation-2" alt="<?=$_SESSION['name']?>'s Image">
         </div>
         <div class="info">
           <a href="#" class="d-block"><?=$_SESSION['name']?></a>
