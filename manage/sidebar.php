@@ -141,18 +141,18 @@
                   <p>Add New Student</p>
                 </a>
               </li>
-              <li class="nav-item">
-                <a href="srt_std_list.php" class="nav-link">
+             <li class="nav-item">
+                <a href="std_list.php" class="nav-link">
                   <i class="fa fa-list-ol nav-icon"></i>
-                  <p>Students (Short Course)</p>
+                  <p>Students List</p>
                 </a>
-              </li>
-              <li class="nav-item">
+              </li>  
+        <!---       <li class="nav-item">
                 <a href="adv_std_list.php" class="nav-link">
                   <i class="fa fa-list-ol nav-icon"></i>
                   <p>Students (Advanced)</p>
                 </a>
-              </li>
+              </li>--->
               <li class="nav-item">
                 <a href="std_fees_add.php" class="nav-link">
                   <i class="fa fa-edit nav-icon"></i>
@@ -160,9 +160,9 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="std_fees_list.php" class="nav-link">
+                <a href="payment_list.php" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Received Student Fees</p>
+                  <p>Payment List</p>
                 </a>
               </li>
               <li class="nav-item">
@@ -190,7 +190,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="fin_report.php" class="nav-link">
+                <a href="finance_query.php" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Financial Report</p>
                 </a>
