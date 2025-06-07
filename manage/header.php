@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Admin | Dashboard</title>
-  <base href="/manage/">
+  <base href="/bktc/manage/">
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <!-- Font Awesome -->
@@ -186,7 +186,7 @@
       </li>
       <li class="nav-item">
   <a class="nav-link text-danger" href="logout.php">
-    <i class="bi bi-box-arrow-right"></i> Logout
+    <i class="fas fa-sign-out-alt"></i> Logout
   </a>
 </li>
     </ul>

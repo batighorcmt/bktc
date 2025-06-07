@@ -107,5 +107,5 @@
 </body>
 </html>
 <?php } else {
-	header("Location: index.php");
+	header("Location: dashboard.php");
 } ?>

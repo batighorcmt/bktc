@@ -189,27 +189,18 @@
         <div class="content-header">
           <div class="container-fluid">
 
-          <?php
-          $username = ($_SESSION['username']);
-          $sql = "select * from users, hr where users.user_id=hr.hr_id AND users.username=$username";
-          $result = $conn->query($sql);
-          while($rows = $result->fetch_assoc())
-          {
-
-            ?>
+          
     <div class="card" style="width: 18rem;">
 
-        <div> User Name: <?=$rows['name'];?>  </div>
-        <div> User Designation: <?=$rows['hr_designation'];?> </div>
-        <div> User Mobile No: <?=$rows['hr_mobile'];?> </div>
+        <div> User Name:  </div>
+        <div> User Designation:  </div>
+        <div> User Mobile No:  </div>
 
 
 			    <a href="logout.php" class="btn btn-dark">Logout</a>
 			  </div>
         
-        <?php 
-          }
-        ?>
+
 
 
 
@@ -237,7 +228,7 @@
 
           <?php
           $username = ($_SESSION['username']);
-          $sql = "select * from users, std_list where users.user_id=std_list.trainee_id AND users.username=$username";
+          $sql = "select * from users";
           $result = $conn->query($sql);
           while($rows = $result->fetch_assoc())
           {
@@ -245,8 +236,8 @@
             ?>
     <div class="card" style="width: 18rem;">
 
-        <div> User Name: <?=$rows['s_name'];?>  </div>
-        <div> User Batch: <?=$rows['batch'];?> </div>
+        <div> User Name: <?=$rows['username'];?>  </div>
+        <div> User Batch: <?=$rows['role'];?> </div>
         <div> User Mobile No: <?=$rows['mobile'];?> </div>
 
 

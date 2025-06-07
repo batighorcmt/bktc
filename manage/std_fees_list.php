@@ -71,11 +71,12 @@ $sessionResult = $conn->query($sessionQuery);
         </select>
       </div>
       <div class="col-md-1 d-flex align-items-end">
-  <button type="button" id="resetBtn" class="btn btn-secondary w-100 btn-danger">Reset</button>
-</div>
-<div class="col-md-1 d-flex align-items-end">
   <button type="submit" class="btn btn-primary w-100">Search</button>
 </div>
+      <div class="col-md-1 d-flex align-items-end">
+  <button type="button" id="resetBtn" class="btn btn-secondary w-100 btn-danger">Reset</button>
+</div>
+
 
     </form>
   </div>

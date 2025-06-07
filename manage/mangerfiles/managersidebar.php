@@ -1,40 +1,24 @@
 
-  <!-- Preloader -->
-  <div class="preloader flex-column justify-content-center align-items-center">
-    <img class="animation__shake" src="dist/img/AdminLTELogo.png" alt="AdminLTELogo" height="60" width="60">
-  </div>
-
-
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="index3.html" class="brand-link">
-      <img src="dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-      <span class="brand-text font-weight-light">Admin Panel</span>
+    <a href="" class="brand-link">
+      <img src="../site_images/bktc_logo.png" alt="BKTC Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+      <span class="brand-text font-weight-light">BKTC Admin Panel</span>
     </a>
-     
-    <?php
-          $username = ($_SESSION['username']);
-          $sql = "select * from users, hr where users.user_id=hr.hr_id AND users.username=$username";
-          $result = $conn->query($sql);
-          while($rows = $result->fetch_assoc())
-          {
-
-            ?>
-
-
+    
   <!-- Sidebar -->
 <div class="sidebar">
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-        <div class="image">
-        <img src="img/hr/<?=$rows['img'];?>" class="img-circle elevation-2" alt="<?=$rows['hr_name'];?>'s Image">
+        <div class="image"> 
+          <img src="uploads/<?=$_SESSION['user_photo']?>" class="img-circle elevation-2" alt="<?=$_SESSION['name']?>'s Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block"><?=$rows['hr_name'];?></a>
+          <a href="" class="d-block"><?=$_SESSION['name']?></a>
         </div>
       </div>
-      <?php } ?>
+
       <!-- SidebarSearch Form -->
       <div class="form-inline">
         <div class="input-group" data-widget="sidebar-search">
@@ -69,7 +53,7 @@
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-copy"></i>
               <p style="color:yellow";>
-                User Information
+                Institute Management
                 <i class="fas fa-angle-left right"></i>
                 <span class="badge badge-info right"></span>
               </p>
@@ -78,22 +62,221 @@
               <li class="nav-item">
                 <a href="inst_setup.php" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Profile</p>
+                  <p>Institute Setup</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="inst_txn_setup.php" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Transaction Setup</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="branch_add.php" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Branch Setup</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="trade_add.php" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Trade Setup</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="session_add.php" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Session Setup</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="course_add.php" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Course Setup</p>
                 </a>
               </li>
             </ul>
           </li>
-          
-    
-            <li class="nav-item">
-            <a href="logout.php" class="nav-link">
-              <i class="nav-icon fas fa-edit"></i>
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-chart-pie"></i>
               <p style="color:yellow";>
-                Logout
+                HR Management
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="hr_add.php" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Add Employee</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="hr_list.php" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>HR List</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-tree"></i>
+              <p style="color:yellow";>
+                Student Management
                 <i class="fas fa-angle-left right"></i>
               </p>
             </a>
-            </li>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="std_applications.php" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Received Applications</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="../adv_reg_info.php" class="nav-link">
+                  <i class="far fa-user nav-icon"></i>
+                  <p>Add New Student</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="srt_std_list.php" class="nav-link">
+                  <i class="fa fa-list-ol nav-icon"></i>
+                  <p>Students (Short Course)</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="adv_std_list.php" class="nav-link">
+                  <i class="fa fa-list-ol nav-icon"></i>
+                  <p>Students (Advanced)</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="std_fees_add.php" class="nav-link">
+                  <i class="fa fa-edit nav-icon"></i>
+                  <p>Fees Colection</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="std_fees_list.php" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Received Student Fees</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="std_query.php" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Student Report Print</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-edit"></i>
+              <p style="color:yellow";>
+                Financial Management
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="fin_txn_add.php" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Add Income/Expences</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="fin_report.php" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Financial Report</p>
+                </a>
+              </li>
+            </ul>
+
+            <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-edit"></i>
+              <p style="color:yellow";>
+                Website Management
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="slider_list.php" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Slider</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="scroll_notice.php" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Scroll Notice</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="notice_list.php" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Notice Board</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="syllabus_list.php" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Syllabus</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="download_list.php" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Downloads</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="gallary_photo.php" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Gallary</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="page_list.php" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Webpage List</p>
+                </a>
+              </li>
+            </ul>
+
+            <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-edit"></i>
+              <p style="color:yellow";>
+                User Management
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="users/user_list.php" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>User List</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="user_profile.php" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Profile</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="logout.php" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                  <p>Logout</p>
+                </a>
+              </li>
             </ul>
       </nav>
       <!-- /.sidebar-menu -->
