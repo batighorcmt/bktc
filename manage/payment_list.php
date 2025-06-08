@@ -89,7 +89,7 @@ $sessionResult = $conn->query($sessionQuery);
 </div>
 
 <?php include('footer.php'); ?>
-
+ 
 <!-- AJAX Script -->
 <script>
 $(document).ready(function () {
