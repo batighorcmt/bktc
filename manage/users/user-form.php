@@ -4,7 +4,7 @@ include "../db_conn.php";
 include "../header.php";
 include "../sidebar.php";
 
-// Initialize variables
+// ইনিশিয়ালাইজ ভেরিয়েবল
 $id = '';
 $name = '';
 $username = '';
@@ -13,7 +13,7 @@ $email = '';
 $role = '';
 $user_photo = '';
 
-// If editing
+// ইউজার যদি এডিট হয়
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
     $result = mysqli_query($conn, "SELECT * FROM users WHERE id='$id'");
@@ -36,6 +36,9 @@ if (isset($_GET['id'])) {
         <div class="card-body">
           <?php if (isset($_GET['error'])): ?>
             <div class="alert alert-danger"><?= htmlspecialchars($_GET['error']) ?></div>
+          <?php endif; ?>
+          <?php if (isset($_GET['success'])): ?>
+            <div class="alert alert-success"><?= htmlspecialchars($_GET['success']) ?></div>
           <?php endif; ?>
 
           <form action="users/user-save.php" method="post" enctype="multipart/form-data">
@@ -72,6 +75,28 @@ if (isset($_GET['id'])) {
                 <option value="user" <?= $role == 'user' ? 'selected' : '' ?>>User</option>
               </select>
             </div>
+
+            <?php if (!$id): ?>
+              <!-- নতুন ইউজার হলে পাসওয়ার্ড আবশ্যক -->
+              <div class="form-group">
+                <label for="password">Password <span class="text-danger">*</span></label>
+                <input type="password" name="password" id="password" class="form-control" minlength="6" required>
+              </div>
+              <div class="form-group">
+                <label for="confirm_password">Confirm Password <span class="text-danger">*</span></label>
+                <input type="password" name="confirm_password" id="confirm_password" class="form-control" minlength="6" required>
+              </div>
+            <?php else: ?>
+              <!-- ইডিট হলে ঐচ্ছিকভাবে পাসওয়ার্ড আপডেট করা যাবে -->
+              <div class="form-group">
+                <label for="password">New Password <small class="text-muted">(Leave blank to keep current password)</small></label>
+                <input type="password" name="password" id="password" class="form-control" minlength="6">
+              </div>
+              <div class="form-group">
+                <label for="confirm_password">Confirm New Password</label>
+                <input type="password" name="confirm_password" id="confirm_password" class="form-control" minlength="6">
+              </div>
+            <?php endif; ?>
 
             <div class="form-group">
               <label for="user_photo">Photo (jpg/png)</label>

@@ -21,7 +21,7 @@
   <link rel="stylesheet" href="dist/css/adminlte.min.css">
   <!-- overlayScrollbars -->
   <link rel="stylesheet" href="plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
-    <!-- DataTables -->
+    <!-- DataTables --> 
     <link rel="stylesheet" href="plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
   <link rel="stylesheet" href="plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
   <link rel="stylesheet" href="plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
@@ -186,7 +186,7 @@
       </li>
       <li class="nav-item">
   <a class="nav-link text-danger" href="logout.php">
-    <i class="bi bi-box-arrow-right"></i> Logout
+    <i class="fas fa-sign-out-alt"></i> Logout
   </a>
 </li>
     </ul>

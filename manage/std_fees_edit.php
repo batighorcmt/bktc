@@ -56,7 +56,7 @@ if (isset($_SESSION['username']) && isset($_SESSION['id']) && $_SESSION['role'] 
         $stmt->bind_param("ssssisssi", $payment_date, $payment_purpose, $payment_method, $payment_txn, $payment_amount, $remarks, $updated, $payment_status, $payment_id);
 
         if ($stmt->execute()) {
-            echo "<script>alert('Payment details updated successfully!'); window.location.href='std_fees_list.php';</script>";
+            echo "<script>alert('Payment details updated successfully!'); window.location.href='payment_list.php';</script>";
         } else {
             echo "<script>alert('Failed to update payment details. Please try again.');</script>";
         }

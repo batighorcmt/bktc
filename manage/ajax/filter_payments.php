@@ -56,7 +56,7 @@ $i = 1;
 
 <div class="card shadow">
   <div class="card-body p-0">
-    <table class="table table-bordered table-striped mb-0">
+    <table class="table table-bordered table-striped mb-0 table-responsive" id="example1">
       <thead class="bg-gradient-light text-dark">
         <tr>
           <th>SL</th>

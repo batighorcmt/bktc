@@ -2,85 +2,123 @@
 session_start();
 include "../db_conn.php";
 
-// Handle Delete
-if (isset($_GET['delete'])) {
-    $id = intval($_GET['delete']);
-
-    // Delete photo
-    $res = mysqli_query($conn, "SELECT user_photo FROM users WHERE id = $id");
-    if ($row = mysqli_fetch_assoc($res)) {
-        if (!empty($row['user_photo']) && file_exists("../uploads/" . $row['user_photo'])) {
-            unlink("../uploads/" . $row['user_photo']);
-        }
-    }
-
-    mysqli_query($conn, "DELETE FROM users WHERE id = $id");
-    header("Location: user_list.php?msg=User deleted successfully");
-    exit;
+// Helper function
+function sanitize($data) {
+    return htmlspecialchars(trim($data));
 }
 
-// Handle Create/Update
-if (isset($_POST['save'])) {
-    $id = isset($_POST['id']) ? intval($_POST['id']) : '';
-    $name = mysqli_real_escape_string($conn, $_POST['name']);
-    $username = mysqli_real_escape_string($conn, $_POST['username']);
-    $mobile = mysqli_real_escape_string($conn, $_POST['mobile']);
-    $email = mysqli_real_escape_string($conn, $_POST['email']);
-    $role = mysqli_real_escape_string($conn, $_POST['role']);
-    
-    // Photo upload
-    $user_photo = '';
-    if (isset($_FILES['user_photo']['name']) && $_FILES['user_photo']['name'] != '') {
-        $photo_name = time() . '_' . basename($_FILES['user_photo']['name']);
-        $target_path = "../uploads/" . $photo_name;
-        $file_type = strtolower(pathinfo($target_path, PATHINFO_EXTENSION));
+// ==========================
+// DELETE Operation
+// ==========================
+if (isset($_GET['action']) && $_GET['action'] == 'delete' && isset($_GET['id'])) {
+    $id = $_GET['id'];
 
-        if (in_array($file_type, ['jpg', 'jpeg', 'png'])) {
-            if (move_uploaded_file($_FILES['user_photo']['tmp_name'], $target_path)) {
-                $user_photo = $photo_name;
-
-                // If update and already has photo
-                if ($id) {
-                    $res = mysqli_query($conn, "SELECT user_photo FROM users WHERE id = $id");
-                    if ($row = mysqli_fetch_assoc($res)) {
-                        if (!empty($row['user_photo']) && file_exists("../uploads/" . $row['user_photo'])) {
-                            unlink("../uploads/" . $row['user_photo']);
-                        }
-                    }
-                }
-            }
+    // Get and delete photo
+    $result = mysqli_query($conn, "SELECT user_photo FROM users WHERE id='$id'");
+    $user = mysqli_fetch_assoc($result);
+    if ($user && $user['user_photo']) {
+        $photo_path = "../uploads/" . $user['user_photo'];
+        if (file_exists($photo_path)) {
+            unlink($photo_path);
         }
     }
 
-    if ($id) {
-        // UPDATE
-        $sql = "UPDATE users SET 
-                    name='$name', 
-                    username='$username', 
-                    mobile='$mobile', 
-                    email='$email', 
-                    role='$role'";
-        if ($user_photo != '') {
-            $sql .= ", user_photo='$user_photo'";
-        }
-        $sql .= " WHERE id=$id";
-
-        mysqli_query($conn, $sql);
-        header("Location: user_list.php?msg=User updated successfully");
+    // Delete user
+    $sql = "DELETE FROM users WHERE id='$id'";
+    if (mysqli_query($conn, $sql)) {
+        header("Location: user_list.php?success=User deleted successfully.");
     } else {
-        // INSERT
-        $password = password_hash('123456', PASSWORD_DEFAULT); // Default password
-
-        $sql = "INSERT INTO users (name, username, mobile, email, role, user_photo, password) 
-                VALUES ('$name', '$username', '$mobile', '$email', '$role', '$user_photo', '$password')";
-        mysqli_query($conn, $sql);
-        header("Location: user_list.php?msg=User added successfully");
+        header("Location: user_list.php?error=Failed to delete user.");
     }
-
     exit;
 }
 
-// If nothing matched
-header("Location: user-list.php?msg=Invalid action");
-exit;
+// ==========================
+// INSERT or UPDATE Operation
+// ==========================
+$id           = $_POST['id'] ?? '';
+$name         = sanitize($_POST['name'] ?? '');
+$username     = sanitize($_POST['username'] ?? '');
+$mobile       = sanitize($_POST['mobile'] ?? '');
+$email        = sanitize($_POST['email'] ?? '');
+$role         = sanitize($_POST['role'] ?? '');
+$password     = $_POST['password'] ?? '';
+$confirm_pass = $_POST['confirm_password'] ?? '';
+
+$user_photo = '';
+
+// Handle file upload
+if (!empty($_FILES['user_photo']['name'])) {
+    $upload_dir = "../uploads/";
+    $file_name = time() . "_" . basename($_FILES['user_photo']['name']);
+    $target_file = $upload_dir . $file_name;
+    $file_type = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+
+    if (in_array($file_type, ['jpg', 'jpeg', 'png'])) {
+        if (move_uploaded_file($_FILES['user_photo']['tmp_name'], $target_file)) {
+            $user_photo = $file_name;
+        } else {
+            header("Location: user_form.php" . ($id ? "?id=$id" : "") . "&error=Photo upload failed");
+            exit;
+        }
+    } else {
+        header("Location: user_form.php" . ($id ? "?id=$id" : "") . "&error=Only JPG, JPEG, PNG allowed.");
+        exit;
+    }
+}
+
+if (!empty($id)) {
+    // UPDATE operation
+    $sql_parts = [];
+
+    $sql_parts[] = "name='$name'";
+    $sql_parts[] = "username='$username'";
+    $sql_parts[] = "mobile='$mobile'";
+    $sql_parts[] = "email='$email'";
+    $sql_parts[] = "role='$role'";
+
+    // Update password if provided
+    if (!empty($password)) {
+        if ($password !== $confirm_pass) {
+            header("Location: user_form.php?id=$id&error=Password and Confirm Password do not match.");
+            exit;
+        }
+        $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+        $sql_parts[] = "password='$hashed_password'";
+    }
+
+    // Update photo if uploaded
+    if (!empty($user_photo)) {
+        $sql_parts[] = "user_photo='$user_photo'";
+    }
+
+    $update_sql = "UPDATE users SET " . implode(", ", $sql_parts) . " WHERE id='$id'";
+    $result = mysqli_query($conn, $update_sql);
+
+    if ($result) {
+        header("Location: user_list.php?success=User updated successfully.");
+    } else {
+        header("Location: user_form.php?id=$id&error=Failed to update user.");
+    }
+} else {
+    // INSERT operation
+    if (empty($password) || $password !== $confirm_pass) {
+        header("Location: user_form.php?error=Password mismatch or empty.");
+        exit;
+    }
+
+    $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+
+    $sql = "INSERT INTO users (name, username, password, mobile, email, role, user_photo)
+            VALUES ('$name', '$username', '$hashed_password', '$mobile', '$email', '$role', '$user_photo')";
+
+    $result = mysqli_query($conn, $sql);
+
+    if ($result) {
+        header("Location: user_list.php?success=User added successfully.");
+    } else {
+        $err = mysqli_error($conn);
+        header("Location: user_form.php?error=" . urlencode("Database error: $err"));
+    }
+}
 ?>
