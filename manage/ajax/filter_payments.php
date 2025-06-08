@@ -39,6 +39,20 @@ $sql .= " ORDER BY tp.payment_sys_id DESC";
 $result = $conn->query($sql);
 $i = 1;
 ?>
+<style>
+    .status-pending {
+        color: blue;
+        font-weight: bold;
+    }
+    .status-approved {
+        color: green;
+        font-weight: bold;
+    }
+    .status-rejected {
+        color: red;
+        font-weight: bold;
+    }
+</style>
 
 <div class="card shadow">
   <div class="card-body p-0">
@@ -70,7 +84,20 @@ $i = 1;
             <td><?=$row['course']?></td>
             <td><?=$row['ssession']?></td>
             <td><?=$row['txn_cat_name'] ?? 'N/A'?></td>
-            <td><?=$row['payment_status']?></td>
+            <td>
+                <?php
+                $status = $row['payment_status'];
+                $class = '';
+                if ($status == 'Pending') {
+                    $class = 'status-pending';
+                } elseif ($status == 'Approved') {
+                    $class = 'status-approved';
+                } elseif ($status == 'Rejected') {
+                    $class = 'status-rejected';
+                }
+                echo "<span class='$class'>$status</span>";
+                ?>
+            </td>
             <td><?=$row['payment_amount']?></td>
             <td>
               <div class="btn-group">
