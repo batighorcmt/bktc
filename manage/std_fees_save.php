@@ -3,7 +3,7 @@
    include "db_conn.php";
    if (isset($_SESSION['username']) && isset($_SESSION['id'])) {   
     extract($_REQUEST);		
-    $received_by = $_SESSION['id']; // Received by user ID from session
+    $received_by = $_SESSION['username']; // Received by user ID from session
 
 
 // তারিখ সেটিং
@@ -33,7 +33,7 @@ $sql = "INSERT INTO trainee_payment (
             payment_status, 
             remarks,
             receipt_id,
-            received_by,
+            received_by
         ) VALUES (
             '$trainee_id', 
             '$payment_date', 
