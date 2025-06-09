@@ -98,6 +98,11 @@ if (!empty($params)) {
 }
 $stmt->execute();
 $result = $stmt->get_result();
+
+// টোটাল হিসাব
+$total_contract = 0;
+$total_paid = 0;
+$total_due = 0;
 ?>
 
 <!DOCTYPE html>
@@ -162,6 +167,10 @@ $result = $stmt->get_result();
                 $status = ($paid >= $contract) ? "Paid" : "Due";
                 $statusClass = ($status === "Paid") ? "text-success fw-bold" : "text-danger fw-bold";
 
+                $total_contract += $contract;
+                $total_paid += $paid;
+                $total_due += $due;
+
                 echo "<tr>
                         <td>{$sl}</td>
                         <td>{$row['trainee_id']}</td>
@@ -179,6 +188,15 @@ $result = $stmt->get_result();
         }
         ?>
       </tbody>
+      <tfoot class="table-light">
+        <tr>
+          <th colspan="4" class="text-end">Total</th>
+          <th><?= $total_contract ?></th>
+          <th><?= $total_paid ?></th>
+          <th><?= $total_due ?></th>
+          <th></th>
+        </tr>
+      </tfoot>
     </table>
     <p class="text-right mt-3"><small>Printed on: <?= date('d/m/Y h:i A') ?></small></p>
   </div>

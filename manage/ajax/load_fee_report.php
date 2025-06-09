@@ -48,6 +48,7 @@ if ($result->num_rows > 0) {
     echo "<thead class='table-dark'>
         <tr>
             <th>#SL</th>
+            <th>Receipt ID</th>
             <th>Trainee ID</th>
             <th>Student Name</th>
             <th>Father Name</th>
@@ -61,6 +62,7 @@ if ($result->num_rows > 0) {
     while ($row = $result->fetch_assoc()) {
         echo "<tr>
             <td>{$sl}</td>
+            <td>{$row['receipt_id']}</td>
             <td>{$row['trainee_id']}</td>
             <td>{$row['studname']}</td>
             <td>{$row['fathername']}</td>

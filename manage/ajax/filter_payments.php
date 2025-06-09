@@ -60,7 +60,7 @@ $i = 1;
       <thead class="bg-gradient-light text-dark">
         <tr>
           <th>SL</th>
-          <th>Payment ID</th>
+          <th>Receipt ID</th>
           <th>Student Name</th>
           <th>Trainee ID</th>
           <th>Mobile</th>
@@ -77,7 +77,7 @@ $i = 1;
           <?php while ($row = $result->fetch_assoc()): ?>
           <tr>
             <td><?=$i++?></td>
-            <td><?=$row['payment_sys_id']?></td>
+            <td><?=$row['receipt_id']?></td>
             <td><?=$row['studname']?></td>
             <td><?=$row['trainee_id']?></td>
             <td><a href="tel:<?=$row['cnumber']?>"><?=$row['cnumber']?></a></td>

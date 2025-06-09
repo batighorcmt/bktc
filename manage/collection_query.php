@@ -74,8 +74,8 @@ include "sidebar.php";
           </div>
 
           <div class="col-md-6 d-flex align-items-end mt-2">
-            <button type="button" class="btn btn-primary me-2" onclick="loadReport()">Search</button>
-            <button type="button" class="btn btn-success me-2" onclick="printReport()">Print</button>
+            <button type="button" class="btn btn-primary me-2" onclick="loadReport()">Search</button> 
+            <button type="button" class="btn btn-success me-2" onclick="printReport()">Print</button> 
             <button type="button" class="btn btn-danger" onclick="resetForm()">Reset</button>
           </div>
         </form>
