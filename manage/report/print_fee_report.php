@@ -59,7 +59,7 @@ $sql = "SELECT
             IFNULL(SUM(p.payment_amount), 0) AS total_payment
         FROM admited_student AS st
         INNER JOIN application AS app ON st.app_id = app.app_id
-        LEFT JOIN trainee_payment AS p ON p.trainee_id = st.trainee_id
+        LEFT JOIN trainee_payment AS p ON p.trainee_id = st.trainee_id AND p.payment_purpose = 1
         WHERE 1=1";
 
 $params = [];

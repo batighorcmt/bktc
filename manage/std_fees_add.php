@@ -92,7 +92,7 @@ include("header.php");
                     <select name="payment_purpose" class="form-control select2" required>
                       <option value="">Select Purpose</option>
                       <?php
-                        $sql = "SELECT * FROM txn_cat WHERE txn_type_id=1";
+                        $sql = "SELECT * FROM txn_cat WHERE txn_cat_id=1";
                         $result = $conn->query($sql);
                         while($row = $result->fetch_array()) {
                       ?>
