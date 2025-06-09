@@ -192,6 +192,12 @@
               <li class="nav-item">
                 <a href="collection_query.php" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
+                  <p>collection Query</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="finance_query.php" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
                   <p>Financial Report</p>
                 </a>
               </li>
