@@ -14,23 +14,41 @@ $trainee_id = isset($_GET['trainee_id']) ? intval($_GET['trainee_id']) : null;
     .table th, .table td { font-size: 14px; vertical-align: middle; }
     .centered { text-align: center; }
     .prtpic { border: 1px solid #ddd; padding: 4px; }
-    @media print { .no-print { display: none; } }
+.school-logo { height: 80px; }
+ .info-line { font-size: 15px; margin-bottom: 15px; }
   </style>
-</head>
-<body>
-<div class="container py-4">
+   
+    
+  </head>
+  <body>
 
-  <?php 
-  $sqlinst = "SELECT * from inst_data LIMIT 1";
+    <section style="background-color: #FFF;">
+  <div class="container py-5">
+    <div class="row">
+      <div class="col-sm-12">
+<?php 
+    $sqlinst = "SELECT * from inst_data limit 1";
   $resultinst = $conn->query($sqlinst);
-  if ($row = $resultinst->fetch_assoc()) {
-      echo "<h2 class='text-center'>{$row['inst_name']}</h2>";
-      echo "<p class='text-center mb-0'>{$row['inst_add']}</p>";
-      echo "<p class='text-center'>{$row['inst_address']}</p>";
-  }
-  ?>
+  while($r = $resultinst->fetch_assoc())
+  { 
+        $instname = $r['inst_name'];
+        $instadd = $r['inst_add'];
+        $instaddress = $r['inst_address'];
+?>
+
+  <div class="text-center mb-4" style="border-bottom: 2px solid #000;">
+    <div class="d-flex align-items-center justify-content-center mb-2">
+      <img src="../site_images/bktc_logo.png" alt="logo" class="school-logo me-3">
+      <div>
+        <h2 class="mb-0 fw-bold"><?= $instname ?></h2>
+        <p class="mb-0"><?= $instadd ?></p>
+        <p class="mb-0"><?= $instaddress ?></p>
+      </div>
+    </div>
+  </div>
 
 <?php
+  }
 $sql = "SELECT * FROM application AS app
 JOIN admited_student AS st ON app.app_id = st.app_id
 LEFT JOIN trainee_payment AS tp ON st.trainee_id = tp.trainee_id
@@ -93,7 +111,7 @@ if ($row = $result->fetch_assoc()) {
     <tbody>
     <?php
     $i = 1; $total = 0;
-    $sql3 = "SELECT * FROM trainee_payment WHERE trainee_id = $trainee_id";
+    $sql3 = "SELECT * FROM trainee_payment WHERE trainee_id = $trainee_id AND payment_purpose = '1' ORDER BY payment_date ASC";
     $res3 = $conn->query($sql3);
     while($pay = $res3->fetch_assoc()) {
       $total += $pay['payment_amount'];
@@ -110,6 +128,31 @@ if ($row = $result->fetch_assoc()) {
     ?>
       <tr class="font-weight-bold text-center">
         <td align="left" colspan="4">Total (In Word) : <?php echo convertNum ($total); ?> </td><td><?= $total ?></td><td></td>
+      </tr>
+    </tbody>
+  </table>
+
+    <table class="table table-sm table table-bordered table-striped>
+    <thead class="thead-light">
+      <tr><th colspan="6" class="centered">Payment Summary</th></tr>
+      <tr class="text-center">
+        <th>Contract Amount</th><th>Total Paid</th><th>Due Amount</th><th>payment Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="text-center">
+        <td><?= $row['contract'] ?></td>
+        <td><?= $total ?></td>
+        <td><?= $row['contract'] - $total ?></td>
+        <td>
+          <?php
+          if ($total >= $row['contract']) {
+            echo "<span class='text-success'>Paid</span>";
+          } else {
+            echo "<span class='text-danger'>Due</span>";
+          }
+          ?>
+        </td>
       </tr>
     </tbody>
   </table>

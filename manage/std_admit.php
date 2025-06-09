@@ -2,20 +2,19 @@
 include 'db_conn.php';
 $app_id = isset($_GET['app_id']) ? intval($_GET['app_id']) : null;
 
-$std = "select * from admited_student order by trainee_id desc limit 1";
-$results = mysqli_query($conn,$std);
+// Fetch last trainee ID and calculate new sequential number
+$std = "SELECT trainee_id FROM admited_student ORDER BY trainee_id DESC LIMIT 1";
+$results = mysqli_query($conn, $std);
 $row = mysqli_fetch_array($results);
-$last_id = $row['trainee_id'];
-if ($last_id == "")
-{
-    $trainee_id = "0000001";
+$last_id = $row['trainee_id'] ?? null;
+
+if ($last_id) {
+    // Extract sequential part (last 4 digits)
+    $seq = intval(substr($last_id, -4)) + 1;
+} else {
+    $seq = 1;
 }
-else
-{
-    $trainee_id = substr($last_id,0, 7);
-    $trainee_id = intval($trainee_id);
-    $trainee_id = ($trainee_id + 1);
-}
+$seq_part = str_pad($seq, 4, '0', STR_PAD_LEFT);
 ?>
 
 <!DOCTYPE html>
@@ -88,10 +87,9 @@ else
         ?>
         
         <form role="form" method="post" action="std_admit_save.php" enctype="multipart/form-data">
-            <input type="hidden" name="trainee_id" value="<?php echo $trainee_id; ?>">
             <input type="hidden" name="app_id" value="<?php echo $app_id; ?>">
-            <input type="hidden" name="username" value="<?php echo $trainee_id; ?>">
-            <input type="hidden" name="password" value="<?php echo $trainee_id; ?><?php echo $app_id; ?>">
+            <input type="hidden" name="username" value="">
+            <input type="hidden" name="password" value="">
 
             <!-- Personal Details Section -->
             <div class="form-section">
@@ -101,7 +99,7 @@ else
                         <div class="mb-3 row">
                             <label class="col-sm-4 col-form-label">Application ID</label>
                             <div class="col-sm-8">
-                                <input type="text" readonly class="form-control" value="<?=$row['app_id']; ?> - <?php echo $trainee_id; ?>">
+                                <input type="text" readonly class="form-control" value="<?=$row['app_id']; ?>">
                             </div>
                         </div>
                         <div class="mb-3 row">
@@ -131,6 +129,10 @@ else
                     </div>
                     <div class="col-md-6 text-center">
                         <img class="student-photo img-thumbnail mb-3" src="../img/appliedstd/<?=$row['pic_file']; ?>" alt="<?=$row['studname']; ?>'s photo">
+                        <div class="mt-2">
+                            <label for="new_photo" class="form-label">Change Photo</label>
+                            <input class="form-control" type="file" name="new_photo" id="new_photo" accept="image/*">
+                        </div>
                     </div>
                 </div>
                 <div class="row">
@@ -156,7 +158,17 @@ else
                         <div class="mb-3 row">
                             <label class="col-sm-4 col-form-label">Blood Group</label>
                             <div class="col-sm-8">
-                                <input type="text" name="bg" class="form-control" value="<?=$row['bg']; ?>">
+                                <select name="bg" class="form-control">
+                                    <option value="">Select Blood Group</option>
+                                    <option value="A+" <?= ($row['bg'] == 'A+') ? 'selected' : '' ?>>A+</option>
+                                    <option value="A-" <?= ($row['bg'] == 'A-') ? 'selected' : '' ?>>A-</option>
+                                    <option value="B+" <?= ($row['bg'] == 'B+') ? 'selected' : '' ?>>B+</option>
+                                    <option value="B-" <?= ($row['bg'] == 'B-') ? 'selected' : '' ?>>B-</option>
+                                    <option value="AB+" <?= ($row['bg'] == 'AB+') ? 'selected' : '' ?>>AB+</option>
+                                    <option value="AB-" <?= ($row['bg'] == 'AB-') ? 'selected' : '' ?>>AB-</option>
+                                    <option value="O+" <?= ($row['bg'] == 'O+') ? 'selected' : '' ?>>O+</option>
+                                    <option value="O-" <?= ($row['bg'] == 'O-') ? 'selected' : '' ?>>O-</option>
+                                </select>
                             </div>
                         </div>
                     </div>
@@ -170,7 +182,7 @@ else
                         <div class="mb-3 row">
                             <label class="col-sm-4 col-form-label">Date of Birth</label>
                             <div class="col-sm-8">
-                                <input type="text" name="dob" class="form-control" value="<?=$row['dob']; ?>">
+                                <input type="date" name="dob" class="form-control" value="<?=$row['dob']; ?>">
                             </div>
                         </div>
                         <div class="mb-3 row">
@@ -200,7 +212,13 @@ else
                         <div class="mb-3 row">
                             <label class="col-sm-4 col-form-label">Nationality</label>
                             <div class="col-sm-8">
-                                <input type="text" name="selnation" class="form-control" value="<?=$row['selnation']; ?>">
+                                <select name="selnation" class="form-control">
+                                    <option value="">Select Nationality</option>
+                                    <option value="Bangladeshi" <?= ($row['selnation'] == 'Bangladeshi') ? 'selected' : '' ?>>Bangladeshi</option>
+                                    <option value="Indian" <?= ($row['selnation'] == 'Indian') ? 'selected' : '' ?>>Indian</option>
+                                    <option value="Nepali" <?= ($row['selnation'] == 'Nepali') ? 'selected' : '' ?>>Nepali</option>
+                                    <option value="Others" <?= ($row['selnation'] == 'Others') ? 'selected' : '' ?>>Others</option>
+                                </select>
                             </div>
                         </div>
                     </div>
@@ -210,7 +228,14 @@ else
                         <div class="mb-3 row">
                             <label class="col-sm-4 col-form-label">Religion</label>
                             <div class="col-sm-8">
-                                <input type="text" name="religion" class="form-control" value="<?=$row['religion']; ?>">
+                                <select name="religion" class="form-control">
+                                    <option value="">Select Religion</option>
+                                    <option value="Islam" <?= ($row['religion'] == 'Islam') ? 'selected' : '' ?>>Islam</option>
+                                    <option value="Hinduism" <?= ($row['religion'] == 'Hinduism') ? 'selected' : '' ?>>Hinduism</option>
+                                    <option value="Christianity" <?= ($row['religion'] == 'Christianity') ? 'selected' : '' ?>>Christianity</option>
+                                    <option value="Buddhism" <?= ($row['religion'] == 'Buddhism') ? 'selected' : '' ?>>Buddhism</option>
+                                    <option value="Others" <?= ($row['religion'] == 'Others') ? 'selected' : '' ?>>Others</option>
+                                </select>
                             </div>
                         </div>
                     </div>
@@ -218,7 +243,12 @@ else
                         <div class="mb-3 row">
                             <label class="col-sm-4 col-form-label">Gender</label>
                             <div class="col-sm-8">
-                                <input type="text" name="gender" class="form-control" value="<?=$row['gender']; ?>">
+                                <select name="gender" class="form-control">
+                                    <option value="">Select Gender</option>
+                                    <option value="Male" <?= ($row['gender'] == 'Male') ? 'selected' : '' ?>>Male</option>
+                                    <option value="Female" <?= ($row['gender'] == 'Female') ? 'selected' : '' ?>>Female</option>
+                                    <option value="Other" <?= ($row['gender'] == 'Other') ? 'selected' : '' ?>>Other</option>
+                                </select>
                             </div>
                         </div>
                     </div>
@@ -316,7 +346,7 @@ else
                         <div class="mb-3 row">
                             <label class="col-sm-4 col-form-label">Trans. Date</label>
                             <div class="col-sm-8">
-                                <input type="text" name="pdate" class="form-control" value="<?=$row['pdate']; ?>">
+                                <input type="date" name="pdate" class="form-control" value="<?=$row['pdate']; ?>">
                             </div>
                         </div>
                     </div>
@@ -422,9 +452,10 @@ else
                     </div>
                     <div class="col-md-6">
                         <div class="mb-3 row">
-                            <label class="col-sm-4 col-form-label"> </label>
+                            <label class="col-sm-4 col-form-label">Trainee ID</label>
                             <div class="col-sm-8">
-                                
+                                <input type="text" class="form-control" value="<?= date('y') ?>X<?= $seq_part ?>" readonly>
+                                <small class="text-muted">Final ID will be generated after submission</small>
                             </div>
                         </div>
                     </div>
