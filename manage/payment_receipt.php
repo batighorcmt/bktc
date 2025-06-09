@@ -81,7 +81,7 @@ function convertNum($number){
  
   $payment_id = isset($_GET['payment_id']) ? intval($_GET['payment_id']) : 0;
 $total=0;
-$sql = "SELECT * from admited_student as ads, application as app, trainee_payment as tp, txn_cat as txncat WHERE ads.app_id=app.app_id and ads.trainee_id=tp.trainee_id and tp.payment_purpose=txncat.txn_cat_id and tp.payment_sys_id='$payment_id]'";
+$sql = "SELECT * from admited_student as ads, application as app, trainee_payment as tp, txn_cat as txncat WHERE ads.app_id=app.app_id and ads.trainee_id=tp.trainee_id and tp.payment_purpose=txncat.txn_cat_id and tp.receipt_id='$payment_id]'";
 $result = $conn->query($sql);
 
 if ($result->num_rows === 0) {
@@ -176,7 +176,7 @@ $roww = $result->fetch_assoc();
 
         <div class="title">Payment Receipt</div>
 
-        <div class="row"><div class="label">Receipt No :</div><div class="value"><?=$roww['payment_sys_id'];?> </div> <div class="label">Date :</div><div class="value"><?=$roww['payment_date'];?></div></div>
+        <div class="row"><div class="label">Receipt No :</div><div class="value"><?=$roww['receipt_id'];?> </div> <div class="label">Date :</div><div class="value"><?=$roww['payment_date'];?></div></div>
         <div class="row"><div class="label">Student Name :</div> <div class="value"><?=$roww['studname'];?> (<?=$roww['trainee_id'];?>) </div></div>
         <div class="row"><div class="label">Course Name :</div><div class="value"><?=$roww['course'];?> (<?=$roww['selecttrade'];?>)</div></div>
         <div class="row"><div class="label">Amount :</div><div class="value"> <?=$roww['payment_amount'];?>/=</div></div>
@@ -185,7 +185,7 @@ $roww = $result->fetch_assoc();
 
 
         <div class="footer">
-          <div>Collector: <?=$_SESSION['name']?></div>
+          <div>Collector: <?=$roww['received_by']; ?></div>
           <div>Director: ............</div>
         </div>
       </div>
