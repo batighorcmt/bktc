@@ -25,7 +25,7 @@ if (!empty($_POST['session'])) {
 }
 
 $filterSql = implode(" AND ", $where);
-$sql = "SELECT tp.*, app.studname, app.cnumber, app.course, app.ssession, app.selecttrade, txn.txn_cat_name 
+$sql = "SELECT tp.*, app.studname, app.cnumber, app.course, app.ssession, app.selecttrade, txn.txn_cat_name, tp.receipt_id 
         FROM trainee_payment tp 
         JOIN admited_student ads ON tp.trainee_id = ads.trainee_id 
         JOIN application app ON ads.app_id = app.app_id 
@@ -104,7 +104,7 @@ $i = 1;
                 <button class="btn btn-sm btn-primary dropdown-toggle" data-toggle="dropdown">Action</button>
                 <ul class="dropdown-menu" role="menu">
                   <li><a href="std_fees_edit.php?payment_id=<?=$row['payment_sys_id']?>">Edit</a></li>
-                  <li><a href="payment_receipt.php?payment_id=<?=$row['payment_sys_id']?>" target="_blank">Receipt</a></li>
+                  <li><a href="payment_receipt.php?payment_id=<?=$row['receipt_id']?>" target="_blank">Receipt</a></li>
                 </ul>
               </div>
             </td>
