@@ -11,7 +11,7 @@ if (isset($_POST['trainee_id'])) {
     $contract_amount = $contract_row['contract'] ?? 0;
 
     // Get total paid amount
-    $paid_sql = "SELECT SUM(payment_amount) as total_paid FROM trainee_payment WHERE trainee_id = '$trainee_id' AND payment_status != 'Rejected'";
+    $paid_sql = "SELECT SUM(payment_amount) as total_paid FROM trainee_payment WHERE trainee_id = '$trainee_id' AND payment_status != 'Rejected' AND payment_purpose = 1";
     $paid_res = mysqli_query($conn, $paid_sql);
     $paid_row = mysqli_fetch_assoc($paid_res);
     $paid_amount = $paid_row['total_paid'] ?? 0;
