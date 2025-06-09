@@ -19,6 +19,7 @@ $app_id = isset($_GET['app_id']) ? intval($_GET['app_id']) : null;
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     
     <!-- Bootstrap core CSS -->
     <link href="elements/bootstrap.min.css" rel="stylesheet">
@@ -49,6 +50,8 @@ $app_id = isset($_GET['app_id']) ? intval($_GET['app_id']) : null;
 .sigborder {
   border-top: 2px solid black;
 }
+.school-logo { height: 80px; }
+ .info-line { font-size: 15px; margin-bottom: 15px; }
   </style>
    
     
@@ -69,9 +72,16 @@ $app_id = isset($_GET['app_id']) ? intval($_GET['app_id']) : null;
         $instaddress = $r['inst_address'];
 ?>
 
-  <h1 align="center" class=""><?php echo $instname; ?></h1>
-    <h6 align="center" class=""><?php echo $instadd; ?></h6>
-    <h6 align="center" class=""><?php echo $instaddress; ?></h6>
+  <div class="text-center mb-4" style="border-bottom: 2px solid #000;">
+    <div class="d-flex align-items-center justify-content-center mb-2">
+      <img src="site_images/bktc_logo.png" alt="logo" class="school-logo me-3">
+      <div>
+        <h2 class="mb-0 fw-bold"><?= $instname ?></h2>
+        <p class="mb-0"><?= $instadd ?></p>
+        <p class="mb-0"><?= $instaddress ?></p>
+      </div>
+    </div>
+  </div>
 <?php
     }
 ?>
@@ -79,6 +89,9 @@ $app_id = isset($_GET['app_id']) ? intval($_GET['app_id']) : null;
     <hr>
   </div>
     </div>
+
+
+    
 <?php 
     $sql = "SELECT * from application WHERE app_id=$app_id";
   $result = $conn->query($sql);

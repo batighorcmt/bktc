@@ -111,7 +111,7 @@
                       <button type="button" class="btn btn-default btn-flat dropdown-toggle" data-toggle="dropdown">Action</button>
                       <ul class="dropdown-menu" role="menu">
                         <li><a href="std_admit.php?app_id=<?=$row['app_id'];?>">Admit</a></li>
-                        <li><a href="applicant_profile.php?app_id=<?=$row['app_id'];?>">Profile View </a></li>
+                        <li><a href="../applicant_profile.php?app_id=<?=$row['app_id'];?>">Profile View </a></li>
                         <li><a href="#">Delete</a></li>
                       </ul>
                     </div></td>

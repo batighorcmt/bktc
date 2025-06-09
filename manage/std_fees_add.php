@@ -52,7 +52,7 @@ include("header.php");
               <h5 class="mb-0">📝 Student Payment Entry</h5>
             </div>
             <div class="card-body">
-              <form method="post" action="std_fees_save.php" enctype="multipart/form-data">
+              <form method="post" action="std_fees_save.php" enctype="multipart/form-data" targer="_blank">
                 <div class="row">
 
                   <!-- Trainee -->
