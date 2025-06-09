@@ -1,5 +1,5 @@
 <?php
-include("../manage/db_conn.php");
+include("db_conn.php");
 include("header.php");
 include("sidebar.php");
 
