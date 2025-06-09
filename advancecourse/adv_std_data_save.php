@@ -1,7 +1,7 @@
 <?php
 extract($_REQUEST);
 include("../manage/db_conn.php");
-$dob = $_POST$_POST['brdateyear'].'-'.$_POST['brdatemonth'].'-'.['brdateday'];
+$dob = $_POST['brdateyear'].'-'.$_POST['brdatemonth'].'-'.['brdateday'];
 $permited  = array('jpg', 'jpeg', 'png', 'gif');
 $file_name = $_FILES['pic_file']['name'];
 $file_size = $_FILES['pic_file']['size'];
