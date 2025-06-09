@@ -1,268 +1,117 @@
-<?php 
-   session_start();
-   include "db_conn.php";
-   if (isset($_SESSION['username']) && isset($_SESSION['id'])) {   ?>
-<?php include('header.php'); ?>
+<?php
+include("../manage/db_conn.php");
+include("header.php");
+include("sidebar.php");
 
-<body class="hold-transition sidebar-mini layout-fixed">
-<div class="wrapper">
+// Data Fetch
+$total_students = $conn->query("SELECT COUNT(*) AS cnt FROM admitted_student")->fetch_assoc()['cnt'];
+$total_apps = $conn->query("SELECT COUNT(*) AS cnt FROM application")->fetch_assoc()['cnt'];
+$total_paid = $conn->query("SELECT SUM(payment_amount) AS amt FROM trainee_payment")->fetch_assoc()['amt'];
+$total_due = $conn->query("SELECT SUM(a.contract - IFNULL(p.paid, 0)) AS due
+  FROM admitted_student a
+  LEFT JOIN (
+    SELECT trainee_id, SUM(payment_amount) AS paid
+    FROM trainee_payment GROUP BY trainee_id
+  ) p ON a.trainee_id = p.trainee_id")->fetch_assoc()['due'];
 
-    <?php if ($_SESSION['role'] == 'admin') {?>
-              <!-- For Admin -->
+// Chart data (last 6 months)
+$months = $conn->query("
+  SELECT DATE_FORMAT(payment_date, '%Y-%m') AS mon,
+    COUNT(*) AS pay_count, SUM(payment_amount) AS pay_sum
+  FROM trainee_payment
+  WHERE payment_date >= DATE_SUB(CURDATE(), INTERVAL 5 MONTH)
+  GROUP BY mon
+  ORDER BY mon
+")->fetch_all(MYSQLI_ASSOC);
 
-      <?php include('sidebar.php'); ?>
+// Recent entries
+$recent_students = $conn->query("SELECT trainee_id, studname, shift FROM admitted_student ORDER BY row_id DESC LIMIT 5");
+$recent_payments = $conn->query("SELECT trainee_id, payment_amount, payment_date FROM trainee_payment ORDER BY payment_sys_id DESC LIMIT 5");
+$recent_apps = $conn->query("SELECT app_id, studname, app_status FROM application ORDER BY app_id DESC LIMIT 5");
+?>
 
-      <!-- Content Wrapper. Contains page content -->
-      <div class="content-wrapper">
-        <!-- Content Header (Page header) -->
-        <div class="content-header">
-          <div class="container-fluid">
-            <div class="row mb-2">
-              <div class="col-sm-6">
-                <h1 class="m-0">Dashboard</h1>
-              </div><!-- /.col -->
-              <div class="col-sm-6">
-                <ol class="breadcrumb float-sm-right">
-                  <li class="breadcrumb-item"><a href="#">Home</a></li>
-                  <li class="breadcrumb-item active">Dashboard</li>
-                </ol>
-              </div><!-- /.col -->
-            </div><!-- /.row -->
+<div class="content-wrapper">
+  <section class="content-header">
+    <h1>📊 Dashboard</h1>
+  </section>
 
-
-            <div class="row">
-          <div class="col-lg-3 col-6">
-            <!-- small box -->
-            <div class="small-box bg-info">
-            <?php 
-            $std    = "SELECT * FROM admited_student as ads, application as app where ads.app_id=app.app_id and ads.status='Admited'";
-            $stdresult = $conn->query($std);
-            $stdcount  = mysqli_num_rows($stdresult);
-            ?>
-              <div class="inner">
-                <h3> <?php echo $stdcount;?> </h3>
-
-                <p>Runing Students</p>
-              </div>
-              <div class="icon">
-                <i class="ion ion-bag"></i>
-              </div>
-              <a href="std_list.php" class="small-box-footer">Student List <i class="fas fa-arrow-circle-right"></i></a>
-            </div>
-          </div>
-          <!-- ./col -->
-          <div class="col-lg-3 col-6">
-            <!-- small box -->
-            <div class="small-box bg-success">
-            <?php 
-            $hr    = "SELECT * FROM hr";
-            $hrresult = $conn->query($hr);
-            $hrcount  = mysqli_num_rows($hrresult);
-            ?>
-              <div class="inner">
-                <h3> <?php echo $hrcount;?>  </h3>
-
-                <p>Employees</p>
-              </div>
-              <div class="icon">
-                <i class="ion ion-stats-bars"></i>
-              </div>
-              <a href="hr_list.php" class="small-box-footer">Employees <i class="fas fa-arrow-circle-right"></i></a>
-            </div>
-          </div>
-          <!-- ./col -->
-          <div class="col-lg-3 col-6">
-            <!-- small box -->
-            <div class="small-box bg-warning">
-            <?php 
-            $app    = "SELECT * FROM application where app_status='Applied'";
-            $appresult = $conn->query($app);
-            $appcount  = mysqli_num_rows($appresult);
-            ?>
-              <div class="inner">
-                <h3> <?php echo $appcount;?> </h3>
-
-                <p>Applied Students</p>
-              </div>
-              <div class="icon">
-                <i class="ion ion-person-add"></i>
-              </div>
-              <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-            </div>
-          </div>
-          <!-- ./col -->
-          <div class="col-lg-3 col-6">
-            <!-- small box -->
-            <div class="small-box bg-danger">
-            <?php 
-            $s    = "SELECT * FROM admited_student where status='Completed'";
-            $sresult = $conn->query($s);
-            $scount  = mysqli_num_rows($sresult);
-            ?>
-              <div class="inner">
-                <h3><?php echo $scount;?></h3>
-
-                <p>Course Completed</p>
-              </div>
-              <div class="icon">
-                <i class="ion ion-pie-graph"></i>
-              </div>
-              <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-            </div>
-          </div>
-          <!-- ./col -->
+  <section class="content">
+    <!-- Info boxes -->
+    <div class="row">
+      <?php
+      $boxes = [
+        ['bg'=>'bg-info','icon'=>'fas fa-user-graduate','title'=>'Students','value'=>$total_students],
+        ['bg'=>'bg-primary','icon'=>'fas fa-file-alt','title'=>'Applications','value'=>$total_apps],
+        ['bg'=>'bg-success','icon'=>'fas fa-money-bill-wave','title'=>'Paid Amount','value'=>'৳ ' . number_format($total_paid,2)],
+        ['bg'=>'bg-danger','icon'=>'fas fa-exclamation-circle','title'=>'Due Amount','value'=>'৳ ' . number_format($total_due,2)],
+      ];
+      foreach ($boxes as $b): ?>
+      <div class="col-lg-3 col-6">
+        <div class="small-box <?= $b['bg'] ?>">
+          <div class="inner"><h3><?= $b['value'] ?></h3><p><?= $b['title'] ?></p></div>
+          <div class="icon"><i class="<?= $b['icon'] ?>"></i></div>
         </div>
-        <!-- /.row -->
-
-
-
-
-        <!-- Main row -->
-        <div class="row">
-          <!-- Left col -->
-          <section class="col-lg-7 connectedSortable">
-            <!-- Custom tabs (Charts with tabs)-->
-            <div class="card">
-              <div class="card-header">
-                <h3 class="card-title">
-                  <i class="fas fa-chart-pie mr-1"></i>
-                  Students
-                </h3>
-                <div class="card-tools">
-                  <ul class="nav nav-pills ml-auto">
-                    <li class="nav-item">
-                      <a class="nav-link active" href="#revenue-chart" data-toggle="tab">Area</a>
-                    </li>
-                    <li class="nav-item">
-                      <a class="nav-link" href="#sales-chart" data-toggle="tab">Donut</a>
-                    </li>
-                  </ul>
-                </div>
-              </div><!-- /.card-header -->
-              <div class="card-body">
-                <div class="tab-content p-0">
-                  <!-- Morris chart - Sales -->
-                  <div class="chart tab-pane active" id="revenue-chart"
-                       style="position: relative; height: 300px;">
-                      <canvas id="revenue-chart-canvas" height="300" style="height: 300px;"></canvas>
-                   </div>
-                  <div class="chart tab-pane" id="sales-chart" style="position: relative; height: 300px;">
-                    <canvas id="sales-chart-canvas" height="300" style="height: 300px;"></canvas>
-                  </div>
-                </div>
-              </div><!-- /.card-body -->
-            </div>
-            <!-- /.card -->
-          </section>
-          <!-- right col -->
-        </div>
-        <!-- /.row (main row) -->
-
-
-
-
-
-
-
-
-
-
-
-
-          </div><!-- /.container-fluid -->
-        </div>
-        <!-- /.content-header --> 
-      </div><!-- /.container-fluid -->
-        </section>
-        <!-- /.content -->
-  </div>
-  <!-- /.content-wrapper -->
-
-
-
-  <?php } elseif ($_SESSION['role'] == 'manager') {?>
-    <?php include('mangerfiles/managersidebar.php'); ?>
-    
-    <!-- Content Wrapper. Contains page content -->
-    <div class="content-wrapper">
-        <!-- Content Header (Page header) -->
-        <div class="content-header">
-          <div class="container-fluid">
-
-          
-    <div class="card" style="width: 18rem;">
-
-        <div> User Name:  </div>
-        <div> User Designation:  </div>
-        <div> User Mobile No:  </div>
-
-
-			    <a href="logout.php" class="btn btn-dark">Logout</a>
-			  </div>
-        
-
-
-
-
-          </div><!-- /.container-fluid -->
-        </div>
-        <!-- /.content-header --> 
-      </div><!-- /.container-fluid -->
-        </section>
-        <!-- /.content -->
-  </div>
-  <!-- /.content-wrapper -->
-
-
-  
-  <?php }else { ?>
-      		<!-- FORE USERS -->
-          <?php include('userfiles/usersidebar.php');
-           ?>
-    
-    <!-- Content Wrapper. Contains page content -->
-    <div class="content-wrapper">
-        <!-- Content Header (Page header) -->
-        <div class="content-header">
-          <div class="container-fluid">
-
-          <?php
-          $username = ($_SESSION['username']);
-          $sql = "select * from users";
-          $result = $conn->query($sql);
-          while($rows = $result->fetch_assoc())
-          {
-
-            ?>
-    <div class="card" style="width: 18rem;">
-
-        <div> User Name: <?=$rows['username'];?>  </div>
-        <div> User Batch: <?=$rows['role'];?> </div>
-        <div> User Mobile No: <?=$rows['mobile'];?> </div>
-
-
-			    <a href="logout.php" class="btn btn-dark">Logout</a>
-			  </div>
-        
-        <?php 
-          }
-        ?>
-
-
-
-          </div><!-- /.container-fluid -->
-        </div>
-        <!-- /.content-header --> 
-      </div><!-- /.container-fluid -->
-        </section>
-        <!-- /.content -->
-  </div>
-  <!-- /.content-wrapper -->
-      	<?php } ?>
       </div>
-  
-  <?php include('footer.php'); ?>
+      <?php endforeach; ?>
+    </div>
 
-<?php }else{
-	header("Location: index.php");
-} ?>
+    <!-- Charts -->
+    <div class="row">
+      <div class="col-md-6">
+        <div class="card card-outline card-info">
+          <div class="card-header"><h3 class="card-title">Monthly Payments</h3></div>
+          <div class="card-body">
+            <canvas id="paymentsChart" style="min-height:250px;"></canvas>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="card card-outline card-danger">
+          <div class="card-header"><h3 class="card-title">Recent Activities</h3></div>
+          <div class="card-body">
+            <strong>New Students</strong>
+            <ul class="list-group mb-3">
+              <?php while($r=$recent_students->fetch_assoc()): ?>
+                <li class="list-group-item"><?= $r['trainee_id'] ?> – <?= $r['studname'] ?> <span class="badge badge-info float-right"><?= $r['shift'] ?></span></li>
+              <?php endwhile; ?>
+            </ul>
+            <strong>Recent Payments</strong>
+            <ul class="list-group mb-3">
+              <?php while($r=$recent_payments->fetch_assoc()): ?>
+                <li class="list-group-item"><?= $r['trainee_id'] ?> – ৳ <?= number_format($r['payment_amount'],2) ?> <span class="badge badge-success float-right"><?= $r['payment_date'] ?></span></li>
+              <?php endwhile; ?>
+            </ul>
+            <strong>Recent Applications</strong>
+            <ul class="list-group">
+              <?php while($r=$recent_apps->fetch_assoc()): ?>
+                <li class="list-group-item"><?= $r['studname'] ?> <span class="badge badge-secondary float-right"><?= $r['app_status'] ?></span></li>
+              <?php endwhile; ?>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- Chart.js -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+  const ctx = document.getElementById('paymentsChart').getContext('2d');
+  new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: [ <?= implode(',', array_map(fn($m)=>"'".$m['mon']."'", $months)) ?> ],
+      datasets: [{
+        label: 'Payments (৳)',
+        data: [ <?= implode(',', array_column($months,'pay_sum')) ?> ],
+        backgroundColor: 'rgba(60,141,188,0.2)',
+        borderColor: 'rgba(60,141,188,1)',
+        tension: 0.3
+      }]
+    },
+    options: { responsive: true, maintainAspectRatio: false }
+  });
+</script>
+
+<?php include("footer.php"); ?>
