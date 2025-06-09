@@ -5,7 +5,7 @@
     extract($_REQUEST);		
     $received_by = $_SESSION['id']; // Received by user ID from session
 
-    
+
 // তারিখ সেটিং
 $date = date('Y-m-d', strtotime($payment_date));
 $year = date('y', strtotime($date)); // Last two digits of year
@@ -54,5 +54,8 @@ if ($result == true) {
     echo "<script>window.location.assign('payment_receipt.php?payment_id=$receipt_id');</script>";
 } else {
     echo "<script>window.location.assign('std_fees_add.php?error=Something Went wrong!');</script>";
+}
+} else {
+    echo "<script>window.location.assign('index.php');</script>";
 }
 ?>
